@@ -3,7 +3,7 @@ library work;
 use work.Latches_Flipflops.all;
 use ieee.std_logic_1164.all;
 
-entity FLFMON is
+entity VMEMON is
   
   port (
 
@@ -23,10 +23,10 @@ entity FLFMON is
     FLFDATA  : in std_logic_vector(15 downto 0)
  
  );
-end FLFMON;
+end VMEMON;
 
 
-architecture FLFMON_Arch of FLFMON is
+architecture VMEMON_Arch of VMEMON is
 
   --Declaring internal signals
   signal CMDHIGH : std_logic;
@@ -142,4 +142,4 @@ begin
   end process;
 
 
-end FLFMON_Arch;
+end VMEMON_Arch;

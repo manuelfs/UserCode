@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 USE IEEE.std_logic_arith.all;
 USE IEEE.std_logic_unsigned.all;
 
-ENTITY dmb_vme_BGB IS
+ENTITY ODMB_VME IS
 PORT 	(
 
 -- VME signals
@@ -158,10 +158,10 @@ PORT 	(
 
 );
 	
-end dmb_vme_BGB;
+end ODMB_VME;
 
 
-ARCHITECTURE dmb_vme_BGB_architecture OF dmb_vme_BGB IS
+ARCHITECTURE ODMB_VME_architecture OF ODMB_VME IS
 
 signal ext_vme_ga  : std_logic_vector(5 downto 0);
 
@@ -185,11 +185,11 @@ signal outdata_lvdbmon  : std_logic_vector(15 downto 0);
 signal cmd_adrs  : std_logic_vector(15 downto 0);
 signal outdata_fifomon  : std_logic_vector(15 downto 0);
 
-signal outdata_flfmon  : std_logic_vector(15 downto 0);
+signal outdata_vmemon  : std_logic_vector(15 downto 0);
 
 signal jtag_tck  : std_logic_vector(6 downto 0);
 
-COMPONENT FLFMON is
+COMPONENT VMEMON is
   
   port (
 
@@ -384,7 +384,7 @@ END COMPONENT;
 
 -- Device 2 => MBCJTAG
 
--- Device 3 => CPROMJTAG (REMOVED)			FLFMON
+-- Device 3 => CPROMJTAG (REMOVED)			VMEMON
 
 -- Device 4 => VPROMJTAG (REMOVED)
 
@@ -461,7 +461,7 @@ PMAP_VME_OUT_SEL : vme_outdata_sel
 		device => device,
 		device1_outdata => outdata_cfebjtag,
 		device2_outdata => outdata_mbcjtag,
-		device3_outdata => outdata_flfmon,
+		device3_outdata => outdata_vmemon,
 		device8_outdata => outdata_lvdbmon,
 		device9_outdata => outdata_fifomon,
 		outdata => vme_data_out
@@ -585,7 +585,7 @@ PMAP_FIFOMON : FIFOMON
 
 );
 
-PMAP_FLFMON : FLFMON
+PMAP_VMEMON : VMEMON
  
 	port map (
 
@@ -597,7 +597,7 @@ PMAP_FLFMON : FLFMON
     COMMAND => cmd,
 
     INDATA => vme_data_in,
-    OUTDATA => outdata_flfmon,
+    OUTDATA => outdata_vmemon,
 
     DTACK => vme_dtack_b,
 
@@ -666,5 +666,5 @@ qpll_extcontrol <= '0';
 qpll_reset <= '0';										
 qpll_f0sel <= "0000";		
 
-end dmb_vme_BGB_architecture;
+end ODMB_VME_architecture;
 

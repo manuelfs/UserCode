@@ -1,4 +1,15 @@
--- November 25 - 4.37PM
+----------------------------------------------------------------------------------
+-- Company: UCSB
+-- Engineer/Physicists: Guido Magazzu, Frank Golf, Manuel Franco Sevilla
+--
+-- Create Date:     03/03/2013
+-- Project Name:    ODMB_UCSB_V1
+-- Target Devices:  Virtex-6
+-- Tool versions:   ISE 12.3
+-- Description:     Official firmware for the ODMB.V1
+--
+-- Revision 0.01 - File Created
+----------------------------------------------------------------------------------
 
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.all; 
@@ -15,7 +26,7 @@ ENTITY DMB_V6 IS
 	PORT
 	(
 
--- From/To VME connector To/From DAQMBV
+-- From/To VME connector To/From MBV
 
 		vme_data : INOUT STD_LOGIC_VECTOR(15 DOWNTO 0);		-- OK		d(15 DOWNTO 0)
 		vme_addr : IN STD_LOGIC_VECTOR(23 DOWNTO 1);			-- OK		a(23 DOWNTO 1)
@@ -37,15 +48,11 @@ ENTITY DMB_V6 IS
 		vme_lword_b : IN STD_LOGIC;								-- OK		lword*
 		vme_write_b : IN STD_LOGIC;								-- OK		write*
 		vme_clk : IN STD_LOGIC;										-- OK		???
-		vme_dtack_v6_b : INOUT STD_LOGIC;							-- OK		dtack*
--- UCSB use
---		vme_tovme_b : OUT STD_LOGIC;								-- OK		not (tovme)
---		vme_doe : OUT STD_LOGIC;									-- OK		not (doe*)
--- B904 use
+		vme_dtack_v6_b : INOUT STD_LOGIC;						-- OK		dtack*
 		vme_tovme : OUT STD_LOGIC;									-- OK		not (tovme)
 		vme_doe : OUT STD_LOGIC;									-- OK		not (doe*)
 
--- From/To J6 (J3) connector to DMB_CTRL
+-- From/To J6 (J3) connector to ODMB_CTRL
 
 		ccb_cmd : IN STD_LOGIC_VECTOR(5 DOWNTO 0);			-- OK		ccbcmnd(5 DOWNTO 0)
 		ccb_cmd_s : IN STD_LOGIC;									-- OK		ccbcmnd(6)
@@ -73,7 +80,7 @@ ENTITY DMB_V6 IS
 		rawlct : IN STD_LOGIC_VECTOR(5 DOWNTO 0);				-- OK		???
 		tmbffclk : IN STD_LOGIC;									-- OK		tmbffclk
 
--- From/To J3/J4 t/fromo DMB_CTRL
+-- From/To J3/J4 t/fromo ODMB_CTRL
 
 		lctdav1 : IN STD_LOGIC;										-- OK		lctdav1
 		lctdav2 : IN STD_LOGIC;										-- OK		lctdav2
@@ -373,30 +380,6 @@ ENTITY DMB_V6 IS
 		gl1_clk : IN  STD_LOGIC;				-- OK
 		
 		done_in : IN  STD_LOGIC 
-
--- Configuration (FPGA inputs) 
-
--- Guido program_b :  IN  STD_LOGIC;
--- Guido init_b :  IN  STD_LOGIC;
--- Guido m2 :  IN  STD_LOGIC;
--- Guido m1 :  IN  STD_LOGIC;
--- Guido m0 :  IN  STD_LOGIC;
--- Guido prom_d :  IN  STD_LOGIC_VECTOR (15 downto 0);		-- ok
--- Guido tdi :  IN  STD_LOGIC;
--- Guido tms :  IN  STD_LOGIC;
--- Guido tck :  IN  STD_LOGIC;
-
--- Configuration (FPGA outputs) 
-
--- Guido tdo :  OUT  STD_LOGIC;
--- Guido prom_a :  OUT  STD_LOGIC_VECTOR (22 downto 0);
--- Guido prom_cs_b :  OUT  STD_LOGIC;								-- ok
--- Guido prom_oe_b :  OUT  STD_LOGIC;								-- ok
--- Guido prom_we_b :  OUT  STD_LOGIC;								-- ok
--- Guido prom_le_b :  OUT  STD_LOGIC;								-- ok
--- Guido cclk :  INOUT  STD_LOGIC;
--- Guido done :  OUT  STD_LOGIC
-
 	);
 END DMB_V6;
 
@@ -523,7 +506,7 @@ port
   	 tdo : OUT STD_LOGIC);
 end COMPONENT;
 
-COMPONENT dmb_ctrl IS
+COMPONENT ODMB_CTRL IS
 	port (
 		mbc_fsel: OUT STD_LOGIC_VECTOR(47 downto 1);
 		mbc_jtag_ir: OUT STD_LOGIC_VECTOR(9 downto 0);
@@ -617,7 +600,7 @@ COMPONENT dmb_ctrl IS
 	
 end COMPONENT;
 
-COMPONENT dmb_vme_BGB IS
+COMPONENT ODMB_VME IS
 	port (
 
 -- VME signals
@@ -666,7 +649,7 @@ COMPONENT dmb_vme_BGB IS
 		ul_jtag_tms : IN STD_LOGIC_VECTOR (6 downto 0);				
 		ul_jtag_tdi : IN STD_LOGIC_VECTOR (6 downto 0);
 
--- JTAG Signals To/From DMB_CTRL
+-- JTAG Signals To/From ODMB_CTRL
 
 		mbc_jtag_tck : OUT STD_LOGIC;				
 		mbc_jtag_tms : OUT STD_LOGIC;				
@@ -815,8 +798,6 @@ SIGNAL 	d_in, d_out, d_oe : STD_LOGIC_VECTOR(63 DOWNTO 0);
 
 signal	vme_data_out : STD_LOGIC_VECTOR (15 downto 0);
 signal	vme_data_in : STD_LOGIC_VECTOR (15 downto 0);
---signal	int_vme_tovme, int_vme_tovme_b : STD_LOGIC;
---signal	int_vme_doe, int_vme_doe_b : STD_LOGIC; 
 signal	vme_tovme_b : STD_LOGIC;
 signal	vme_doe_b : STD_LOGIC; 
 
@@ -1104,7 +1085,7 @@ SIGNAL 	int_lvmb_sclk,int_lvmb_sdin,int_lvmb_sdout : STD_LOGIC;
 
 SIGNAL 	leds_in : STD_LOGIC_VECTOR(11 downto 0); 
 
--- JTAG signals between DMB_VME and DMB_CTRL
+-- JTAG signals between ODMB_VME and ODMB_CTRL
 
 SIGNAL 	mbc_jtag_tck : STD_LOGIC;			
 SIGNAL 	mbc_jtag_tms : STD_LOGIC;			
@@ -1235,71 +1216,74 @@ signal 	orx2_07_sd : std_logic;
 signal 	orx2_08_sd : std_logic;
 
 signal	por_reg : STD_LOGIC_VECTOR (31 downto 0);
-
 signal	mbc_leds : STD_LOGIC_VECTOR (5 downto 0);
 
+signal   select_diagnostic : integer := 0;
 BEGIN 
 
---d(0) <= diagout_lvdbmon(0);		-- TP58   TP59 SLOWCLK
---d(1) <= diagout_lvdbmon(1);		-- TP60   TP61 CE_ADCDATA
---d(2) <= diagout_lvdbmon(2);		-- TP62   TP63 CLKMON
---d(3) <= diagout_lvdbmon(3);		-- TP64   TP65 ADCCLK_INNER
---d(4) <= diagout_lvdbmon(4);		-- TP66   TP66 BUSY
---d(5) <= diagout_lvdbmon(5);		-- TP68   TP68 L_ADCDATA
---d(6) <= diagout_lvdbmon(6);		-- TP70
---d(7) <= diagout_lvdbmon(7);		-- TP72
---d(8) <= diagout_lvdbmon(8);		-- TP74
---d(32) <= diagout_lvdbmon(9);		-- TP59
---d(33) <= diagout_lvdbmon(10);		-- TP61
---d(34) <= diagout_lvdbmon(11);		-- TP63
---d(35) <= diagout_lvdbmon(12);		-- TP65
---d(36) <= diagout_lvdbmon(13);		-- TP67
---d(37) <= diagout_lvdbmon(14);		-- TP69
---d(38) <= diagout_lvdbmon(15);		-- TP71
---d(39) <= diagout_lvdbmon(16);		-- TP73
---d(40) <= diagout_lvdbmon(17);		-- TP75
-
--- d(0) <= diagout_cfebjtag(0);		-- TP58   TP59 TCK(1)
--- d(1) <= diagout_cfebjtag(1);		-- TP60   TP61 TDI
--- d(2) <= diagout_cfebjtag(2);		-- TP62   TP63 TMS
--- d(3) <= diagout_cfebjtag(3);		-- TP64   TP65 DL_RTN_SHFT_EN(1)
--- d(4) <= diagout_cfebjtag(4);		-- TP66   TP66 UL_JTAG_TCK(1)
-
-
-d(0) <= qpll_clk40MHz;		-- TP58   TP59 TCK(1)
-d(1) <= qpll_locked;		-- TP60   TP61 TDI
---d(0) <= flf_ctrl(15);		-- TP58   TP59 TCK(1)
---d(1) <= flf_ctrl(14);		-- TP60   TP61 TDI
-d(2) <= dl_injpulse;		-- TP62   TP63 TMS
-d(3) <= dl_extpulse;		-- TP64   TP65 DL_RTN_SHFT_EN(1)
-d(4) <= dl_gtrig;		-- TP66   TP66 UL_JTAG_TCK(1)
-
-d(5) <= diagout_cfebjtag(5);		-- TP68   TP68 SELFEB(1)
-d(6) <= diagout_cfebjtag(6);		-- TP70   TP70 FEBTDO(1)
-d(7) <= diagout_cfebjtag(7);		-- TP72   TP72 READTDO
---d(8) <= diagout_cfebjtag(8);		-- TP74
---d(32) <= diagout_cfebjtag(9);		-- TP59
-d(33) <= diagout_cfebjtag(10);		-- TP61
-d(34) <= diagout_cfebjtag(11);		-- TP63
-d(35) <= diagout_cfebjtag(12);		-- TP65   SLOWCLK
---d(36) <= diagout_cfebjtag(13);		-- TP67
---d(37) <= diagout_cfebjtag(14);		-- TP69
---d(38) <= diagout_cfebjtag(15);		-- TP71
---d(39) <= diagout_cfebjtag(16);		-- TP73
---d(40) <= diagout_cfebjtag(17);		-- TP75
-
-d(8)  <= DL_RTN_SHFT_EN(1);		-- TP74
-d(32) <= int_vme_dtack_v6_b;		-- TP59
-d(36) <= DL_RTN_SHFT_EN(3);		-- TP67
-d(37) <= DL_RTN_SHFT_EN(4);		-- TP69
-d(38) <= DL_RTN_SHFT_EN(5);		-- TP71
-d(39) <= DL_RTN_SHFT_EN(6);		-- TP73
-d(40) <= DL_RTN_SHFT_EN(7);		-- TP75
-
-d(31 downto 9) <= (others => '0');
-d(63 downto 41) <= (others => '0');
---vme_tovme <= int_vme_tovme;
---vme_doe <= int_vme_doe;
+Select_TestPoints : process(diagout_lvdbmon, diagout_cfebjtag, qpll_clk40MHz)
+begin
+	if (select_diagnostic=0) then
+		d(0) <= diagout_lvdbmon(0);		-- TP58   TP59 SLOWCLK
+		d(1) <= diagout_lvdbmon(1);		-- TP60   TP61 CE_ADCDATA
+		d(2) <= diagout_lvdbmon(2);		-- TP62   TP63 CLKMON
+		d(3) <= diagout_lvdbmon(3);		-- TP64   TP65 ADCCLK_INNER
+		d(4) <= diagout_lvdbmon(4);		-- TP66   TP66 BUSY
+		d(5) <= diagout_lvdbmon(5);		-- TP68   TP68 L_ADCDATA
+		d(6) <= diagout_lvdbmon(6);		-- TP70
+		d(7) <= diagout_lvdbmon(7);		-- TP72
+		d(8) <= diagout_lvdbmon(8);		-- TP74
+		d(32) <= diagout_lvdbmon(9);		-- TP59
+		d(33) <= diagout_lvdbmon(10);		-- TP61
+		d(34) <= diagout_lvdbmon(11);		-- TP63
+		d(35) <= diagout_lvdbmon(12);		-- TP65
+		d(36) <= diagout_lvdbmon(13);		-- TP67
+		d(37) <= diagout_lvdbmon(14);		-- TP69
+		d(38) <= diagout_lvdbmon(15);		-- TP71
+		d(39) <= diagout_lvdbmon(16);		-- TP73
+		d(40) <= diagout_lvdbmon(17);		-- TP75
+	elsif (select_diagnostic=1) then
+		d(0) <= diagout_cfebjtag(0);		-- TP58   TP59 TCK(1)
+		d(1) <= diagout_cfebjtag(1);		-- TP60   TP61 TDI
+		d(2) <= diagout_cfebjtag(2);		-- TP62   TP63 TMS
+		d(3) <= diagout_cfebjtag(3);		-- TP64   TP65 DL_RTN_SHFT_EN(1)
+		d(4) <= diagout_cfebjtag(4);		-- TP66   TP66 UL_JTAG_TCK(1)
+		d(5) <= diagout_cfebjtag(5);		-- TP68   TP68 SELFEB(1)
+		d(6) <= diagout_cfebjtag(6);		-- TP70   TP70 FEBTDO(1)
+		d(7) <= diagout_cfebjtag(7);		-- TP72   TP72 READTDO
+		d(8) <= diagout_cfebjtag(8);		-- TP74
+		d(32) <= diagout_cfebjtag(9);		-- TP59
+		d(33) <= diagout_cfebjtag(10);	-- TP61
+		d(34) <= diagout_cfebjtag(11);	-- TP63
+		d(35) <= diagout_cfebjtag(12);	-- TP65   SLOWCLK
+		d(36) <= diagout_cfebjtag(13);	-- TP67
+		d(37) <= diagout_cfebjtag(14);	-- TP69
+		d(38) <= diagout_cfebjtag(15);	-- TP71
+		d(39) <= diagout_cfebjtag(16);	-- TP73
+		d(40) <= diagout_cfebjtag(17);	-- TP75
+	else
+		d(0) <= flf_ctrl(15);				-- TP58   TP59 TCK(1)
+		d(1) <= flf_ctrl(14);				-- TP60   TP61 TDI
+		d(2) <= dl_injpulse;					-- TP62   TP63 TMS
+		d(3) <= dl_extpulse;					-- TP64   TP65 DL_RTN_SHFT_EN(1)
+		d(4) <= dl_gtrig;						-- TP66   TP66 UL_JTAG_TCK(1)
+		d(5) <= qpll_clk40MHz;				-- TP68   TP68 SELFEB(1)
+		d(6) <= qpll_locked;					-- TP70   TP70 FEBTDO(1)
+		d(7) <= diagout_cfebjtag(7);		-- TP72   TP72 READTDO
+		d(8)  <= DL_RTN_SHFT_EN(1);		-- TP74
+		d(32) <= int_vme_dtack_v6_b;		-- TP59
+		d(33) <= diagout_cfebjtag(10);	-- TP61
+		d(34) <= diagout_cfebjtag(11);	-- TP63
+		d(35) <= diagout_cfebjtag(12);	-- TP65   SLOWCLK
+		d(36) <= DL_RTN_SHFT_EN(3);		-- TP67
+		d(37) <= DL_RTN_SHFT_EN(4);		-- TP69
+		d(38) <= DL_RTN_SHFT_EN(5);		-- TP71
+		d(39) <= DL_RTN_SHFT_EN(6);		-- TP73
+		d(40) <= DL_RTN_SHFT_EN(7);		-- TP75
+	end if;
+	d(31 downto 9) <= (others => '0');
+	d(63 downto 41) <= (others => '0');
+end process Select_TestPoints;
 
 fd_clr <= '0';
 fd_pre <= '0';
@@ -1318,23 +1302,6 @@ begin
 end process;
 reset <= por_reg(31);
 
-
--- VME I/O Signals From/To J4 
-
--- iob_rsvtd_out(2 downto 0) <= "000";
--- iob_rsvtd_out(6 downto 3) <= rsvtd_out(3 downto 0);
-
--- vme_rsvtd0_buf : IOBUF port map (O => iob_rsvtd_in(0), IO => rsvtd(0), I => iob_rsvtd_out(0), T => '1'); -- input     	
--- vme_rsvtd1_buf : IOBUF port map (O => iob_rsvtd_in(1), IO => rsvtd(1), I => iob_rsvtd_out(1), T => '1'); -- input     	
--- vme_rsvtd2_buf : IOBUF port map (O => iob_rsvtd_in(2), IO => rsvtd(2), I => iob_rsvtd_out(2), T => '1'); -- input     	
--- vme_rsvtd3_buf : IOBUF port map (O => iob_rsvtd_in(3), IO => rsvtd(3), I => iob_rsvtd_out(3), T => '0'); -- output     	
--- vme_rsvtd4_buf : IOBUF port map (O => iob_rsvtd_in(4), IO => rsvtd(4), I => iob_rsvtd_out(4), T => '0'); -- output      	
--- vme_rsvtd5_buf : IOBUF port map (O => iob_rsvtd_in(5), IO => rsvtd(5), I => iob_rsvtd_out(5), T => '0'); -- output      	
--- vme_rsvtd6_buf : IOBUF port map (O => iob_rsvtd_in(6), IO => rsvtd(6), I => iob_rsvtd_out(6), T => '0'); -- output      	
-
--- rsvtd_in <= iob_rsvtd_in(2 downto 0);
-
--- VME I/O Signals From/To J4 (vme_data)
 
 PULLUP_dtack_b : PULLUP
    port map (O => vme_dtack_v6_b);
@@ -1367,7 +1334,7 @@ lvmb_csb <= int_lvmb_csb;
 lvmb_sclk <= int_lvmb_sclk;									
 lvmb_sdin <= int_lvmb_sdin;									
 
-b2v_mode_pb_sel : mode_pb_sel 
+PB_SEL : mode_pb_sel 
 	port map (
 		pb0 => pb(0),
 		pb1 => pb(1),
@@ -1378,1057 +1345,12 @@ b2v_mode_pb_sel : mode_pb_sel
 		lb_ff_en => lb_ff_en,
 		tm_en => tm_en);
 
---leds_in(8) <= pb_reset;
---leds_in(9) <= lb_en;
---leds_in(10) <= lb_ff_en;
---leds_in(11) <= tm_en;
-
---leds_in(8) <= pb(0);
---leds_in(9) <= pb(1);
---leds_in(10) <= pb(2);
---leds_in(11) <= pb(3);
-
 test_vme_oe_b <= '1'; 							-- 3-state output enable for test_vme_data (high=input, low=output) 
 -- test_vme_data_out <= "1010101010101010"; 	-- constant output (0xaaaa) for test_vme_data 
 
 -- flf_test_en <= tm_en; 								
 tkn_test_en <= tm_en; 							
 
--- ------------------------------------------------------------------------------------------------- 
-
--- CODE_A (VME_BUS SELECTION)
-
--- VME IOs From/To (1) Stratix FPGA through Test Connector or (2) VME backplane
-
-vme_test_mode <= '0'; 		-- VME I/O From/To VME backplane (J4) - B904 Test Bench 
--- vme_test_mode <= '1'; 			-- VME I/O From/To Test Connector (J5) - UCSB Test Bench
-
---d00_buf : IOBUF port map (O => d_in(0), IO => d(0), I => d_out(0), T => d_oe(0)); -- TP58    	
-
---d00_buf_mux: process(vme_test_mode, vme_gap, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(0) <= vme_gap;
---		d_oe(0) <= '0';	
---		int_vme_gap <= vme_gap; 	
---	elsif (vme_test_mode = '1') then
---		d_out(0) <= vme_gap; 
---		d_oe(0) <= '1';	
---		int_vme_gap <= d_in(0); 	
---	end if;	
---end process;
---
---d01_buf : IOBUF port map (O => d_in(1), IO => d(1), I => d_out(1), T => d_oe(1)); -- TP60    	
---
---d01_buf_mux: process(vme_test_mode, vme_ga, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(1) <= vme_ga(4);
---		d_oe(1) <= '0';	
---		int_vme_ga(4) <= vme_ga(4); 	
---	elsif (vme_test_mode = '1') then
---		d_out(1) <= vme_ga(4); 
---		d_oe(1) <= '1';	
---		int_vme_ga(4) <= d_in(1); 
---	end if;	
---end process;
---
---d02_buf : IOBUF port map (O => d_in(2), IO => d(2), I => d_out(2), T => d_oe(2)); -- TP62    	
---
---d02_buf_mux: process(vme_test_mode, vme_ga, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(2) <= vme_ga(3);
---		d_oe(2) <= '0';	
---		int_vme_ga(3) <= vme_ga(3); 	
---	elsif (vme_test_mode = '1') then
---		d_out(2) <= vme_ga(3); 
---		d_oe(2) <= '1';	
---		int_vme_ga(3) <= d_in(2); 
---	end if;	
---end process;
---
---d03_buf : IOBUF port map (O => d_in(3), IO => d(3), I => d_out(3), T => d_oe(3)); -- TP64     	
---
---d03_buf_mux: process(vme_test_mode, vme_ga, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(3) <= vme_ga(2);
---		d_oe(3) <= '0';	
---		int_vme_ga(2) <= vme_ga(2); 	
---	elsif (vme_test_mode = '1') then
---		d_out(3) <= vme_ga(2); 
---		d_oe(3) <= '1';	
---		int_vme_ga(2) <= d_in(3); 
---	end if;	
---end process;
---
---d04_buf : IOBUF port map (O => d_in(4), IO => d(4), I => d_out(4), T => d_oe(4)); -- TP66     	
---
---d04_buf_mux: process(vme_test_mode, vme_ga, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(4) <= vme_ga(1);
---		d_oe(4) <= '0';	
---		int_vme_ga(1) <= vme_ga(1); 	
---	elsif (vme_test_mode = '1') then
---		d_out(4) <= vme_ga(1); 
---		d_oe(4) <= '1';	
---		int_vme_ga(1) <= d_in(4); 
---	end if;	
---end process;
---
---d05_buf : IOBUF port map (O => d_in(5), IO => d(5), I => d_out(5), T => d_oe(5)); -- TP68    	
---
---d05_buf_mux: process(vme_test_mode, vme_ga, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(5) <= vme_ga(0);
---		d_oe(5) <= '0';	
---		int_vme_ga(0) <= vme_ga(0); 	
---	elsif (vme_test_mode = '1') then
---		d_out(5) <= vme_ga(0); 
---		d_oe(5) <= '1';	
---		int_vme_ga(0) <= d_in(5); 
---	end if;	
---end process;
---
---d06_buf : IOBUF port map (O => d_in(6), IO => d(6), I => d_out(6), T => d_oe(6)); -- TP70     	
---
---d06_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(6) <= vme_addr(23);
---		d_oe(6) <= '0';	
---		int_vme_addr(23) <= vme_addr(23); 	
---	elsif (vme_test_mode = '1') then
---		d_out(6) <= vme_addr(23); 
---		d_oe(6) <= '1';	
---		int_vme_addr(23) <= d_in(6); 
---	end if;	
---end process;
---
---d07_buf : IOBUF port map (O => d_in(7), IO => d(7), I => d_out(7), T => d_oe(7)); -- TP72     	
---
---d07_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(7) <= vme_addr(22);
---		d_oe(7) <= '0';	
---		int_vme_addr(22) <= vme_addr(22); 	
---	elsif (vme_test_mode = '1') then
---		d_out(7) <= vme_addr(22); 
---		d_oe(7) <= '1';	
---		int_vme_addr(22) <= d_in(7); 
---	end if;	
---end process;
---
---d08_buf : IOBUF port map (O => d_in(8), IO => d(8), I => d_out(8), T => d_oe(8)); -- TP74     	
---
---d08_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(8) <= vme_addr(21);
---		d_oe(8) <= '0';	
---		int_vme_addr(21) <= vme_addr(21); 	
---	elsif (vme_test_mode = '1') then
---		d_out(8) <= vme_addr(21); 
---		d_oe(8) <= '1';	
---		int_vme_addr(21) <= d_in(8); 
---	end if;	
---end process;
---
---d09_buf : IOBUF port map (O => d_in(9), IO => d(9), I => d_out(9), T => d_oe(9));     	
---
---d09_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(9) <= vme_addr(20);
---		d_oe(9) <= '0';	
---		int_vme_addr(20) <= vme_addr(20); 	
---	elsif (vme_test_mode = '1') then
---		d_out(9) <= vme_addr(20); 
---		d_oe(9) <= '1';	
---		int_vme_addr(20) <= d_in(9); 
---	end if;	
---end process;
---
---d10_buf : IOBUF port map (O => d_in(10), IO => d(10), I => d_out(10), T => d_oe(10));     	
---
---d10_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(10) <= vme_addr(19);
---		d_oe(10) <= '0';	
---		int_vme_addr(19) <= vme_addr(19); 	
---	elsif (vme_test_mode = '1') then
---		d_out(10) <= vme_addr(19); 
---		d_oe(10) <= '1';	
---		int_vme_addr(19) <= d_in(10); 
---	end if;	
---end process;
---
---d11_buf : IOBUF port map (O => d_in(11), IO => d(11), I => d_out(11), T => d_oe(11));     	
---
---d11_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(11) <= vme_addr(18);
---		d_oe(11) <= '0';	
---		int_vme_addr(18) <= vme_addr(18); 	
---	elsif (vme_test_mode = '1') then
---		d_out(11) <= vme_addr(18); 
---		d_oe(11) <= '1';	
---		int_vme_addr(18) <= d_in(11); 
---	end if;	
---end process;
---
---d12_buf : IOBUF port map (O => d_in(12), IO => d(12), I => d_out(12), T => d_oe(12));     	
---
---d12_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(12) <= vme_addr(17);
---		d_oe(12) <= '0';	
---		int_vme_addr(17) <= vme_addr(17); 	
---	elsif (vme_test_mode = '1') then
---		d_out(12) <= vme_addr(17); 
---		d_oe(12) <= '1';	
---		int_vme_addr(17) <= d_in(12); 
---	end if;	
---end process;
---
---d13_buf : IOBUF port map (O => d_in(13), IO => d(13), I => d_out(13), T => d_oe(13));     	
---
---d13_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(13) <= vme_addr(16);
---		d_oe(13) <= '0';	
---		int_vme_addr(16) <= vme_addr(16); 	
---	elsif (vme_test_mode = '1') then
---		d_out(13) <= vme_addr(16); 
---		d_oe(13) <= '1';	
---		int_vme_addr(16) <= d_in(13); 
---	end if;	
---end process;
---
---d14_buf : IOBUF port map (O => d_in(14), IO => d(14), I => d_out(14), T => d_oe(14));     	
---
---d14_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(14) <= vme_addr(15);
---		d_oe(14) <= '0';	
---		int_vme_addr(15) <= vme_addr(15); 	
---	elsif (vme_test_mode = '1') then
---		d_out(14) <= vme_addr(15); 
---		d_oe(14) <= '1';	
---		int_vme_addr(15) <= d_in(14); 
---	end if;	
---end process;
---
---d15_buf : IOBUF port map (O => d_in(15), IO => d(15), I => d_out(15), T => d_oe(15));     	
---
---d15_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(15) <= vme_addr(14);
---		d_oe(15) <= '0';	
---		int_vme_addr(14) <= vme_addr(14); 	
---	elsif (vme_test_mode = '1') then
---		d_out(15) <= vme_addr(14); 
---		d_oe(15) <= '1';	
---		int_vme_addr(14) <= d_in(15); 
---	end if;	
---end process;
---
---d16_buf : IOBUF port map (O => d_in(16), IO => d(16), I => d_out(16), T => d_oe(16));     	
---
---d16_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(16) <= vme_addr(13);
---		d_oe(16) <= '0';	
---		int_vme_addr(13) <= vme_addr(13); 	
---	elsif (vme_test_mode = '1') then
---		d_out(16) <= vme_addr(13); 
---		d_oe(16) <= '1';	
---		int_vme_addr(13) <= d_in(16); 
---	end if;	
---end process;
---
---d17_buf : IOBUF port map (O => d_in(17), IO => d(17), I => d_out(17), T => d_oe(17));     	
---
---d17_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(17) <= vme_addr(12);
---		d_oe(17) <= '0';	
---		int_vme_addr(12) <= vme_addr(12); 	
---	elsif (vme_test_mode = '1') then
---		d_out(17) <= vme_addr(12); 
---		d_oe(17) <= '1';	
---		int_vme_addr(12) <= d_in(17); 
---	end if;	
---end process;
---
---d18_buf : IOBUF port map (O => d_in(18), IO => d(18), I => d_out(18), T => d_oe(18));     	
---
---d18_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(18) <= vme_addr(11);
---		d_oe(18) <= '0';	
---		int_vme_addr(11) <= vme_addr(11); 	
---	elsif (vme_test_mode = '1') then
---		d_out(18) <= vme_addr(11); 
---		d_oe(18) <= '1';	
---		int_vme_addr(11) <= d_in(18); 
---	end if;	
---end process;
---
---d19_buf : IOBUF port map (O => d_in(19), IO => d(19), I => d_out(19), T => d_oe(19));     	
---
---d19_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(19) <= vme_addr(10);
---		d_oe(19) <= '0';	
---		int_vme_addr(10) <= vme_addr(10); 	
---	elsif (vme_test_mode = '1') then
---		d_out(19) <= vme_addr(10); 
---		d_oe(19) <= '1';	
---		int_vme_addr(10) <= d_in(19); 
---	end if;	
---end process;
---
---d20_buf : IOBUF port map (O => d_in(20), IO => d(20), I => d_out(20), T => d_oe(20));     	
---
---d20_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(20) <= vme_addr(9);
---		d_oe(20) <= '0';	
---		int_vme_addr(9) <= vme_addr(9); 	
---	elsif (vme_test_mode = '1') then
---		d_out(20) <= vme_addr(9); 
---		d_oe(20) <= '1';	
---		int_vme_addr(9) <= d_in(20); 
---	end if;	
---end process;
---
---d21_buf : IOBUF port map (O => d_in(21), IO => d(21), I => d_out(21), T => d_oe(21));     	
---
---d21_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(21) <= vme_addr(8);
---		d_oe(21) <= '0';	
---		int_vme_addr(8) <= vme_addr(8); 	
---	elsif (vme_test_mode = '1') then
---		d_out(21) <= vme_addr(8); 
---		d_oe(21) <= '1';	
---		int_vme_addr(8) <= d_in(21); 
---	end if;	
---end process;
---
---d22_buf : IOBUF port map (O => d_in(22), IO => d(22), I => d_out(22), T => d_oe(22));     	
---
---d22_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(22) <= vme_addr(7);
---		d_oe(22) <= '0';	
---		int_vme_addr(7) <= vme_addr(7); 	
---	elsif (vme_test_mode = '1') then
---		d_out(22) <= vme_addr(7); 
---		d_oe(22) <= '1';	
---		int_vme_addr(7) <= d_in(22); 
---	end if;	
---end process;
---
---d23_buf : IOBUF port map (O => d_in(23), IO => d(23), I => d_out(23), T => d_oe(23));     	
---
---d23_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(23) <= vme_addr(6);
---		d_oe(23) <= '0';	
---		int_vme_addr(6) <= vme_addr(6); 	
---	elsif (vme_test_mode = '1') then
---		d_out(23) <= vme_addr(6); 
---		d_oe(23) <= '1';	
---		int_vme_addr(6) <= d_in(23); 
---	end if;	
---end process;
---
---d24_buf : IOBUF port map (O => d_in(24), IO => d(24), I => d_out(24), T => d_oe(24));     	
---
---d24_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(24) <= vme_addr(5);
---		d_oe(24) <= '0';	
---		int_vme_addr(5) <= vme_addr(5); 	
---	elsif (vme_test_mode = '1') then
---		d_out(24) <= vme_addr(5); 
---		d_oe(24) <= '1';	
---		int_vme_addr(5) <= d_in(24); 
---	end if;	
---end process;
---
---d25_buf : IOBUF port map (O => d_in(25), IO => d(25), I => d_out(25), T => d_oe(25));     	
---
---d25_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(25) <= vme_addr(4);
---		d_oe(25) <= '0';	
---		int_vme_addr(4) <= vme_addr(4); 	
---	elsif (vme_test_mode = '1') then
---		d_out(25) <= vme_addr(4); 
---		d_oe(25) <= '1';	
---		int_vme_addr(4) <= d_in(25); 
---	end if;	
---end process;
---
---d26_buf : IOBUF port map (O => d_in(26), IO => d(26), I => d_out(26), T => d_oe(26));     	
---
---d26_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(26) <= vme_addr(3);
---		d_oe(26) <= '0';	
---		int_vme_addr(3) <= vme_addr(3); 	
---	elsif (vme_test_mode = '1') then
---		d_out(26) <= vme_addr(3); 
---		d_oe(26) <= '1';	
---		int_vme_addr(3) <= d_in(26); 
---	end if;	
---end process;
---
---d27_buf : IOBUF port map (O => d_in(27), IO => d(27), I => d_out(27), T => d_oe(27));     	
---
---d27_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(27) <= vme_addr(2);
---		d_oe(27) <= '0';	
---		int_vme_addr(2) <= vme_addr(2); 	
---	elsif (vme_test_mode = '1') then
---		d_out(27) <= vme_addr(2); 
---		d_oe(27) <= '1';	
---		int_vme_addr(2) <= d_in(27); 
---	end if;	
---end process;
---
---d28_buf : IOBUF port map (O => d_in(28), IO => d(28), I => d_out(28), T => d_oe(28));     	
---
---d28_buf_mux: process(vme_test_mode, vme_addr, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(28) <= vme_addr(1);
---		d_oe(28) <= '0';	
---		int_vme_addr(1) <= vme_addr(1); 	
---	elsif (vme_test_mode = '1') then
---		d_out(28) <= vme_addr(1); 
---		d_oe(28) <= '1';	
---		int_vme_addr(1) <= d_in(28); 
---	end if;	
---end process;
---
---d29_buf : IOBUF port map (O => d_in(29), IO => d(29), I => d_out(29), T => d_oe(29));     	
---
---d29_buf_mux: process(vme_test_mode, vme_as_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(29) <= vme_as_b;
---		d_oe(29) <= '0';	
---		int_vme_as_b <= vme_as_b; 	
---	elsif (vme_test_mode = '1') then
---		d_out(29) <= vme_as_b; 
---		d_oe(29) <= '1';	
---		int_vme_as_b <= d_in(29); 
---	end if;	
---end process;
---
---d30_buf : IOBUF port map (O => d_in(30), IO => d(30), I => d_out(30), T => d_oe(30));     	
---
---d30_buf_mux: process(vme_test_mode, vme_ds_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(30) <= vme_ds_b(0);
---		d_oe(30) <= '0';	
---		int_vme_ds_b(0) <= vme_ds_b(0); 	
---	elsif (vme_test_mode = '1') then
---		d_out(30) <= vme_ds_b(0); 
---		d_oe(30) <= '1';	
---		int_vme_ds_b(0) <= d_in(30); 
---	end if;	
---end process;
---
---d31_buf : IOBUF port map (O => d_in(31), IO => d(31), I => d_out(31), T => d_oe(31));     	
---
---d31_buf_mux: process(vme_test_mode, vme_ds_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(31) <= vme_ds_b(1);
---		d_oe(31) <= '0';	
---		int_vme_ds_b(1) <= vme_ds_b(1); 	
---	elsif (vme_test_mode = '1') then
---		d_out(31) <= vme_ds_b(1); 
---		d_oe(31) <= '1';	
---		int_vme_ds_b(1) <= d_in(31); 
---	end if;	
---end process;
---
---d32_buf : IOBUF port map (O => d_in(32), IO => d(32), I => d_out(32), T => d_oe(32)); -- TP59     	
---
---d32_buf_mux: process(vme_test_mode, vme_am, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(32) <= vme_am(5);
---		d_oe(32) <= '0';	
---		int_vme_am(5) <= vme_am(5); 	
---	elsif (vme_test_mode = '1') then
---		d_out(32) <= vme_am(5); 
---		d_oe(32) <= '1';	
---		int_vme_am(5) <= d_in(32); 
---	end if;	
---end process;
---
---d33_buf : IOBUF port map (O => d_in(33), IO => d(33), I => d_out(33), T => d_oe(33)); -- TP61     	
---
---d33_buf_mux: process(vme_test_mode, vme_am, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(33) <= vme_am(4);
---		d_oe(33) <= '0';	
---		int_vme_am(4) <= vme_am(4); 	
---	elsif (vme_test_mode = '1') then
---		d_out(33) <= vme_am(4); 
---		d_oe(33) <= '1';	
---		int_vme_am(4) <= d_in(33); 
---	end if;	
---end process;
---
---d34_buf : IOBUF port map (O => d_in(34), IO => d(34), I => d_out(34), T => d_oe(34)); -- TP63     	
---
---d34_buf_mux: process(vme_test_mode, vme_am, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(34) <= vme_am(3);
---		d_oe(34) <= '0';	
---		int_vme_am(3) <= vme_am(3); 	
---	elsif (vme_test_mode = '1') then
---		d_out(34) <= vme_am(3); 
---		d_oe(34) <= '1';	
---		int_vme_am(3) <= d_in(34); 
---	end if;	
---end process;
---
---d35_buf : IOBUF port map (O => d_in(35), IO => d(35), I => d_out(35), T => d_oe(35)); -- TP65     	
---
---d35_buf_mux: process(vme_test_mode, vme_am, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(35) <= vme_am(2);
---		d_oe(35) <= '0';	
---		int_vme_am(2) <= vme_am(2); 	
---	elsif (vme_test_mode = '1') then
---		d_out(35) <= vme_am(2); 
---		d_oe(35) <= '1';	
---		int_vme_am(2) <= d_in(35); 
---	end if;	
---end process;
---
---d36_buf : IOBUF port map (O => d_in(36), IO => d(36), I => d_out(36), T => d_oe(36)); -- TP67     	
---
---d36_buf_mux: process(vme_test_mode, vme_am, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(36) <= vme_am(1);
---		d_oe(36) <= '0';	
---		int_vme_am(1) <= vme_am(1); 	
---	elsif (vme_test_mode = '1') then
---		d_out(36) <= vme_am(1); 
---		d_oe(36) <= '1';	
---		int_vme_am(1) <= d_in(36); 
---	end if;	
---end process;
---
---d37_buf : IOBUF port map (O => d_in(37), IO => d(37), I => d_out(37), T => d_oe(37)); -- TP69     	
---
---d37_buf_mux: process(vme_test_mode, vme_am, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(37) <= vme_am(0);
---		d_oe(37) <= '0';	
---		int_vme_am(0) <= vme_am(0); 	
---	elsif (vme_test_mode = '1') then
---		d_out(37) <= vme_am(0); 
---		d_oe(37) <= '1';	
---		int_vme_am(0) <= d_in(37); 
---	end if;	
---end process;
---
---d38_buf : IOBUF port map (O => d_in(38), IO => d(38), I => d_out(38), T => d_oe(38)); -- TP71     	
---
---d38_buf_mux: process(vme_test_mode, vme_data_in, vme_data_out, int_vme_tovme_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		if (int_vme_tovme_b = '0') then
---			d_out(38) <= vme_data_out(15);
---		else
---			d_out(38) <= vme_data_in(15);
---		end if;
---		d_oe(38) <= '0';	
---		int_vme_data_in(15) <= vme_data_in(15); 	
---	elsif (vme_test_mode = '1') then
---		d_out(38) <= vme_data_out(15); 
---		d_oe(38) <= int_vme_tovme_b;	
---		int_vme_data_in(15) <= d_in(38); 
---	end if;	
---end process;
---
---d39_buf : IOBUF port map (O => d_in(39), IO => d(39), I => d_out(39), T => d_oe(39)); -- TP73     	
---
---d39_buf_mux: process(vme_test_mode, vme_data_in, vme_data_out, int_vme_tovme_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		if (int_vme_tovme_b = '0') then
---			d_out(39) <= vme_data_out(14);
---		else
---			d_out(39) <= vme_data_in(14);
---		end if;
---		d_oe(39) <= '0';	
---		int_vme_data_in(14) <= vme_data_in(14); 	
---	elsif (vme_test_mode = '1') then
---		d_out(39) <= vme_data_out(14); 
---		d_oe(39) <= int_vme_tovme_b;	
---		int_vme_data_in(14) <= d_in(39); 
---	end if;	
---end process;
---
---d40_buf : IOBUF port map (O => d_in(40), IO => d(40), I => d_out(40), T => d_oe(40)); -- TP75     	
---
---d40_buf_mux: process(vme_test_mode, vme_data_in, vme_data_out, int_vme_tovme_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		if (int_vme_tovme_b = '0') then
---			d_out(40) <= vme_data_out(13);
---		else
---			d_out(40) <= vme_data_in(13);
---		end if;
---		d_oe(40) <= '0';	
---		int_vme_data_in(13) <= vme_data_in(13); 	
---	elsif (vme_test_mode = '1') then
---		d_out(40) <= vme_data_out(13); 
---		d_oe(40) <= int_vme_tovme_b;	
---		int_vme_data_in(13) <= d_in(40); 
---	end if;	
---end process;
---
---
---d41_buf : IOBUF port map (O => d_out(41), IO => d(41), I => d_in(41), T => d_oe(41));     	
---
---d41_buf_mux: process(vme_test_mode, vme_data_in, vme_data_out, int_vme_tovme_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		if (int_vme_tovme_b = '0') then
---			d_out(41) <= vme_data_out(12);
---		else
---			d_out(41) <= vme_data_in(12);
---		end if;
---		d_oe(41) <= '0';	
---		int_vme_data_in(12) <= vme_data_in(12); 	
---	elsif (vme_test_mode = '1') then
---		d_out(41) <= vme_data_out(12); 
---		d_oe(41) <= int_vme_tovme_b;	
---		int_vme_data_in(12) <= d_in(41); 
---	end if;	
---end process;
---
---d42_buf : IOBUF port map (O => d_out(42), IO => d(42), I => d_in(42), T => d_oe(42));     	
---
---d42_buf_mux: process(vme_test_mode, vme_data_in, vme_data_out, int_vme_tovme_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		if (int_vme_tovme_b = '0') then
---			d_out(42) <= vme_data_out(11);
---		else
---			d_out(42) <= vme_data_in(11);
---		end if;
---		d_oe(42) <= '0';	
---		int_vme_data_in(11) <= vme_data_in(11); 	
---	elsif (vme_test_mode = '1') then
---		d_out(42) <= vme_data_out(11); 
---		d_oe(42) <= int_vme_tovme_b;	
---		int_vme_data_in(11) <= d_in(42); 
---	end if;	
---end process;
---
---d43_buf : IOBUF port map (O => d_out(43), IO => d(43), I => d_in(43), T => d_oe(43));     	
---
---d43_buf_mux: process(vme_test_mode, vme_data_in, vme_data_out, int_vme_tovme_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		if (int_vme_tovme_b = '0') then
---			d_out(43) <= vme_data_out(10);
---		else
---			d_out(43) <= vme_data_in(10);
---		end if;
---		d_oe(43) <= '0';	
---		int_vme_data_in(10) <= vme_data_in(10); 	
---	elsif (vme_test_mode = '1') then
---		d_out(43) <= vme_data_out(10); 
---		d_oe(43) <= int_vme_tovme_b;	
---		int_vme_data_in(10) <= d_in(43); 
---	end if;	
---end process;
---
---d44_buf : IOBUF port map (O => d_out(44), IO => d(44), I => d_in(44), T => d_oe(44));     	
---
---d44_buf_mux: process(vme_test_mode, vme_data_in, vme_data_out, int_vme_tovme_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		if (int_vme_tovme_b = '0') then
---			d_out(44) <= vme_data_out(9);
---		else
---			d_out(44) <= vme_data_in(9);
---		end if;
---		d_oe(44) <= '0';	
---		int_vme_data_in(9) <= vme_data_in(9); 	
---	elsif (vme_test_mode = '1') then
---		d_out(44) <= vme_data_out(9); 
---		d_oe(44) <= int_vme_tovme_b;	
---		int_vme_data_in(9) <= d_in(44); 
---	end if;	
---end process;
---
---d45_buf : IOBUF port map (O => d_out(45), IO => d(45), I => d_in(45), T => d_oe(45));     	
---
---d45_buf_mux: process(vme_test_mode, vme_data_in, vme_data_out, int_vme_tovme_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		if (int_vme_tovme_b = '0') then
---			d_out(45) <= vme_data_out(8);
---		else
---			d_out(45) <= vme_data_in(8);
---		end if;
---		d_oe(45) <= '0';	
---		int_vme_data_in(8) <= vme_data_in(8); 	
---	elsif (vme_test_mode = '1') then
---		d_out(45) <= vme_data_out(8); 
---		d_oe(45) <= int_vme_tovme_b;	
---		int_vme_data_in(8) <= d_in(45); 
---	end if;	
---end process;
---
---d46_buf : IOBUF port map (O => d_out(46), IO => d(46), I => d_in(46), T => d_oe(46));     	
---
---d46_buf_mux: process(vme_test_mode, vme_data_in, vme_data_out, int_vme_tovme_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		if (int_vme_tovme_b = '0') then
---			d_out(46) <= vme_data_out(7);
---		else
---			d_out(46) <= vme_data_in(7);
---		end if;
---		d_oe(46) <= '0';	
---		int_vme_data_in(7) <= vme_data_in(7); 	
---	elsif (vme_test_mode = '1') then
---		d_out(46) <= vme_data_out(7); 
---		d_oe(46) <= int_vme_tovme_b;	
---		int_vme_data_in(7) <= d_in(46); 
---	end if;	
---end process;
---
---d47_buf : IOBUF port map (O => d_out(47), IO => d(47), I => d_in(47), T => d_oe(47));     	
---
---d47_buf_mux: process(vme_test_mode, vme_data_in, vme_data_out, int_vme_tovme_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		if (int_vme_tovme_b = '0') then
---			d_out(47) <= vme_data_out(6);
---		else
---			d_out(47) <= vme_data_in(6);
---		end if;
---		d_oe(47) <= '0';	
---		int_vme_data_in(6) <= vme_data_in(6); 	
---	elsif (vme_test_mode = '1') then
---		d_out(47) <= vme_data_out(6); 
---		d_oe(47) <= int_vme_tovme_b;	
---		int_vme_data_in(6) <= d_in(47); 
---	end if;	
---end process;
---
---d48_buf : IOBUF port map (O => d_out(48), IO => d(48), I => d_in(48), T => d_oe(48));     	
---
---d48_buf_mux: process(vme_test_mode, vme_data_in, vme_data_out, int_vme_tovme_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		if (int_vme_tovme_b = '0') then
---			d_out(48) <= vme_data_out(5);
---		else
---			d_out(48) <= vme_data_in(5);
---		end if;
---		d_oe(48) <= '0';	
---		int_vme_data_in(5) <= vme_data_in(5); 	
---	elsif (vme_test_mode = '1') then
---		d_out(48) <= vme_data_out(5); 
---		d_oe(48) <= int_vme_tovme_b;	
---		int_vme_data_in(5) <= d_in(48); 
---	end if;	
---end process;
---
---d49_buf : IOBUF port map (O => d_out(49), IO => d(49), I => d_in(49), T => d_oe(49));     	
---
---d49_buf_mux: process(vme_test_mode, vme_data_in, vme_data_out, int_vme_tovme_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		if (int_vme_tovme_b = '0') then
---			d_out(49) <= vme_data_out(4);
---		else
---			d_out(49) <= vme_data_in(4);
---		end if;
---		d_oe(49) <= '0';	
---		int_vme_data_in(4) <= vme_data_in(4); 	
---	elsif (vme_test_mode = '1') then
---		d_out(49) <= vme_data_out(4); 
---		d_oe(49) <= int_vme_tovme_b;	
---		int_vme_data_in(4) <= d_in(49); 
---	end if;	
---end process;
---
---d50_buf : IOBUF port map (O => d_out(50), IO => d(50), I => d_in(50), T => d_oe(50));     	
---
---d50_buf_mux: process(vme_test_mode, vme_data_in, vme_data_out, int_vme_tovme_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		if (int_vme_tovme_b = '0') then
---			d_out(50) <= vme_data_out(3);
---		else
---			d_out(50) <= vme_data_in(3);
---		end if;
---		d_oe(50) <= '0';	
---		int_vme_data_in(3) <= vme_data_in(3); 	
---	elsif (vme_test_mode = '1') then
---		d_out(50) <= vme_data_out(3); 
---		d_oe(50) <= int_vme_tovme_b;	
---		int_vme_data_in(3) <= d_in(50); 
---	end if;	
---end process;
---
---d51_buf : IOBUF port map (O => d_out(51), IO => d(51), I => d_in(51), T => d_oe(51));     	
---
---d51_buf_mux: process(vme_test_mode, vme_data_in, vme_data_out, int_vme_tovme_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		if (int_vme_tovme_b = '0') then
---			d_out(51) <= vme_data_out(2);
---		else
---			d_out(51) <= vme_data_in(2);
---		end if;
---		d_oe(51) <= '0';	
---		int_vme_data_in(2) <= vme_data_in(2); 	
---	elsif (vme_test_mode = '1') then
---		d_out(51) <= vme_data_out(2); 
---		d_oe(51) <= int_vme_tovme_b;	
---		int_vme_data_in(2) <= d_in(51); 
---	end if;	
---end process;
---
---d52_buf : IOBUF port map (O => d_out(52), IO => d(52), I => d_in(52), T => d_oe(52));     	
---
---d52_buf_mux: process(vme_test_mode, vme_data_in, vme_data_out, int_vme_tovme_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		if (int_vme_tovme_b = '0') then
---			d_out(52) <= vme_data_out(1);
---		else
---			d_out(52) <= vme_data_in(1);
---		end if;
---		d_oe(52) <= '0';	
---		int_vme_data_in(1) <= vme_data_in(1); 	
---	elsif (vme_test_mode = '1') then
---		d_out(52) <= vme_data_out(1); 
---		d_oe(52) <= int_vme_tovme_b;	
---		int_vme_data_in(1) <= d_in(52); 
---	end if;	
---end process;
---
---d53_buf : IOBUF port map (O => d_out(53), IO => d(53), I => d_in(53), T => d_oe(53));     	
---
---d53_buf_mux: process(vme_test_mode, vme_data_in, vme_data_out, int_vme_tovme_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		if (int_vme_tovme_b = '0') then
---			d_out(53) <= vme_data_out(0);
---		else
---			d_out(53) <= vme_data_in(0);
---		end if;
---		d_oe(53) <= '0';	
---		int_vme_data_in(0) <= vme_data_in(0); 	
---	elsif (vme_test_mode = '1') then
---		d_out(53) <= vme_data_out(0); 
---		d_oe(53) <= int_vme_tovme_b;	
---		int_vme_data_in(0) <= d_in(53); 
---	end if;	
---end process;
---
---d54_buf : IOBUF port map (O => d_out(54), IO => d(54), I => d_in(54), T => d_oe(54));     	
---
---d54_buf_mux: process(vme_test_mode, vme_lword_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(54) <= vme_lword_b;
---		d_oe(54) <= '0';	
---		int_vme_lword_b <= vme_lword_b; 	
---	elsif (vme_test_mode = '1') then
---		d_out(54) <= vme_lword_b; 
---		d_oe(54) <= '1';	
---		int_vme_lword_b <= d_in(54); 
---	end if;	
---end process;
---
---d55_buf : IOBUF port map (O => d_out(55), IO => d(55), I => d_in(55), T => d_oe(55));     	
---
---d55_buf_mux: process(vme_test_mode, vme_write_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(55) <= vme_write_b;
---		d_oe(55) <= '0';	
---		int_vme_write_b <= vme_write_b; 	
---	elsif (vme_test_mode = '1') then
---		d_out(55) <= vme_write_b; 
---		d_oe(55) <= '1';	
---		int_vme_write_b <= d_in(55); 
---	end if;	
---end process;
---
---d56_buf : IOBUF port map (O => d_out(56), IO => d(56), I => d_in(56), T => d_oe(56));     	
---
---d56_buf_mux: process(vme_test_mode, vme_sysreset_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(56) <= vme_sysreset_b;
---		d_oe(56) <= '0';	
---		int_vme_sysreset_b <= vme_sysreset_b; 	
---	elsif (vme_test_mode = '1') then
---		d_out(56) <= vme_sysreset_b; 
---		d_oe(56) <= '1';	
---		int_vme_sysreset_b <= d_in(56); 
---	end if;	
---end process;
---
---d57_buf : IOBUF port map (O => d_out(57), IO => d(57), I => d_in(57), T => d_oe(57));     	
---
---d57_buf_mux: process(vme_test_mode, vme_berr_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(57) <= vme_berr_b;
---		d_oe(57) <= '0';	
---		int_vme_berr_b <= vme_berr_b; 	
---	elsif (vme_test_mode = '1') then
---		d_out(57) <= vme_berr_b; 
---		d_oe(57) <= '1';	
---		int_vme_berr_b <= d_in(57); 
---	end if;	
---end process;
---
---d58_buf : IOBUF port map (O => d_in(58), IO => d(58), I => d_out(58), T => d_oe(58));     	
---
---d58_buf_mux: process(vme_test_mode, int_vme_berr_out, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(58) <= int_vme_berr_out;
---		d_oe(58) <= '0';	
---		vme_berr_out <= int_vme_berr_out;
---	elsif (vme_test_mode = '1') then
---		d_out(58) <= int_vme_berr_out; 
---		d_oe(58) <= '0';	
---		vme_berr_out <= int_vme_berr_out;
---	end if;	
---end process;
---
---d59_buf : IOBUF port map (O => d_in(59), IO => d(59), I => d_out(59), T => d_oe(59));     	
---
---d59_buf_mux: process(vme_test_mode, vme_sysfail_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(59) <= vme_sysfail_b;
---		d_oe(59) <= '0';	
---		int_vme_sysfail_b <= vme_sysfail_b; 	
---	elsif (vme_test_mode = '1') then
---		d_out(59) <= vme_sysfail_b; 
---		d_oe(59) <= '1';	
---		int_vme_sysfail_b <= d_in(59); 
---	end if;	
---end process;
---
---d60_buf : IOBUF port map (O => d_in(60), IO => d(60), I => d_out(60), T => d_oe(60));     	
---
---d60_buf_mux: process(vme_test_mode, int_vme_sysfail_out, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(60) <= int_vme_sysfail_out;
---		d_oe(60) <= '0';	
---		vme_sysfail_out <= int_vme_sysfail_out;
---	elsif (vme_test_mode = '1') then
---		d_out(60) <= int_vme_sysfail_out; 
---		d_oe(60) <= '0';	
---		vme_sysfail_out <= int_vme_sysfail_out;
---	end if;	
---end process;
---
---d61_buf : IOBUF port map (O => d_out(61), IO => d(61), I => d_in(61), T => d_oe(61));     	
---
---d61_buf_mux: process(vme_test_mode, vme_iack_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(61) <= vme_iack_b;
---		d_oe(61) <= '0';	
---		int_vme_iack_b <= vme_iack_b; 	
---	elsif (vme_test_mode = '1') then
---		d_out(61) <= vme_iack_b; 
---		d_oe(61) <= '1';	
---		int_vme_iack_b <= d_in(61); 
---	end if;	
---end process;
---
---d62_buf : IOBUF port map (O => d_in(62), IO => d(62), I => d_out(62), T => d_oe(62));     	
---
---d62_buf_mux: process(vme_test_mode, int_vme_dtack_v6_b, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(62) <= int_vme_dtack_v6_b;
---		d_oe(62) <= '0';	
---		vme_dtack_v6_b <= int_vme_dtack_v6_b;
---	elsif (vme_test_mode = '1') then
---		d_out(62) <= int_vme_dtack_v6_b; 
---		d_oe(62) <= '0';	
---		vme_dtack_v6_b <= int_vme_dtack_v6_b;
---	end if;	
---end process;
---
---d63_buf : IOBUF port map (O => d_in(63), IO => d(63), I => d_out(63), T => d_oe(63));     	
---
---d63_buf_mux: process(vme_test_mode, vme_clk, d_in)
---begin
---	if (vme_test_mode = '0') then
---		d_out(63) <= vme_clk;
---		d_oe(63) <= '0';	
---		int_vme_clk <= vme_clk; 	
---	elsif (vme_test_mode = '1') then
---		d_out(63) <= vme_clk; 
---		d_oe(63) <= '1';	
---		int_vme_clk <= d_in(63); 
---	end if;	
---end process;
-
--- ------------------------------------------------------------------------------------------------- 
 
 -- CODE_B (LED CONTROLS)
 
@@ -2449,24 +1371,6 @@ lvmb_pon <= int_lvmb_pon(7 downto 0);
 --led10_buf : OBUFT port map (O => leds(10), I => '0', T => pb(2));    	
 --led11_buf : OBUFT port map (O => leds(11), I => '0', T => pb(3));    	
 
---led_status : process (int_lvmb_pon,pb)
---
---begin
---	leds(0) <= not int_lvmb_pon(0);
---	leds(1) <= not int_lvmb_pon(1);
---	leds(2) <= not int_lvmb_pon(2);
---	leds(3) <= not int_lvmb_pon(3);
---	leds(4) <= not int_lvmb_pon(4);
---	leds(5) <= not int_lvmb_pon(5);
---	leds(6) <= not int_lvmb_pon(6);
---	leds(7) <= not int_lvmb_pon(7);
---	leds(8) <= not pb(0); -- PB2
---	leds(9) <= not pb(1); -- PB3
---	leds(10) <= not pb(2); -- PB4
---	leds(11) <= not pb(3); -- PB5
---
---end process;
---	
 	leds(5 downto 0) <= mbc_leds(5 downto 0) when flf_ctrl(6) = '1' else
 							  flf_ctrl(5 downto 0); 
 	leds(6) <= not int_vme_dtack_v6_b;
@@ -3045,7 +1949,7 @@ dcfeb6_rx_dat <= orx1_07;
 
 vme_dtack_v6_b <= int_vme_dtack_v6_b;  
 
-b2v_mbv : dmb_vme_BGB
+MBV : ODMB_VME
 PORT MAP (
 
 -- VME signals 
@@ -3116,7 +2020,7 @@ PORT MAP (
 		ul_jtag_tms => ul_jtag_tms,				
 		ul_jtag_tdi => ul_jtag_tdi,						
 
--- JTAG Signals To/From DMB_CTRL
+-- JTAG Signals To/From ODMB_CTRL
 
 		mbc_jtag_tck => mbc_jtag_tck,				
 		mbc_jtag_tms => mbc_jtag_tms,				
@@ -3219,9 +2123,9 @@ PORT MAP (
 );
 
 
--- DMB_CTRL FPGA
+-- ODMB_CTRL FPGA
 
-b2v_mbc : dmb_ctrl
+MBC : ODMB_CTRL
 PORT MAP (
 
 		mbc_fsel => mbc_fsel,
@@ -3299,7 +2203,7 @@ PORT MAP (
 		lvmb_sdin => int_lvmb_sdin,		
 		lvmb_sdout => int_lvmb_sdout,
 
--- From/To DMB_VME
+-- From/To ODMB_VME
 
 		clk40 => clk40,
 		clk80 => clk80,
@@ -3319,7 +2223,7 @@ PORT MAP (
 
 -- OT Manager
 	  
-b2v_otm : ot_mgr
+OT_MANAGER : ot_mgr
 PORT MAP (
 		 otx1_tx_en => otx1_tx_en,
 		 otx1_tx_dis => otx1_tx_dis,

@@ -8,7 +8,7 @@ use ieee.std_logic_1164.all;
 --use UNISIM.all;
 
 
-ENTITY dmb_ctrl IS
+ENTITY ODMB_CTRL IS
 PORT 	(
 
 		mbc_fsel: OUT STD_LOGIC_VECTOR(47 downto 1);
@@ -99,10 +99,10 @@ PORT 	(
  
 		leds : OUT STD_LOGIC_VECTOR(5 DOWNTO 0));
 
-end dmb_ctrl;
+end ODMB_CTRL;
 
 
-ARCHITECTURE DMB_CTRL_arch of DMB_CTRL  is
+ARCHITECTURE ODMB_CTRL_arch of ODMB_CTRL  is
 
 COMPONENT BGB_BSCAN_emulator is
 
@@ -541,7 +541,7 @@ port map(
 
 tdo2 <= tdo_setfebdly or tdo_setcaldly;
 
--- from DMB_CTRL_EMPTY
+-- from ODMB_CTRL_EMPTY
 
 		ccb_rsvi <= "000";
 		ccb_l1rls <= '0';
@@ -573,4 +573,4 @@ tdo2 <= tdo_setfebdly or tdo_setcaldly;
 
 		dl_lct <= "0000000";
  
-end DMB_CTRL_arch;
+end ODMB_CTRL_arch;
