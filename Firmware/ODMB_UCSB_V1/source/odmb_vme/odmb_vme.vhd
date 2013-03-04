@@ -1,4 +1,4 @@
-library ieee;
+												library ieee;
 use ieee.std_logic_1164.all;
 USE IEEE.std_logic_arith.all;
 USE IEEE.std_logic_unsigned.all;
@@ -269,7 +269,7 @@ COMPONENT LVDBMON is
 
 end COMPONENT;
 
-COMPONENT CFEBJTAG_BGB is
+COMPONENT CFEBJTAG is
   
   port (
 
@@ -422,7 +422,7 @@ vme_sysfail_out <= '0';
 
 ext_vme_ga <= vme_gap & vme_ga;
 
-PMAP_COMMAND_MODULE : COMMAND_MODULE
+COMMAND_PM : COMMAND_MODULE
   
 PORT MAP (
 
@@ -454,9 +454,8 @@ PORT MAP (
     LED => led_command
     );
 
-PMAP_VME_OUT_SEL : vme_outdata_sel
-  
-	port map (
+VME_OUT_SEL_PM : vme_outdata_sel
+  	port map (
 
 		device => device,
 		device1_outdata => outdata_cfebjtag,
@@ -471,9 +470,8 @@ PMAP_VME_OUT_SEL : vme_outdata_sel
 
 dl_jtag_tck <= jtag_tck;
 
-PMAP_CFEBJTAG : CFEBJTAG_BGB
-
-PORT MAP (
+CFEBJTAG_PM : CFEBJTAG
+	PORT MAP (
 
     FASTCLK => clk,
     SLOWCLK => clk_s2,
@@ -500,9 +498,8 @@ PORT MAP (
     LED => led_cfebjtag
     );
 
-PMAP_MBCJTAG : MBCJTAG
-  
-PORT MAP (
+MBCJTAG_PM : MBCJTAG
+  PORT MAP (
 
     FASTCLK => clk,
     SLOWCLK => clk_s2,
@@ -527,9 +524,8 @@ PORT MAP (
     );
 
 
-PMAP_LVDBMON : LVDBMON
-  
-  port map(
+LVDBMON_PM : LVDBMON
+    port map(
 
     SLOWCLK => clk_s2,
     RST => rst,
@@ -557,9 +553,8 @@ PMAP_LVDBMON : LVDBMON
 
     );
 
-PMAP_FIFOMON : FIFOMON
-  
-	port map (
+FIFOMON_PM : FIFOMON
+  	port map (
 
     SLOWCLK => clk_s2,
     RST => rst,
@@ -585,9 +580,8 @@ PMAP_FIFOMON : FIFOMON
 
 );
 
-PMAP_VMEMON : VMEMON
- 
-	port map (
+VMEMON_PM : VMEMON
+ 	port map (
 
     SLOWCLK => clk_s2,
     RST => rst,

@@ -2295,7 +2295,7 @@ fifo_wr_en <= "000000000"; -- to remove error 528!!!
 
 -- FIFO Management
 
-PMAP_FIFO_OUT_SEL : fifo_outdata_sel
+FIFO_OUT_SEL_PM : fifo_outdata_sel
   
 	port map (
 
@@ -2312,7 +2312,7 @@ PMAP_FIFO_OUT_SEL : fifo_outdata_sel
 
 );
 
-PMAP_FIFO_WC_SEL : fifo_wc_sel
+FIFO_WC_SEL_PM : fifo_wc_sel
   
 	port map (
 
@@ -2329,7 +2329,7 @@ PMAP_FIFO_WC_SEL : fifo_wc_sel
 
 );
 
-PMAP_FIFO_RC_SEL : fifo_rc_sel
+FIFO_RC_SEL_PM : fifo_rc_sel
   
 	port map (
 
@@ -2647,7 +2647,7 @@ b2v_dcfeb0_fifo : FIFO_SYNC_MACRO
       WREN => fifo_wr_en(1)                  -- Input write enable
    );
 
-PMAP_V6_DCFEB0 : DCFEB_V6_NO_FF_EMU_BGB
+DCFEB0_V6_PM : DCFEB_V6_NO_FF_EMU_BGB
 	PORT MAP(
 		adc_mask => dcfeb0_adc_mask,
 		dcfeb_fsel => dcfeb0_fsel,
@@ -2756,7 +2756,7 @@ b2v_dcfeb1_fifo : FIFO_SYNC_MACRO
       WREN => fifo_wr_en(2)                  -- Input write enable
    );
 
-PMAP_V6_DCFEB1 : DCFEB_V6_NO_FF_EMU_BGB
+DCFEB1_V6_PM : DCFEB_V6_NO_FF_EMU_BGB
 	PORT MAP(
 		adc_mask => dcfeb1_adc_mask,
 		dcfeb_fsel => dcfeb1_fsel,
@@ -2864,7 +2864,7 @@ b2v_dcfeb2_fifo : FIFO_SYNC_MACRO
       WREN => fifo_wr_en(3)                  -- Input write enable
    );
 
-PMAP_V6_DCFEB2 : DCFEB_V6_NO_FF_EMU_BGB
+DCFEB2_V6_PM : DCFEB_V6_NO_FF_EMU_BGB
 	PORT MAP(
 		adc_mask => dcfeb2_adc_mask,
 		dcfeb_fsel => dcfeb2_fsel,
@@ -2972,7 +2972,7 @@ b2v_dcfeb3_fifo : FIFO_SYNC_MACRO
       WREN => fifo_wr_en(4)                  -- Input write enable
    );
 
-PMAP_V6_DCFEB3 : DCFEB_V6_NO_FF_EMU_BGB
+DCFEB3_V6_PM : DCFEB_V6_NO_FF_EMU_BGB
 	PORT MAP(
 		adc_mask => dcfeb3_adc_mask,
 		dcfeb_fsel => dcfeb3_fsel,
@@ -3057,7 +3057,7 @@ b2v_dcfeb4_fifo : FIFO_SYNC_MACRO
       WREN => fifo_wr_en(5)                  -- Input write enable
    );
 
-PMAP_V6_DCFEB4 : DCFEB_V6_NO_FF_EMU_BGB
+DCFEB4_V6_PM : DCFEB_V6_NO_FF_EMU_BGB
 	PORT MAP(
 		adc_mask => dcfeb4_adc_mask,
 		dcfeb_fsel => dcfeb4_fsel,
@@ -3142,7 +3142,7 @@ b2v_dcfeb5_fifo : FIFO_SYNC_MACRO
       WREN => fifo_wr_en(6)                  -- Input write enable
    );
 
-PMAP_V6_DCFEB5 : DCFEB_V6_NO_FF_EMU_BGB
+DCFEB5_V6_PM : DCFEB_V6_NO_FF_EMU_BGB
 	PORT MAP(
 		adc_mask => dcfeb5_adc_mask,
 		dcfeb_fsel => dcfeb5_fsel,
@@ -3242,7 +3242,7 @@ b2v_dcfeb6_fifo : FIFO_SYNC_MACRO
       WREN => fifo_wr_en(7)                  -- Input write enable
    );
 
-PMAP_V6_DCFEB6 : DCFEB_V6_NO_FF_EMU_BGB
+DCFEB6_V6_PM : DCFEB_V6_NO_FF_EMU_BGB
 	PORT MAP(
 		adc_mask => dcfeb6_adc_mask,
 		dcfeb_fsel => dcfeb6_fsel,
@@ -3425,7 +3425,7 @@ b2v_alct_fifo : FIFO_SYNC_MACRO
 
 -- LVMB ADCs
 
-PMAP_LVMB_ADC1 : LVMB_ADC
+LVMB_ADC1_PM : LVMB_ADC
    port map (
 		scl => int_lvmb_sclk,
 		sdi => int_lvmb_sdin,
@@ -3434,7 +3434,7 @@ PMAP_LVMB_ADC1 : LVMB_ADC
 		rst => reset,
 		device => "0001");
 
-PMAP_LVMB_ADC2 : LVMB_ADC
+LVMB_ADC2_PM : LVMB_ADC
    port map (
 		scl => int_lvmb_sclk,
 		sdi => int_lvmb_sdin,
@@ -3443,7 +3443,7 @@ PMAP_LVMB_ADC2 : LVMB_ADC
 		rst => reset,
 		device => "0010");
 
-PMAP_LVMB_ADC3 : LVMB_ADC
+LVMB_ADC3_PM : LVMB_ADC
    port map (
 		scl => int_lvmb_sclk,
 		sdi => int_lvmb_sdin,
@@ -3452,7 +3452,7 @@ PMAP_LVMB_ADC3 : LVMB_ADC
 		rst => reset,
 		device => "0011");
 
-PMAP_LVMB_ADC4 : LVMB_ADC
+LVMB_ADC4_PM : LVMB_ADC
    port map (
 		scl => int_lvmb_sclk,
 		sdi => int_lvmb_sdin,
@@ -3461,7 +3461,7 @@ PMAP_LVMB_ADC4 : LVMB_ADC
 		rst => reset,
 		device => "0100");
 
-PMAP_LVMB_ADC5 : LVMB_ADC
+LVMB_ADC5_PM : LVMB_ADC
    port map (
 		scl => int_lvmb_sclk,
 		sdi => int_lvmb_sdin,
@@ -3470,7 +3470,7 @@ PMAP_LVMB_ADC5 : LVMB_ADC
 		rst => reset,
 		device => "0101");
 
-PMAP_LVMB_ADC6 : LVMB_ADC
+LVMB_ADC6_PM : LVMB_ADC
    port map (
 		scl => int_lvmb_sclk,
 		sdi => int_lvmb_sdin,
@@ -3479,7 +3479,7 @@ PMAP_LVMB_ADC6 : LVMB_ADC
 		rst => reset,
 		device => "0110");
 
-PMAP_LVMB_ADC7 : LVMB_ADC
+LVMB_ADC7_PM : LVMB_ADC
    port map (
 		scl => int_lvmb_sclk,
 		sdi => int_lvmb_sdin,
@@ -3488,7 +3488,7 @@ PMAP_LVMB_ADC7 : LVMB_ADC
 		rst => reset,
 		device => "0111");
 
-PMAP_LVMB_ADC_SDO_MUX : LVMB_ADC_SDO_MUX
+LVMB_ADC_SDO_MUX_PM : LVMB_ADC_SDO_MUX
 	port map (
 		int_lvmb_adc_en => flf_ctrl(7),
 		int_lvmb_adc_sdo => int_lvmb_adc_sdout,
