@@ -182,7 +182,7 @@ begin
 								std_logic_vector'("00");
 
 	-- Generate SHD_TMS
-	-- SHD_TMS <= (TAILEN and D2_DONEDATA_1) when (SHDATA='1') else 'Z'; -- Guido - BUG!!!!!!!!!!
+--	SHD_TMS <= (TAILEN and D2_DONEDATA_1) when (SHDATA='1') else 'Z'; -- Guido - BUG!!!!!!!!!!
 	SHD_TMS <= (TAILEN and D2_DONEDATA) when (SHDATA='1') else 'Z'; 
 
 	-- Generate SHTAIL
@@ -217,7 +217,7 @@ begin
 	(DTACK_INNER, LED) <= std_logic_vector'("00") when (Q3_LED='1' and Q4_LED='1') else
 								 std_logic_vector'("Z1");
 
-	DTACK_INNER <= '0' when (RDTDODK='1') else 'Z';  -- Manuel: Multiple drivers?
+	DTACK_INNER <= '0' when (RDTDODK='1') else 'Z';  
 
    CLR_DTACK <= not OKRST;
    CB4CE(SLOWCLK,RESETJTAG,CLR_DTACK,Q_DTACK_3,Q_DTACK_3,blank3,blank4);
@@ -238,14 +238,13 @@ begin
    FDC(VCC,OKRST,CLR_RESETJTAG,BADSIG);
    FDC(BADSIG,SLOWCLK,CLR_RESETJTAG,RESETJTAG);
 
-	-- Generate SHIFT1 / Generate OUTDATA
+	-- Generate OUTDATA
    CE_SHIFT1 <= SHDATAX and not ENABLE;
    SR16LCE(SLOWCLK,CE_SHIFT1,RST,MBCTDO,QC,QC);
 	OUTDATA(15 downto 0) <= QC(15 downto 0) when (RDTDODK='1') else "ZZZZZZZZZZZZZZZZ";
 
 	-- Generate RDTDODK
 	RDTDODK <= '1' when (STROBE='1' and READTDO='1' and BUSYP1='0' and BUSY='0') else '0';
-
 
 	-- Generate RST_TMS
    CE_RST_TMS <= RESETJTAG and ENABLE;
