@@ -6,8 +6,7 @@ USE ieee.std_logic_1164.all;
 --  Entity Declaration
 
 ENTITY vme_outdata_sel IS
-	PORT
-	(
+	PORT (
 
 		device : IN STD_LOGIC_VECTOR(9 downto 0);
 		device1_outdata : IN STD_LOGIC_VECTOR(15 downto 0);
@@ -16,33 +15,19 @@ ENTITY vme_outdata_sel IS
 		device8_outdata : IN STD_LOGIC_VECTOR(15 downto 0);
 		device9_outdata : IN STD_LOGIC_VECTOR(15 downto 0);
 		outdata : OUT STD_LOGIC_VECTOR(15 downto 0)
-		
 	);
-	
 END vme_outdata_sel;
 
 --  Architecture Body
-
 ARCHITECTURE vme_outdata_sel_architecture OF vme_outdata_sel IS
 
 begin
-  
-vme_data_sel : process (device,device1_outdata,device2_outdata,device3_outdata,device8_outdata,device9_outdata)
-    
-begin		
-					  
-   	case device is
 
-	    when "0000000010" =>	outdata <= device1_outdata;
-	    when "0000000100" =>	outdata <= device2_outdata;
-	    when "0000001000" =>	outdata <= device3_outdata;
-	    when "0100000000" =>	outdata <= device8_outdata;
-	    when "1000000000" =>	outdata <= device9_outdata;
-	    when others =>	outdata <= "0000000000000000";
-	      
-  end case;
-  
-end process;
+	outdata <= device1_outdata when device="0000000010" else
+				  device2_outdata when device="0000000100" else
+				  device3_outdata when device="0000001000" else
+				  device8_outdata when device="0100000000" else
+				  device9_outdata when device="1000000000" else
+				  "0000000000000000";
 
 END vme_outdata_sel_architecture;
- 
