@@ -1,10 +1,7 @@
 @charset "UTF-8";
-html {
-       overflow-y: scroll;
-overflow: -moz-scrollbars-vertical;
-}
 
 body {
+	background-image: url(images/bg.jpg);
 	background-repeat: repeat-x;
 	background-color: #FFFFFF;
 	margin: 0px;
