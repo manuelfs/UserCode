@@ -1,59 +1,51 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>ODMB at UCSB</title>
-<link href="main.css" rel="stylesheet" type="text/css" />
-<meta name="Description" content="ODMB at a glance and most important links" />
-<meta name="Keywords" content="ODMB,UCSB,CMS,CERN,ME11,CSC" />
-<link rel="icon" type="image/png" href="images/odmb_icon.ico">
-
-</head>
-
-<body>
-
-<iframe id="headerframe"  src="header.html" frameborder="0" height="160" width=100%
-  style.backgroundColor = "transparent" allowTransparency="true"></iframe>
-
-<script>
-</script>
-<script>
-var frame = document.getElementById("headerframe").contentDocument;  
-frame.getElementById("odmbnav").className = "inactive";
-frame.getElementById("docunav").className = "active";
-frame.getElementById("firmnav").className = "inactive";
-frame.getElementById("hardnav").className = "inactive";
-frame.getElementById("softnav").className = "inactive";
-frame.getElementById("othenav").className = "inactive";
-frame.contentDocument.location.reload(true);
-</script>
-
-<div class="main">
-
-  <div id="sidebar" class="left-column">
-
-  <h2>Quick links</h2>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>ODMB at UCSB</title>
+    <link href="main.css" rel="stylesheet" type="text/css" />
+    <meta name="Description" content="ODMB at a glance and most important links" />
+    <meta name="Keywords" content="ODMB,UCSB,CMS,CERN,ME11,CSC" />
+    <link rel="icon" type="image/png" href="images/odmb_icon.ico" />
+  </head>
+  
+  <body onload="reload()">
+    <iframe id="headerframe"  src="header.html" frameborder="0" height="160" width=100%
+	    style.backgroundColor = "transparent" allowTransparency="true"></iframe>
+    
+    <script>
+      function reload(){
+      var frame = document.getElementById("headerframe").contentDocument;
+      frame.getElementById("odmbnav").className = "inactive";
+      frame.getElementById("docunav").className = "active";
+      frame.getElementById("firmnav").className = "inactive";
+      frame.getElementById("hardnav").className = "inactive";
+      frame.getElementById("softnav").className = "inactive";
+      frame.getElementById("othenav").className = "inactive";
+      frame.contentDocument.location.reload(true);
+      }
+    </script>
+    
+    <div class="main">
+      <div id="sidebar" class="left-column">
+	<h2>Quick links</h2>
 	<ul>
-
+	  <li><a href="documentation/ISE.html">ISE</a></li>
 	</ul>
-  </div>
-
-    <div class="right-column">
-  <h1> ME1/1 upgrade</h1>
-  <p>Replacement of the current cathode front-end boards is proposed for Phase 1 by “digital” DCFEB boards that flash-digitize every channel rather than using a custom analog storage pipeline (SCA chips). The smaller size of the DCFEB boards should allow us to place seven of these boards on each ME1/1 chamber, and thereby recover muon trigger capability in the rapidity range 2.1 to 2.4. In order to read out the new DCFEB optical links, their trigger and readout boards (TMB and DMB) will need revision. The CFEB, TMB, and DMB cards currently operating on ME1/1 chambers will be recycled by moving them to the lower-rate ME4/2 chambers. </p>
-
-  <p>It is proposed to upgrade the Muon Port Cards with high speed optical links and FPGAs, since they are currently the major CSC trigger data bottleneck, allowing only three muon stubs to be transmitted per crossing per 60-degree trigger sector. The Muon Port Cards send their data over optical links to the CSC Track Finder’s Sector Processor cards, so they should be upgraded at the same time, i.e. for Phase 1 (described in the TriDas section of this proposal). </p>
-
-  <p>It is proposed to upgrade the ALCT mezzanine cards for Phase 1. These cards are the largest source of deadtime to the entire CMS experiment caused by periodic resets of neutron single-event upsets (SEUs). Moreover, the position resolution of the ALCT trigger can be greatly improved to match the η resolution given by the Phase 1 pixel trigger upgrade (described in the TriDas section of this proposal), and significantly better time resolution can be achieved in order to implement a “slow muon” type trigger for heavy stable charged particles.
-    </p>
-<br><br>
       </div>
       
-  </div>
- </div>
-
-   <iframe src="footer.html" frameborder="0" height="90" width=100%
-
- 
-</body>
+      <div class="right-column">
+	<h1> ME1/1 upgrade</h1>
+	<p>Replacement of the current cathode front-end boards is proposed for Phase 1 by “digital” DCFEB boards that flash-digitize every channel rather than using a custom analog storage pipeline (SCA chips). The smaller size of the DCFEB boards should allow us to place seven of these boards on each ME1/1 chamber, and thereby recover muon trigger capability in the rapidity range 2.1 to 2.4. In order to read out the new DCFEB optical links, their trigger and readout boards (TMB and DMB) will need revision. The CFEB, TMB, and DMB cards currently operating on ME1/1 chambers will be recycled by moving them to the lower-rate ME4/2 chambers. </p>
+	
+	<p>It is proposed to upgrade the Muon Port Cards with high speed optical links and FPGAs, since they are currently the major CSC trigger data bottleneck, allowing only three muon stubs to be transmitted per crossing per 60-degree trigger sector. The Muon Port Cards send their data over optical links to the CSC Track Finder’s Sector Processor cards, so they should be upgraded at the same time, i.e. for Phase 1 (described in the TriDas section of this proposal). </p>
+	
+	<p>It is proposed to upgrade the ALCT mezzanine cards for Phase 1. These cards are the largest source of deadtime to the entire CMS experiment caused by periodic resets of neutron single-event upsets (SEUs). Moreover, the position resolution of the ALCT trigger can be greatly improved to match the η resolution given by the Phase 1 pixel trigger upgrade (described in the TriDas section of this proposal), and significantly better time resolution can be achieved in order to implement a “slow muon” type trigger for heavy stable charged particles.
+	</p>
+	<br /><br />
+      </div>
+    </div>
+    <iframe src="footer.html" frameborder="0" height="90" width=100%
+	    style.backgroundColor = "transparent" allowTransparency="true"></iframe>	  
+  </body>
 </html>

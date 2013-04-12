@@ -1,109 +1,103 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>ODMB at UCSB</title>
-<link href="main.css" rel="stylesheet" type="text/css" />
-<meta name="Description" content="ODMB at a glance and most important links" />
-<meta name="Keywords" content="ODMB,UCSB,CMS,CERN,ME11,CSC" />
-<link rel="icon" type="image/png" href="images/odmb_icon.ico">
-
-</head>
-
-<body>
-
-<iframe id="headerframe"  src="header.html" frameborder="0" height="160" width=100%
-  style.backgroundColor = "transparent" allowTransparency="true"></iframe>
-
-<script>
-</script>
-<script>
-var frame = document.getElementById("headerframe").contentDocument;  
-frame.getElementById("odmbnav").className = "active";
-frame.getElementById("docunav").className = "inactive";
-frame.getElementById("firmnav").className = "inactive";
-frame.getElementById("hardnav").className = "inactive";
-frame.getElementById("softnav").className = "inactive";
-frame.getElementById("othenav").className = "inactive";
-</script>
-
-<div class="main">
-
-  <div id="sidebar" class="left-column">
-
-  <h3>Project overview</h3>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>ODMB at UCSB</title>
+    <link href="main.css" rel="stylesheet" type="text/css" />
+    <meta name="Description" content="ODMB at a glance and most important links" />
+    <meta name="Keywords" content="ODMB,UCSB,CMS,CERN,ME11,CSC" />
+    <link rel="icon" type="image/png" href="images/odmb_icon.ico" />
+  </head>
+  
+  <body onload="reload()">
+    
+    <iframe id="headerframe"  src="header.html" frameborder="0" height="160" width=100%
+	    style.backgroundColor = "transparent" allowTransparency="true"></iframe>
+    
+    <script>
+      function reload(){
+      var frame = document.getElementById("headerframe").contentDocument;
+      frame.getElementById("odmbnav").className = "active";
+      frame.getElementById("docunav").className = "inactive";
+      frame.getElementById("firmnav").className = "inactive";
+      frame.getElementById("hardnav").className = "inactive";
+      frame.getElementById("softnav").className = "inactive";
+      frame.getElementById("othenav").className = "inactive";
+      frame.contentDocument.location.reload(true);
+      }
+    </script>
+    
+    <div class="main">
+      <div id="sidebar" class="left-column">
+	<h3>Project overview</h3>
 	<ul>
-		<li><a	href="general/13-03-19_odmb_presentation_manuel.pdf">Presentation (March 19)</a></li>
-		<li><a	href="general/13-04-05_odmb_poster.pdf">Poster (April 5)</a></li>
+	  <li><a href="general/13-03-19_odmb_presentation_manuel.pdf">Presentation (March 19)</a></li>
+	  <li><a href="general/13-04-05_odmb_poster.pdf">Poster (April 5)</a></li>
 	</ul>
-
-  <h3>Hardware</h3>
+	
+	<h3>Hardware</h3>
 	<ul>
-		<li><a href="https://edms.cern.ch/nav/EDA-02415-V2-0">V2 CERN EDMS</a>
-	         (<a href="https://edms.cern.ch/nav/EDA-02415-V1-0" title="ODMB.V1 CERN EDMS">V1</a>)</li>
-		<li><a href="hardware/odmb_v2_schematics.pdf">V2 Schematics</a>
-		 (<a href="hardware/odmb_v1_schematics.pdf" title="ODMB.V1 Schematics">V1</a>)</li>
-		<li><a href="hardware/odmb_v2_layout.pdf">V2 Layout</a>
-		 (<a href="hardware/odmb_v1_layout.pdf" title="ODMB.V1 Layout">V1</a>)</li>
-		<li><a href="hardware/odmb_v2_front_panel.pdf">V2 Front panel</a>
-
+	  <li><a href="https://edms.cern.ch/nav/EDA-02415-V2-0">V2 CERN EDMS</a>
+	    (<a href="https://edms.cern.ch/nav/EDA-02415-V1-0" title="ODMB.V1 CERN EDMS">V1</a>)</li>
+	  <li><a href="hardware/odmb_v2_schematics.pdf">V2 Schematics</a>
+	    (<a href="hardware/odmb_v1_schematics.pdf" title="ODMB.V1 Schematics">V1</a>)</li>
+	  <li><a href="hardware/odmb_v2_layout.pdf">V2 Layout</a>
+	    (<a href="hardware/odmb_v1_layout.pdf" title="ODMB.V1 Layout">V1</a>)</li>
+	  <li><a href="hardware/odmb_v2_front_panel.pdf">V2 Front panel</a></li>
 	</ul>
-
-  <h3>Firmware</h3>
+	
+	<h3>Firmware</h3>
 	<ul>
-		<li><a href="http://cmssw.cvs.cern.ch/cgi-bin/cmssw.cgi/UserCode/manuelf/vhdl/odmb_ucsb_v1/">Source code</a></li>
-		<li>Feb 27: <a href="firmware/odmb_ucsb_V1_feb27.bit" title="ODMB.V1 bit file">bit</a>,
-	         <a href="firmware/odmb_ucsb_V1_feb27.mcs" title="ODMB.V1 mcs file">mcs</a></li>
-		<li><a href="http://www.physics.ohio-state.edu/~cms/ddu/ddu_new.html" title="ODMB-DDU Data Format ">ODMB-DDU Data Format</a>
-		 (<a href="http://www.physics.ohio-state.edu/~cms/ddu/ddu_pro.html" title="DMB-DDU Data Format ">old</a>)</li>
-		<li><a href="http://www.seas.upenn.edu/~ese171/vhdl/vhdl_primer.html" title="VHDL Primer">VHDL Primer</a></li>
-
+	  <li><a href="http://cmssw.cvs.cern.ch/cgi-bin/cmssw.cgi/UserCode/manuelf/vhdl/odmb_ucsb_v1/">Source code</a></li>
+	  <li>Feb 27: <a href="firmware/odmb_ucsb_V1_feb27.bit" title="ODMB.V1 bit file">bit</a>,
+	    <a href="firmware/odmb_ucsb_V1_feb27.mcs" title="ODMB.V1 mcs file">mcs</a></li>
+	  <li><a href="http://www.physics.ohio-state.edu/~cms/ddu/ddu_new.html" title="ODMB-DDU Data Format ">ODMB-DDU Data Format</a>
+	    (<a href="http://www.physics.ohio-state.edu/~cms/ddu/ddu_pro.html" title="DMB-DDU Data Format ">old</a>)</li>
+	  <li><a href="http://www.seas.upenn.edu/~ese171/vhdl/vhdl_primer.html" title="VHDL Primer">VHDL Primer</a></li>
 	</ul>
-
-  <h3>Other ME1/1 boards</h3>
+	
+	<h3>Other ME1/1 boards</h3>
 	<ul>
-		<li><a href="http://www.physics.ohio-state.edu/~cms/dmb/" title="DMB at Ohio State">DMB at Ohio State</a></li>
-		<li><a href="http://www.physics.ohio-state.edu/~cms/cfeb/" title="CFEB at Ohio State">CFEB at Ohio State</a></li>
-		<li><a href="http://www.physics.ohio-state.edu/~cms/GbE_Ctrl/" title="VCC at Ohio State">VCC at Ohio State</a></li>
-		<li><a href="http://www.physics.ohio-state.edu/~cms/ddu/index.html" title="DDU at Ohio State">DDU at Ohio State</a></li>
-		<li><a href="http://bonner-ntserver.rice.edu/cms/projects.html" title="CCB at Rice">CCB at Rice</a></li>
-
+	  <li><a href="http://www.physics.ohio-state.edu/~cms/dmb/" title="DMB at Ohio State">DMB at Ohio State</a></li>
+	  <li><a href="http://www.physics.ohio-state.edu/~cms/cfeb/" title="CFEB at Ohio State">CFEB at Ohio State</a></li>
+	  <li><a href="http://www.physics.ohio-state.edu/~cms/GbE_Ctrl/" title="VCC at Ohio State">VCC at Ohio State</a></li>
+	  <li><a href="http://www.physics.ohio-state.edu/~cms/ddu/index.html" title="DDU at Ohio State">DDU at Ohio State</a></li>
+	  <li><a href="http://bonner-ntserver.rice.edu/cms/projects.html" title="CCB at Rice">CCB at Rice</a></li>
+	  
 	</ul>
-  </div>
-
-    <div class="right-column">
-    <h1> Upgrade of the DAQ MotherBoard for the CMS muon endcap detector</h1>
-
-      <p>
-      The muon detector endcap of the CMS experiment at CERN is instrumented with Cathode Strip Chambers (CSCs).
-      These detectors identify muons emitted in the forward and backward directions (0.9 < |&eta;| < 2.4), which
-      are signatures of Standard Model (e.g. H &rarr; ZZ &rarr; &mu;<sup>+</sup>&mu;<sup>-</sup>
-      &mu;<sup>+</sup>&mu;<sup>-</sup>) and New Physics (e.g. Supersymmetry) processes. Because muons are highly penetrating particles,
-      they are easily distinguishable and provide effective triggering capabilities.
-      </p>
-      <p>
-      The innermost muon station, ME1/1, is critical for muon momentum resolution, but suffers high particle
-      rates at the limit of the data acquisition system to handle. During the 2013-14 shutdown, the electronics
-      in this station will undergo significant upgrades. Among them, the Cathode Front-End Boards (CFEBs) will be replaced
-      by "digital" DCFEBs that flash-digitize every channel rather than using a custom analog storage pipeline.
-      The number of DCFEBs per CSC chamber will be increased from 5 to 7, and the data will be sent out via
-      optical links.
-      </p>
-      <p>
-      These improvements require the design of new optical data acquisition boards (ODMBs) that can handle
-      the optical readout of data and the increased number of DCFEBs. The design of these boards started in
-      2010, and they are expected to be installed in the Fall of 2013.
-      </p>
-       <br> <br>
-     <img  style="padding-left:0px" src="images/me11_boards_schematic2.png" alt="ME11 boards" width="645">
-      <br><br> <br> <br>
       </div>
       
-  </div>
- </div>
-
-   <iframe src="footer.html" frameborder="0" height="90" width=100%
-
- 
-</body>
+      <div class="right-column">
+	<h1> Upgrade of the DAQ MotherBoard for the CMS muon endcap detector</h1>
+	<p>
+	  The muon detector endcap of the CMS experiment at CERN is instrumented with Cathode Strip Chambers (CSCs).
+	  These detectors identify muons emitted in the forward and backward directions
+	  (0.9 &lt; &#124;&eta;&#124; &lt; 2.4), which are signatures of Standard Model
+	  (e.g. H &rarr; ZZ &rarr; &mu;<sup>+</sup>&mu;<sup>-</sup> &mu;<sup>+</sup>&mu;<sup>-</sup>) and New Physics
+	  (e.g. Supersymmetry) processes. Because muons are highly penetrating particles, they are easily
+	  distinguishable and provide effective triggering capabilities.
+	</p>
+	<p>
+	  The innermost muon station, ME1/1, is critical for muon momentum resolution, but suffers high particle
+	  rates at the limit of the data acquisition system to handle. During the 2013-14 shutdown, the electronics
+	  in this station will undergo significant upgrades. Among them, the Cathode Front-End Boards (CFEBs) will be replaced
+	  by "digital" DCFEBs that flash-digitize every channel rather than using a custom analog storage pipeline.
+	  The number of DCFEBs per CSC chamber will be increased from 5 to 7, and the data will be sent out via
+	  optical links.
+	</p>
+	<p>
+	  These improvements require the design of new optical data acquisition boards (ODMBs) that can handle
+	  the optical readout of data and the increased number of DCFEBs. The design of these boards started in
+	  2010, and they are expected to be installed in the Fall of 2013.
+	</p>
+	<br /> <br />
+	<img  style="padding-left:0px" src="images/me11_boards_schematic2.png" alt="ME11 boards" width="645" />
+	<br /><br /> <br /> <br />
+      </div>
+    </div>
+    
+    <iframe src="footer.html" frameborder="0" height="90" width=100%
+	    style.backgroundColor = "transparent" allowTransparency="true"></iframe> 
+    
+  </body>
 </html>
