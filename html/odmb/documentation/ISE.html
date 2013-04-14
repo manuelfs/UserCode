@@ -28,35 +28,77 @@
     
     <div class="main">
       <div id="sidebar" class="left-column">
-	<h2>Quick links</h2>
-	<ul>
-	  <li><a href="ISE.html">ISE</a></li>
-	  <li><a href="TriDAS.html">TriDAS</a></li>
-	</ul>
+	<iframe id="sidebarframe" src="sidebar.html" frameborder="0" height="160"
+		width=100% style.backgroundColor = "transparent" allowTransparency="true"
+		scrolling="no"></iframe>
       </div>
       
       <div class="right-column">
 	<h1>General ISE Info</h1>
-	<p>Our FPGA is a Virtex-6 FPGA provided by Xlinx. Xilinx also provides ISE 12.3, the software used to communicate with the FPGA. <a href="http://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/design-tools/v12_3.html">ISE 12.3 can be downloaded</a> for free, but is over 3GB to download and occupies over 12GB installed. Further, it requires a license to use.</p>
+	<p>Our FPGA is a Virtex-6 FPGA provided by Xlinx. Xilinx also
+	provides ISE 12.3, the software used to communicate with the
+	FPGA. <a href="http://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/design-tools/v12_3.html">ISE
+	12.3 can be downloaded</a> for free, but is over 3GB to
+	download and occupies over 12GB installed. Further, it
+	requires a license to use.</p>
 
 	<h1>Creating a New Firmware Project</h1>
 	<ol>
 	  <li>Open ISE.</li>
 	  <li>Click "new project."</li>
-	  <li>Give te project a name and useful description. In the practice example done on April 4, 2013, the project name was ODMBArmy, for example.</li>
-	  <li>Make sure "HDL" is selected. HDL is a category of languages used to design hardware (contrast with schematic capture). VHDL and Verilog are types of HDL. We will always use HDL.</li>
-	  <li>Select the device whose name contains "130T". This part of the name tells the size of the device.</li>
-	  <li>Check that "family" is set to Virtex-6. This is the FPGA that we have.</li>
-	  <li>Set package to 1156. This is the number of pins on our FPGA.</li>
+	  <li>Give te project a name and useful description. In the
+	  practice example done on April 4, 2013, the project name was
+	  ODMBArmy, for example.</li>
+	  <li>Make sure "HDL" is selected. HDL is a category of
+	  languages used to design hardware (contrast with schematic
+	  capture). VHDL and Verilog are types of HDL. We will always
+	  use HDL.</li>
+	  <li>Select the device whose name contains "130T". This part
+	  of the name tells the size of the device.</li>
+	  <li>Check that "family" is set to Virtex-6. This is the FPGA
+	  that we have.</li>
+	  <li>Set package to 1156. This is the number of pins on our
+	  FPGA.</li>
 	  <li>Under speed, select the slowest (-1).</li>
-	  <li>Once the above selections have been made, click ok to close the pop-up window.</li>
-	  <li>The FPGA should appear near the upper left part of the window. Right-click on it and pick "new source." On the menu that appears, select "VHDL module" and name it (in the April 4 example, we named this ODMB_top). We could define ports here, but we will eventually need to create another file that specifies which pins connect to which VHDL variables.</li>
-	  <li>The file just created contains both an entity (which defines the inputs and outputs) and an architecture.</li>
-	  <li>Add a port to the entity ODMB_top so we can declare some inputs and outputs. For example "LEGS : out..." will declare output LEDs and "PB : in..." will declare a push-button input.</li>
-	  <li>We still need to add a new source to specify which pins are connected to the 12 LEDs. We do this by clicking the new source button near the upper right of the window. We want an "Implementation Constraints" file, which will have the file extension ".ucf." See, for example, ODMB_pinout.ucf in Manuel's UserCode directory.</li>
-	  <li>Now, to compile the code, look at the "processes" subwindow and click on "generate programming file." This will automatically run through the steps of synthesizing, translating, mapping, and then placing and routing. We could do these steps individually, but typically will not. The exception is that is we only want to check whether we've written valid code, we can just use "synthesize."</li>
-	  <li>Load the file by going to the "tools" menu and picking "impact." At this point, we can do several things. First, do a boundary scan, right click, and pick initialize. When prompted, select the appropriate ".bit" file. You will also be prompted to attach to a PROM (programmable read-only memory), which can store the program even after shutdown. To do this, we would need an "mcs" file that we have not yet created. This file would configue the PROM and is permanent, but is also slower. For now, do not add a PROM.</li>
-	  <li>Finally, select the PROM to see available options and choose a program.
+	  <li>Once the above selections have been made, click ok to
+	  close the pop-up window.</li>
+	  <li>The FPGA should appear near the upper left part of the
+	  window. Right-click on it and pick "new source." On the menu
+	  that appears, select "VHDL module" and name it (in the April
+	  4 example, we named this ODMB_top). We could define ports
+	  here, but we will eventually need to create another file
+	  that specifies which pins connect to which VHDL
+	  variables.</li>
+	  <li>The file just created contains both an entity (which
+	  defines the inputs and outputs) and an architecture.</li>
+	  <li>Add a port to the entity ODMB_top so we can declare some
+	  inputs and outputs. For example "LEGS : out..." will declare
+	  output LEDs and "PB : in..." will declare a push-button
+	  input.</li>
+	  <li>We still need to add a new source to specify which pins
+	  are connected to the 12 LEDs. We do this by clicking the new
+	  source button near the upper right of the window. We want an
+	  "Implementation Constraints" file, which will have the file
+	  extension ".ucf." See, for example, ODMB_pinout.ucf in
+	  Manuel's UserCode directory.</li>
+	  <li>Now, to compile the code, look at the "processes"
+	  subwindow and click on "generate programming file." This
+	  will automatically run through the steps of synthesizing,
+	  translating, mapping, and then placing and routing. We could
+	  do these steps individually, but typically will not. The
+	  exception is that is we only want to check whether we've
+	  written valid code, we can just use "synthesize."</li>
+	  <li>Load the file by going to the "tools" menu and picking
+	  "impact." At this point, we can do several things. First, do
+	  a boundary scan, right click, and pick initialize. When
+	  prompted, select the appropriate ".bit" file. You will also
+	  be prompted to attach to a PROM (programmable read-only
+	  memory), which can store the program even after shutdown. To
+	  do this, we would need an "mcs" file that we have not yet
+	  created. This file would configue the PROM and is permanent,
+	  but is also slower. For now, do not add a PROM.</li>
+	  <li>Finally, select the PROM to see available options and
+	  choose a program.
 	</ol>
 
 	<h1>Miscellaneous Trivia</h1>
