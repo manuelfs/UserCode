@@ -1,5 +1,4 @@
 .person{
-    min-height: 192px;
     margin: 8px;
     padding: 8px;
     border: 1px dotted gray;
@@ -7,7 +6,22 @@
 
 .personpic{
     width: 128px;
-    max-height: 128px;
     float: left;
     padding-right: 15px;
+}
+
+.clearhack{
+    clear: both;
+}
+
+.personLeft{
+    margin: 2px;
+    padding: 2px;
+    float: left;
+}
+
+.personRight{
+    margin: 2px;
+    padding: 2px;
+    float: left;
 }
