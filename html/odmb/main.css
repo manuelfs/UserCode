@@ -13,6 +13,23 @@ body {
     min-height:1151%
 }
 
+iframe{
+    border: 0px;
+    width: 100%;
+}
+
+iframe#sidebarframe{
+    overflow: hidden;
+}
+
+iframe#headerframe{
+    height: 160px;
+}
+
+iframe#footerframe{
+    height: 90px;
+}
+
 .header{
     width:830px; height: 10px;
     margin-left: auto; margin-right: auto;
@@ -58,7 +75,7 @@ body {
     font-weight:normal;
 }
 
-#navil{
+.navil{
     width: 500px;
     height: 50px;
     vertical-align: top;
@@ -102,12 +119,13 @@ body {
     margin-top: 0px;
 }
 
-.left-column{
+.leftColumn{
     width: 220px;
     padding-right: 15px;
     float: left;
 }
-.right-column{
+
+.rightColumn{
     width: 645px;
     float: left;
     padding-left:20px;

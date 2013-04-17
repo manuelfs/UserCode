@@ -10,10 +10,9 @@
   </head>
   
   <body onload="reload()">
-    <iframe id="headerframe" src="../header.html" frameborder="0" height="160" width=100%
-	    style.backgroundColor = "transparent" allowTransparency="true"></iframe>
+    <iframe id="headerframe" src="../header.html"></iframe>
     
-    <script>
+    <script type="text/javascript">
       function reload(){
       var frame = document.getElementById("headerframe").contentDocument;
       frame.getElementById("odmbnav").className = "inactive";
@@ -26,12 +25,10 @@
       }
     </script>
     <div class="main">
-      <div id="sidebar" class="left-column">
-	<iframe id="sidebarframe" src="sidebar.html" frameborder="0" height="160"
-		width=100% style.backgroundColor = "transparent" allowTransparency="true"
-		scrolling="no"></iframe>
+      <div id="sidebar" class="leftColumn">
+	<iframe id="sidebarframe" src="sidebar.html"></iframe>
       </div>
-      <div class="right-column">
+      <div class="rightColumn">
 	<h1> ME1/1 upgrade</h1>
 	<p>Replacement of the current cathode front-end boards is proposed for Phase 1 by
 	  “digital” DCFEB boards that flash-digitize every channel rather than using a custom
@@ -58,7 +55,6 @@
 	  trigger for heavy stable charged particles.</p>  <br /><br />
       </div>
     </div>
-    <iframe src="../footer.html" frameborder="0" height="90" width=100%
-	    style.backgroundColor = "transparent" allowTransparency="true"></iframe>
+    <iframe id="footerframe" src="../footer.html"></iframe>
   </body>
 </html>

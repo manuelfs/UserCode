@@ -12,10 +12,9 @@
   
   <body onload="reload()">
     
-    <iframe id="headerframe"  src="header.html" frameborder="0" height="160" width=100%
-	    style.backgroundColor = "transparent" allowTransparency="true"></iframe>
+    <iframe id="headerframe" src="header.html"></iframe>
     
-    <script>
+    <script type="text/javascript">
       function reload(){
       var frame = document.getElementById("headerframe").contentDocument;
       frame.getElementById("odmbnav").className = "inactive";
@@ -32,8 +31,6 @@
     <div class="main">
       <div id="sidebar" class="left-column">
 	<h3>Quick links</h3>
-	<ul>
-	</ul>
       </div>
       
       <div class="right-column">
@@ -148,8 +145,7 @@ E-Mail: kflowers at hep dot ucsb dot edu
       </div>
     </div>
     
-    <iframe src="footer.html" frameborder="0" height="90" width=100%
-	    style.backgroundColor = "transparent" allowTransparency="true"></iframe>    
+    <iframe id="footerframe" src="footer.html"></iframe>    
     
   </body>
 </html>

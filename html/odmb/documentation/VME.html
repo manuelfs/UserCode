@@ -10,10 +10,9 @@
   </head>
   
   <body onload="reload()">
-    <iframe id="headerframe"  src="../header.html" frameborder="0" height="160" width=100%
-	    style.backgroundColor = "transparent" allowTransparency="true"></iframe>
+    <iframe id="headerframe" src="../header.html"></iframe>
     
-    <script>
+    <script type="text/javascript">
       function reload(){
       var frame = document.getElementById("headerframe").contentDocument;
       frame.getElementById("odmbnav").className = "inactive";
@@ -27,13 +26,11 @@
     </script>
     
     <div class="main">
-      <div id="sidebar" class="left-column">
-	<iframe id="sidebarframe" src="sidebar.html" frameborder="0" height="160"
-		width=100% style.backgroundColor = "transparent" allowTransparency="true"
-		scrolling="no"></iframe>
+      <div id="sidebar" class="leftColumn">
+	<iframe id="sidebarframe" src="sidebar.html"></iframe>
       </div>
       
-      <div class="right-column">
+      <div class="rightColumn">
 	<h1>Connecting the Oscilloscope</h1>
 	<p>It may be helpful to have <a href="../hardware/odmb_test_bench_ucsb.jpg">a
 	    picture</a> available for reference before connecting the cables.</p>
@@ -95,7 +92,6 @@
 	<br /><br />
       </div>
     </div>
-    <iframe src="../footer.html" frameborder="0" height="90" width=100%
-	    style.backgroundColor = "transparent" allowTransparency="true"></iframe>
+    <iframe id="footerframe" src="../footer.html"></iframe>
   </body>
 </html>
