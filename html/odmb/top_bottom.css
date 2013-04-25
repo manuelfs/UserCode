@@ -1,58 +1,58 @@
 @charset "UTF-8";
 
 body {
-    background-image: url(images/bg.jpg);
-    background-repeat: repeat-x;
-    background-color: #FFFFFF;
-    margin: 0px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
-    min-height:1151%
+	background-image: url(images/bg.jpg);
+	background-repeat: repeat-x;
+	background-color: #FFFFFF;
+	margin: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	min-height:1151%
 }
 
 .header{
-    width:830px; height: 10px;
-    margin-left: auto; margin-right: auto;
+	width:830px; height: 10px;
+	margin-left: auto; margin-right: auto;
 }
 
 .header ul{
-    text-align: center;
-    font-size: 18px;
-    padding-left: 5px;
-    margin-left: 0px;
-    padding-right: 0px;
-    margin-right: 0px;
-    padding-top: 0px;
-    margin-top: 0px;
-    padding-bottom: 4px;
-    margin-bottom: 0px;
-    vertical-align: top;
+        align: center;
+	font-size: 20px;
+	padding-left: 5px;
+	margin-left: 0px;
+	padding-right: 0px;
+	margin-right: 0px;
+	padding-top: 0px;
+	margin-top: 0px;
+	padding-bottom: 4px;
+	margin-bottom: 0px;
+	vertical-align: top;
 }
 
 .header li{
-    display: inline;	
+	display: inline;	
 }
 
 .logo{
-    padding-top: 25px;
-    text-transform: lowercase;
-    color:#CCCCCC;
-    font-size: 36px;
-    height: 19px;
-    font-weight:normal;
+	padding-top: 25px;
+	text-transform: lowercase;
+	color:#CCCCCC;
+	font-size: 36px;
+	height: 19px;
+	font-weight:normal;
 }
 
 .logo-thin{
-    color:#CCCCCC;
-    font-weight:normal;
+	color:#CCCCCC;
+	font-weight:normal;
 }
 
 .logo h1{
-    font-size: 32px;
-    padding: 0px;
-    margin: 0px;
-    color: #999999;
-    font-weight:normal;
+	font-size: 36px;
+	padding: 0px;
+	margin: 0px;
+	color: #999999;
+	font-weight:normal;
 }
 
 #navil{
@@ -62,22 +62,22 @@ body {
 }
 
 .navigation{
-    font-size: 13px;
-    color: #333333;
-    width: 900px;
-    text-align: center;
-    padding-top: 57px;
+	font-size: 13px;
+	color: #333333;
+	width: 850px;
+	text-align: center;
+	padding-top: 57px;
 }
 #odmbnav{
-    padding-top: 9px;
+    padding-top: 7px;
 }
 
 .navigation ul li a{
-    color: #333333;
+	color: #333333;
     font-weight: normal;
     text-decoration: none;
     text-align: center;
-    padding-right: 28px;  padding-left: 12px;
+    padding-right: 17px;  padding-left: 17px;
     padding-top: 10px;
     display: block;
     float: left;
@@ -88,134 +88,134 @@ body {
 }
 
 .navigation a:hover, .navigation ul li .active{
-    color: #666666;
-    text-decoration:none;
-    background: url(images/active.png) center;
+	color: #666666;
+	text-decoration:none;
+	background: url(images/active.png) center;
 }
 
 .main{
-    width:900px;
-    margin-left: auto; margin-right: auto;
-    margin-top: 0px;
+	width:900px;
+	margin-left: auto; margin-right: auto;
+	margin-top: 0px;
 }
 
 .left-column{
-    width: 220px;
-    padding-right: 15px;
-    float: left;
+	width: 220px;
+	padding-right: 15px;
+	float: left;
 }
 .right-column{
-    width: 645px;
-    float: left;
-    padding-left:20px;
+	width: 645px;
+	float: left;
+	padding-left:20px;
 }
 
 .separator{
-    height: 28px;
-    clear: both;
+	height: 28px;
+	clear: both;
 }
 
 .footer{
-    height: 50px;
-    background-color:#000000;
-    padding-top: 0px;
-    color: #CCCCCC;
+	height: 50px;
+	background-color:#000000;
+	padding-top: 0px;
+	color: #CCCCCC;
 }
 
 .footer-inner{
-    width:822px;
-    margin-left: auto; margin-right: auto;
+	width:822px;
+	margin-left: auto; margin-right: auto;
 }
 
 .footer-left{
-    width: 300px;
-    float:left;
+	width: 300px;
+	float:left;
 }
 
 .footer-right{
-    width: 516px;
-    float: left;
-    text-align: right;
+	width: 516px;
+	float: left;
+	text-align: right;
 }
 
 .footer ul{
-    padding-left: 0px;
-    margin-left: 0px;
-    padding-right: 0px;
-    margin-right: 0px;
-    padding-top: 0px;
-    margin-top: 0px;
-    padding-bottom: 4px;
-    margin-bottom: 0px;
+	padding-left: 0px;
+	margin-left: 0px;
+	padding-right: 0px;
+	margin-right: 0px;
+	padding-top: 0px;
+	margin-top: 0px;
+	padding-bottom: 4px;
+	margin-bottom: 0px;
 }
 
 .footer li{
-    display: inline;
+	display: inline;
 }
 
 .footer a{
-    color: #CCCCCC;
-    text-decoration: none;
+	color: #CCCCCC;
+	text-decoration: none;
 }
 
 .small{
-    font-size: 11px;
-    color:#666666;
+	font-size: 11px;
+	color:#666666;
 }
 
 .small a{
-    color:#666666;
-    text-decoration: none;
+	color:#666666;
+	text-decoration: none;
 }
 
 .small a:hover{
-    color: #333333;
-    text-decoration: none;
+	color: #333333;
+	text-decoration: none;
 }
 
 .padd-bottom{
-    padding-bottom: 5px;
+	padding-bottom: 5px;
 }
 
 h1{
-    font-size: 18px;
-    color:#333333;
+	font-size: 18px;
+	color:#333333;
 }
 
 h2, h3, h4{
-    font-size: 16px;
-    color:#333333;
+	font-size: 16px;
+	color:#333333;
 }
 
 p{
-    line-height: 18px;
+	line-height: 18px;
 }
 
 a{
-    color:#333333;
-    text-decoration: underline;
+	color:#333333;
+	text-decoration: underline;
 }
 
 a:hover{
-    color:#999999;
-    text-decoration: none;
+	color:#999999;
+	text-decoration: none;
 }
 
 div#sidebar ul {
-    margin:2px;
-    padding:5px;
-    list-style:none;
+	margin:2px;
+	padding:5px;
+	list-style:none;
 }
 div#sidebar li  {
-    margin-bottom:6px;
+	margin-bottom:6px;
 }
 div#sidebar li ul {
-    border-top:1px solid #ddd;
-    margin-bottom:20px;
+	border-top:1px solid #ddd;
+	margin-bottom:20px;
 }
 div#sidebar li ul li {
-    display:block;
-    padding:7px 15px;
-    border-bottom:1px solid #ddd;
-    color:#777;
+	display:block;
+	padding:7px 15px;
+	border-bottom:1px solid #ddd;
+	color:#777;
 }
