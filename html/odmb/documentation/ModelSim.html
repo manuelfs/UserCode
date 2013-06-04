@@ -44,7 +44,7 @@
 	These paths assume you are using linux. Also, the second line may be unnecessary (and probably non-existent for 32-bit operating systems).
 	</p>
 
-	<h1>Installing ISE (You'll Need This Later)</h1>
+	<h1>Installing ISE</h1>
 	<ol>
 	  <li>cd $ISE_DIR.</li>
 	  <li>scp -r &lt;username&gt;@grendel.physics.ucsb.edu:/homes/manuelf/programs/install_files/Xilinx_ISE_DS_Lin_12.3_M.70d.1.0.tar</li>
@@ -70,7 +70,21 @@
 	  <li>cd $ODMB_DIR</li>
 	  <li>Open work/_info and delete everything after the fifth line (which should just be the letter &quot;d&quot;).</li>
 	</ol>
-	<h1>Getting Extra Libraries Needed for ODMB</h1>
+	<h1>Getting Extra Libraries Needed for ODMB (without ISE)</h1>
+	<ol>
+	  <li>cd $MODELSIM_DIR</li>
+          <li>scp -r &lt;user_name&gt;@grendel.physics.ucsb.edu:/data04/ald77/compiled_libs .</li>
+	  <li>Add the following lines to modelsim.ini in $MODELSIM_DIR/modeltech:
+            <ul>
+              <li>secureip = /opt/Xilinx/12.3/ISE_DS/ISE/verilog/mti_se/10.2a/lin64/secureip</li>
+              <li>unimacro = /opt/Xilinx/12.3/ISE_DS/ISE/vhdl/mti_se/10.2a/lin64/unimacro</li>
+              <li>unimacro_ver = /opt/Xilinx/12.3/ISE_DS/ISE/verilog/mti_se/10.2a/lin64/unimacro_ver</li>
+              <li>unisim = /opt/Xilinx/12.3/ISE_DS/ISE/vhdl/mti_se/10.2a/lin64/unisim</li>
+              <li>unisims_ver = /opt/Xilinx/12.3/ISE_DS/ISE/verilog/mti_se/10.2a/lin64/unisim_ver</li>
+            </ul>
+	  </li>
+	</ol>
+	<h1>Getting Extra Libraries Needed for ODMB (with ISE)</h1>
 	<ol>
 	  <li>cd into your Dropbox directory</li>
 	  <li>cd odmb/Software/compxlib_modelsim_10</li>
@@ -100,7 +114,7 @@
 	      <li>unisim = /opt/Xilinx/12.3/ISE_DS/ISE/vhdl/mti_se/10.2a/lin64/unisim</li>
 	      <li>unisims_ver = /opt/Xilinx/12.3/ISE_DS/ISE/verilog/mti_se/10.2a/lin64/unisim_ver</li>
 	    </ul>
-	  <li>
+	  </li>
 	</ol>
 	<h1>Simulating the ODMB in ModelSim</h1>
 	  <ol>
