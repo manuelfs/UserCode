@@ -1,0 +1,12 @@
+======================================================================
+=                                                                    =
+=  			ODMB website                   		     =
+=                                                                    =
+=    AUTHORS: Manuel Franco Sevilla, Adam Dishaw        	     =
+=                                                                    =
+======================================================================
+
+V00-00: 9 June, 2013 Manuel
+--------------------------------
+Updated links, moved TriDAS to software, and added the pictures
+of the ODMB team.
