@@ -1,9 +1,9 @@
-												library ieee;
+library ieee;
 use ieee.std_logic_1164.all;
 USE IEEE.std_logic_arith.all;
 USE IEEE.std_logic_unsigned.all;
 
-ENTITY ODMB_VME IS
+ENTITY dmb_vme_BGB IS
 PORT 	(
 
 -- VME signals
@@ -158,10 +158,10 @@ PORT 	(
 
 );
 	
-end ODMB_VME;
+end dmb_vme_BGB;
 
 
-ARCHITECTURE ODMB_VME_architecture OF ODMB_VME IS
+ARCHITECTURE dmb_vme_BGB_architecture OF dmb_vme_BGB IS
 
 signal ext_vme_ga  : std_logic_vector(5 downto 0);
 
@@ -185,11 +185,11 @@ signal outdata_lvdbmon  : std_logic_vector(15 downto 0);
 signal cmd_adrs  : std_logic_vector(15 downto 0);
 signal outdata_fifomon  : std_logic_vector(15 downto 0);
 
-signal outdata_vmemon  : std_logic_vector(15 downto 0);
+signal outdata_flfmon  : std_logic_vector(15 downto 0);
 
 signal jtag_tck  : std_logic_vector(6 downto 0);
 
-COMPONENT VMEMON is
+COMPONENT FLFMON is
   
   port (
 
@@ -269,7 +269,7 @@ COMPONENT LVDBMON is
 
 end COMPONENT;
 
-COMPONENT CFEBJTAG is
+COMPONENT CFEBJTAG_BGB is
   
   port (
 
@@ -384,7 +384,7 @@ END COMPONENT;
 
 -- Device 2 => MBCJTAG
 
--- Device 3 => CPROMJTAG (REMOVED)			VMEMON
+-- Device 3 => CPROMJTAG (REMOVED)			FLFMON
 
 -- Device 4 => VPROMJTAG (REMOVED)
 
@@ -422,7 +422,7 @@ vme_sysfail_out <= '0';
 
 ext_vme_ga <= vme_gap & vme_ga;
 
-COMMAND_PM : COMMAND_MODULE
+PMAP_COMMAND_MODULE : COMMAND_MODULE
   
 PORT MAP (
 
@@ -454,13 +454,14 @@ PORT MAP (
     LED => led_command
     );
 
-VME_OUT_SEL_PM : vme_outdata_sel
-  	port map (
+PMAP_VME_OUT_SEL : vme_outdata_sel
+  
+	port map (
 
 		device => device,
 		device1_outdata => outdata_cfebjtag,
 		device2_outdata => outdata_mbcjtag,
-		device3_outdata => outdata_vmemon,
+		device3_outdata => outdata_flfmon,
 		device8_outdata => outdata_lvdbmon,
 		device9_outdata => outdata_fifomon,
 		outdata => vme_data_out
@@ -470,8 +471,9 @@ VME_OUT_SEL_PM : vme_outdata_sel
 
 dl_jtag_tck <= jtag_tck;
 
-CFEBJTAG_PM : CFEBJTAG
-	PORT MAP (
+PMAP_CFEBJTAG : CFEBJTAG_BGB
+
+PORT MAP (
 
     FASTCLK => clk,
     SLOWCLK => clk_s2,
@@ -498,8 +500,9 @@ CFEBJTAG_PM : CFEBJTAG
     LED => led_cfebjtag
     );
 
-MBCJTAG_PM : MBCJTAG
-  PORT MAP (
+PMAP_MBCJTAG : MBCJTAG
+  
+PORT MAP (
 
     FASTCLK => clk,
     SLOWCLK => clk_s2,
@@ -524,8 +527,9 @@ MBCJTAG_PM : MBCJTAG
     );
 
 
-LVDBMON_PM : LVDBMON
-    port map(
+PMAP_LVDBMON : LVDBMON
+  
+  port map(
 
     SLOWCLK => clk_s2,
     RST => rst,
@@ -553,8 +557,9 @@ LVDBMON_PM : LVDBMON
 
     );
 
-FIFOMON_PM : FIFOMON
-  	port map (
+PMAP_FIFOMON : FIFOMON
+  
+	port map (
 
     SLOWCLK => clk_s2,
     RST => rst,
@@ -580,8 +585,9 @@ FIFOMON_PM : FIFOMON
 
 );
 
-VMEMON_PM : VMEMON
- 	port map (
+PMAP_FLFMON : FLFMON
+ 
+	port map (
 
     SLOWCLK => clk_s2,
     RST => rst,
@@ -591,7 +597,7 @@ VMEMON_PM : VMEMON
     COMMAND => cmd,
 
     INDATA => vme_data_in,
-    OUTDATA => outdata_vmemon,
+    OUTDATA => outdata_flfmon,
 
     DTACK => vme_dtack_b,
 
@@ -660,5 +666,5 @@ qpll_extcontrol <= '0';
 qpll_reset <= '0';										
 qpll_f0sel <= "0000";		
 
-end ODMB_VME_architecture;
+end dmb_vme_BGB_architecture;
 

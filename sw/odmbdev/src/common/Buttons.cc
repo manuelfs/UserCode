@@ -31,7 +31,7 @@ namespace emu {
      * A small class to implement a reset from the ODMB_CTRL bits --TD
      **************************************************************************/
     ResetRegisters::ResetRegisters(Crate * crate) 
-      : ButtonAction(crate,"Reset ODMB registers/FIFOs") 
+      : ButtonAction(crate,"Reset registers") 
     { /* The choices here are really a blank constructor vs duplicating the ExecuteVMEDSL constructor.
 	 I've tried the former -- TD
        */
