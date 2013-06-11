@@ -65,7 +65,7 @@ architecture CFEBJTAG_Arch of CFEBJTAG is
   signal QV_DONEDHEAD : std_logic_vector(3 downto 0);
   signal CE_SHDHEAD_TMS, Q1_SHDHEAD_TMS, Q2_SHDHEAD_TMS, Q3_SHDHEAD_TMS, Q4_SHDHEAD_TMS, Q5_SHDHEAD_TMS : std_logic; 
 
-  signal SHDATA, SHDATAX, CE_SHIFT1 : std_logic;
+  signal SHDATA, SHDATAX : std_logic;
 
   signal DV_DONEDATA, QV_DONEDATA : std_logic_vector(3 downto 0);
   signal CE_DONEDATA, CLR_DONEDATA, UP_DONEDATA, CEO_DONEDATA, TC_DONEDATA : std_logic;
@@ -132,7 +132,7 @@ begin
     DTACK_INNER <= '0' when (Q_DTACK_SELCFEB='1') else 'Z';
 
 -- Write SELFEB to OUTDATA when READCFEB=1
-    OUTDATA <= "000000000" & SELFEB(7 downto 1) when (STROBE='1' and READCFEB='1') else (others => 'Z');
+    OUTDATA(6 downto 0) <= SELFEB(7 downto 1) when (STROBE='1' and READCFEB='1') else "ZZZZZZZ";
 
 -- Generate DTACK when READCFEB=1
     D_DTACK_READCFEB <= '1' when (STROBE='1' and READCFEB='1') else '0';
@@ -345,9 +345,7 @@ begin
                '0';
 
 -- Generate OUTDATA
-    CE_SHIFT1 <= SHDATAX and not ENABLE;   -- BGB
-    SR16LCE(SLOWCLK, CE_SHIFT1, RST, TDO, Q_OUTDATA, Q_OUTDATA);   -- BGB
-    --SR16LCE(RTN_TCK, RTN_SHFT_EN, RST, TDO, Q_OUTDATA, Q_OUTDATA);
+    SR16LCE(RTN_TCK, RTN_SHFT_EN, RST, TDO, Q_OUTDATA, Q_OUTDATA);
     OUTDATA(15 downto 0) <= Q_OUTDATA(15 downto 0) when (RDTDODK='1') else "ZZZZZZZZZZZZZZZZ";
 
 -- Generate DTACK when DATASHFT=1 or INSTSHFT=1

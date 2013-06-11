@@ -22,7 +22,7 @@ USE UNIMACRO.vcomponents.all;
 LIBRARY work;
 USE work.Latches_Flipflops.all;
 
-ENTITY ODMB_V6 IS
+ENTITY DMB_V6 IS
 	PORT
 	(
 
@@ -381,9 +381,9 @@ ENTITY ODMB_V6 IS
 		
 		done_in : IN  STD_LOGIC 
 	);
-END ODMB_V6;
+END DMB_V6;
 
-ARCHITECTURE bdf_type OF ODMB_V6 IS 
+ARCHITECTURE bdf_type OF DMB_V6 IS 
 
 COMPONENT fifo_wc_sel IS
   
