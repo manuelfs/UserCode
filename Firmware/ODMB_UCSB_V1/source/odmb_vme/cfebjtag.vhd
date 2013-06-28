@@ -3,7 +3,7 @@ library work;
 use work.Latches_Flipflops.all;
 use ieee.std_logic_1164.all;
 
-entity CFEBJTAG is
+entity CFEBJTAG_BGB is
   
   port (
 
@@ -33,9 +33,9 @@ entity CFEBJTAG is
     DIAGOUT : out std_logic_vector(17 downto 0)
     );
 
-end CFEBJTAG;
+end CFEBJTAG_BGB;
 
-architecture CFEBJTAG_Arch of CFEBJTAG is
+architecture CFEBJTAG_BGB_Arch of CFEBJTAG_BGB is
 
   --Declaring internal signals
   signal FEBTDO_INNER : std_logic_vector(7 downto 1);
@@ -842,5 +842,5 @@ TCK(7) <= SELFEB(7) and ENABLE;
     DIAGOUT(17 downto 13) <= "00000";
 --  end process;
 
-end CFEBJTAG_Arch;
+end CFEBJTAG_BGB_Arch;
     

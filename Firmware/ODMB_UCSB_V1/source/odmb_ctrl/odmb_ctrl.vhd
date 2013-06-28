@@ -355,7 +355,7 @@ mbc_fsel <= instr;
 
 leds(5 downto 0) <= crateid(5 downto 0);
 
-JTAG_PM : BGB_BSCAN_emulator 
+PMAP_JTAG : BGB_BSCAN_emulator 
   port map (
 
 		IR => mbc_jtag_ir,
@@ -388,8 +388,9 @@ JTAG_PM : BGB_BSCAN_emulator
 		TRST => reset
     );
 
-INSTR_DECODER_PM : INSTRGDC
-	port map (
+PMAP_INSTR_DECODER : INSTRGDC
+
+port map (
     BTDI => tdi,                -- TDI from BSCAN_VIRTEX
     DRCK => drck1,              -- Signals are from BSCAN_VIRTEX
     SEL1 => sel1,
@@ -398,8 +399,9 @@ INSTR_DECODER_PM : INSTRGDC
     D0 => tdo1,
     F => instr);
 
-CCBCODE_PM : CCBCODE
-	port map(
+PMAP_CCBCODE : CCBCODE
+
+port map(
     CCB_CMD => ccb_cmd,
     CCB_CMD_S => ccb_cmd_s,
     CCB_DATA => ccb_data,
@@ -445,8 +447,8 @@ FDC(plsinjen_inv, clk40, plsinjen_rst, plsinjen_inner);
 plsinjen <= plsinjen_inner;
 plsinjen_inv <= not plsinjen_inner;
 
-CALIBTRG_PM : CALIBTRG
-	port MAP (
+PMAP_CALIBTRG : CALIBTRG
+port MAP (
     CMSCLK => clk40,
 	 CLK80 => clk80,
     RST => reset,
@@ -484,8 +486,9 @@ dl_gtrig <= cal_gtrg;
 dl_injpulse <= inject;
 dl_extpulse <= pulse;
 
-SETFEBDLY_PM : SETFEBDLY
-  port map(
+PMAP_SETFEBDLY : SETFEBDLY
+  
+port map(
     FLOADID => instr(15),             --  INSTR(15)
     FLOADDLY => instr(16),            --  INSTR(16)
     FCBLDLY => instr(28),             --  INSTR(28)
@@ -504,8 +507,9 @@ SETFEBDLY_PM : SETFEBDLY
     CRATEID => crateid,
     TDO => tdo_setfebdly);
 
-SETCALDLY_PM : SETCALDLY
-  port map(
+PMAP_SETCALDLY : SETCALDLY
+  
+port map(
     FLOAD => instr(17),               --  INSTR(17)
     FLXDLY => instr(40),              --  INSTR(40)
     BTDI => tdi,
@@ -521,8 +525,9 @@ SETCALDLY_PM : SETCALDLY
     XL1ADLY => open,
     TDO => tdo_setcaldly);
 
-LOADFIFO_PM : LOADFIFO
-  port map(
+PMAP_LOADFIFO : LOADFIFO
+  
+port map(
     FENF => instr(12),                -- INSTR(12)
     BTDI => tdi,
     DRCK => drck2,
