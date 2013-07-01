@@ -1,0 +1,4 @@
+                          wr_dcfeb_select(dcfeb0)=>(CMD=0x01020)
+0 XXXXXXXX
+                                  rd_dcfeb_select=>(CMD=0x01024)
+1 0000xxX1
