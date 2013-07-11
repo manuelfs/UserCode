@@ -12,7 +12,6 @@ entity INSTRGDC is
     UPDATE : in  std_logic;
     SHIFT  : in  std_logic;
     D0     : out std_logic;
-    FSEL  : in  std_logic_vector(5 downto 0);
     F      : out std_logic_vector(47 downto 1));
 
 end INSTRGDC;
@@ -47,27 +46,16 @@ begin  -- INSTRGDC_Arch
   -- type   : sequential
   -- inputs : SELUPDATE
   -- outputs: F[47:1]
---  PUPDATE : process (SELUPDATE)
---    variable NUM : integer range 1 to 47;
---    variable MASK : std_logic_vector(47 downto 1) := (others => '0');
---  begin
---    if (SELUPDATE='1' and SELUPDATE'event) then
---      NUM := to_integer(unsigned(D));   -- the bit to set to 1
---      MASK := (others => '0');          -- clear the mask
---      MASK(NUM) := '1';                 -- then set the one bit to 1
---      F <= MASK;                        -- assign the mask to F
---    end if;
---  end process;
-
--- Guido May 17
-  PUPDATE : process (FSEL)
-    variable NUM : integer range 0 to 47;
-    variable MASK : std_logic_vector(47 downto 0) := (others => '0');
+  PUPDATE : process (SELUPDATE)
+    variable NUM : integer range 1 to 47;
+    variable MASK : std_logic_vector(47 downto 1) := (others => '0');
   begin
-      NUM := to_integer(unsigned(FSEL));   -- the bit to set to 1
+    if (SELUPDATE='1' and SELUPDATE'event) then
+      NUM := to_integer(unsigned(D));   -- the bit to set to 1
       MASK := (others => '0');          -- clear the mask
       MASK(NUM) := '1';                 -- then set the one bit to 1
-      F <= MASK(47 downto 1);                        -- assign the mask to F
+      F <= MASK;                        -- assign the mask to F
+    end if;
   end process;
 
 end INSTRGDC_Arch;

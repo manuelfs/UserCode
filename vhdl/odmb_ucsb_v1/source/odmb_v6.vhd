@@ -17,7 +17,6 @@ use IEEE.std_logic_arith.all;
 use IEEE.std_logic_unsigned.all;
 library UNISIM;
 use UNISIM.vcomponents.all;
---use UNISIM.VPKG.all;
 library UNIMACRO;
 use UNIMACRO.vcomponents.all;
 library work;
@@ -30,8 +29,6 @@ entity ODMB_V6 is
     );  
   port
     (
-      tc_run_out    : out   std_logic;  -- OK           NEW!
-
 
 -- From/To VME connector To/From MBV
 
@@ -221,39 +218,131 @@ entity ODMB_V6 is
 
 -- To/From TX1 
 
-      otx1_p : out std_logic_vector(12 downto 1);               
-      otx1_n : out std_logic_vector(12 downto 1);               
-      otx1_tx_en  : out std_logic;      
-      otx1_tx_dis : out std_logic;      
-      otx1_reset  : out std_logic;      
-      otx1_fault  : in  std_logic;      
+      otx1_01_p : out std_logic;        -- OK   
+      otx1_01_n : out std_logic;        -- OK   
+      otx1_02_p : out std_logic;        -- OK   
+      otx1_02_n : out std_logic;        -- OK   
+      otx1_03_p : out std_logic;        -- OK   
+      otx1_03_n : out std_logic;        -- OK   
+      otx1_04_p : out std_logic;        -- OK   
+      otx1_04_n : out std_logic;        -- OK   
+      otx1_05_p : out std_logic;        -- OK   
+      otx1_05_n : out std_logic;        -- OK   
+      otx1_06_p : out std_logic;        -- OK   
+      otx1_06_n : out std_logic;        -- OK   
+      otx1_07_p : out std_logic;        -- OK   
+      otx1_07_n : out std_logic;        -- OK   
+      otx1_08_p : out std_logic;        -- OK   
+      otx1_08_n : out std_logic;        -- OK
+      otx1_09_p : out std_logic;        -- OK   
+      otx1_09_n : out std_logic;        -- OK   
+      otx1_10_p : out std_logic;        -- OK   
+      otx1_10_n : out std_logic;        -- OK   
+      otx1_11_p : out std_logic;        -- OK   
+      otx1_11_n : out std_logic;        -- OK   
+      otx1_12_p : out std_logic;        -- OK   
+      otx1_12_n : out std_logic;        -- OK   
+
+      otx1_tx_en  : out std_logic;      -- OK
+      otx1_tx_dis : out std_logic;      -- OK
+      otx1_reset  : out std_logic;      -- OK
+      otx1_fault  : in  std_logic;      -- OK
 
 -- To/From TX2 
 
-      otx2_p : out std_logic_vector(12 downto 1);               
-      otx2_n : out std_logic_vector(12 downto 1);               
-      otx2_tx_en  : out std_logic;         
-      otx2_tx_dis : out std_logic;         
-      otx2_reset  : out std_logic;        
-      otx2_fault  : in  std_logic;        
+      otx2_01_p : out std_logic;        -- OK   
+      otx2_01_n : out std_logic;        -- OK   
+      otx2_02_p : out std_logic;        -- OK   
+      otx2_02_n : out std_logic;        -- OK   
+      otx2_03_p : out std_logic;        -- OK   
+      otx2_03_n : out std_logic;        -- OK   
+      otx2_04_p : out std_logic;        -- OK   
+      otx2_04_n : out std_logic;        -- OK   
+      otx2_05_p : out std_logic;        -- OK   
+      otx2_05_n : out std_logic;        -- OK   
+      otx2_06_p : out std_logic;        -- OK   
+      otx2_06_n : out std_logic;        -- OK   
+      otx2_07_p : out std_logic;        -- OK   
+      otx2_07_n : out std_logic;        -- OK   
+      otx2_08_p : out std_logic;        -- OK   
+      otx2_08_n : out std_logic;        -- OK   
+      otx2_09_p : out std_logic;        -- OK   
+      otx2_09_n : out std_logic;        -- OK   
+      otx2_10_p : out std_logic;        -- OK   
+      otx2_10_n : out std_logic;        -- OK   
+      otx2_11_p : out std_logic;        -- OK   
+      otx2_11_n : out std_logic;        -- OK   
+      otx2_12_p : out std_logic;        -- OK   
+      otx2_12_n : out std_logic;        -- OK   
+
+      otx2_tx_en  : out std_logic;      -- OK   
+      otx2_tx_dis : out std_logic;      -- OK   
+      otx2_reset  : out std_logic;      -- OK   
+      otx2_fault  : in  std_logic;      -- OK   
 
 -- From/To RX1 
 
-      orx1_p : in std_logic_vector(12 downto 1);               
-      orx1_n : in std_logic_vector(12 downto 1);               
-      orx1_rx_en : out std_logic;       
-      orx1_en_sd : out std_logic;       
-      orx1_sd    : in  std_logic;       
-      orx1_sq_en : out std_logic;       
+      orx1_01_p : in std_logic;         -- OK           
+      orx1_01_n : in std_logic;         -- OK           
+      orx1_02_p : in std_logic;         -- OK   
+      orx1_02_n : in std_logic;         -- OK
+      orx1_03_p : in std_logic;         -- OK
+      orx1_03_n : in std_logic;         -- OK
+      orx1_04_p : in std_logic;         -- OK
+      orx1_04_n : in std_logic;         -- OK
+      orx1_05_p : in std_logic;         -- OK
+      orx1_05_n : in std_logic;         -- OK
+      orx1_06_p : in std_logic;         -- OK
+      orx1_06_n : in std_logic;         -- OK
+      orx1_07_p : in std_logic;         -- OK
+      orx1_07_n : in std_logic;         -- OK
+      orx1_08_p : in std_logic;         -- OK
+      orx1_08_n : in std_logic;         -- OK
+      orx1_09_p : in std_logic;         -- OK
+      orx1_09_n : in std_logic;         -- OK
+      orx1_10_p : in std_logic;         -- OK
+      orx1_10_n : in std_logic;         -- OK
+      orx1_11_p : in std_logic;         -- OK
+      orx1_11_n : in std_logic;         -- OK
+      orx1_12_p : in std_logic;         -- OK
+      orx1_12_n : in std_logic;         -- OK
+
+      orx1_rx_en : out std_logic;       -- OK
+      orx1_en_sd : out std_logic;       -- OK
+      orx1_sd    : in  std_logic;       -- OK
+      orx1_sq_en : out std_logic;       -- OK
 
 -- From/To RX2 
 
-      orx2_p : in std_logic_vector(12 downto 1);               
-      orx2_n : in std_logic_vector(12 downto 1);               
-      orx2_rx_en : out std_logic;          
-      orx2_en_sd : out std_logic;          
-      orx2_sd    : in  std_logic;        
-      orx2_sq_en : out std_logic;          
+      orx2_01_p : in std_logic;         -- OK           
+      orx2_01_n : in std_logic;         -- OK   
+      orx2_02_p : in std_logic;         -- OK   
+      orx2_02_n : in std_logic;         -- OK   
+      orx2_03_p : in std_logic;         -- OK   
+      orx2_03_n : in std_logic;         -- OK   
+      orx2_04_p : in std_logic;         -- OK   
+      orx2_04_n : in std_logic;         -- OK   
+      orx2_05_p : in std_logic;         -- OK   
+      orx2_05_n : in std_logic;         -- OK   
+      orx2_06_p : in std_logic;         -- OK   
+      orx2_06_n : in std_logic;         -- OK   
+      orx2_07_p : in std_logic;         -- OK   
+      orx2_07_n : in std_logic;         -- OK   
+      orx2_08_p : in std_logic;         -- OK   
+      orx2_08_n : in std_logic;         -- OK   
+      orx2_09_p : in std_logic;         -- OK   
+      orx2_09_n : in std_logic;         -- OK   
+      orx2_10_p : in std_logic;         -- OK   
+      orx2_10_n : in std_logic;         -- OK   
+      orx2_11_p : in std_logic;         -- OK   
+      orx2_11_n : in std_logic;         -- OK   
+      orx2_12_p : in std_logic;         -- OK   
+      orx2_12_n : in std_logic;         -- OK   
+
+      orx2_rx_en : out std_logic;       -- OK   
+      orx2_en_sd : out std_logic;       -- OK   
+      orx2_sd    : in  std_logic;       -- OK   
+      orx2_sq_en : out std_logic;       -- OK   
 
 -- From/To OT1 (GigaBit Link)
 
@@ -366,98 +455,25 @@ architecture bdf_type of ODMB_V6 is
 
   end component;
 
-  component daq_optical_out is
-    generic (
-      USE_CHIPSCOPE : integer := 1;
-      SIM_SPEEDUP   : integer := 1
-      );
-    port (
-      DAQ_TX_VIO_CNTRL     : inout std_logic_vector(35 downto 0);  --Chip Scope Pro control signals for virtual I/O
-      DAQ_TX_LA_CNTRL      : inout std_logic_vector(35 downto 0);  --Chip Scope Pro control signals for logic analyzer
-      RST                  : in    std_logic;
-      -- External signals
-      DAQ_RX_N             : in    std_logic;  -- GTX receive data in - signal
-      DAQ_RX_P             : in    std_logic;  -- GTX receive data in + signal
-      DAQ_TDIS             : out   std_logic;  -- optical transceiver transmit disable signal
-      DAQ_TX_N             : out   std_logic;  -- GTX transmit data out - signal
-      DAQ_TX_P             : out   std_logic;  -- GTX transmit data out + signal
-      -- Reference clocks ideally straight from the IBUFDS_GTXE1 output 
-      DAQ_TX_125REFCLK     : in    std_logic;  -- 125 MHz for 1 GbE
-      DAQ_TX_125REFCLK_DV2 : in    std_logic;  -- 62.5 MHz user clock for 1 GbE
-      DAQ_TX_160REFCLK     : in    std_logic;  -- 160 MHz for  2.56 GbE
-      -- Internal signals
-      L1A_MATCH            : in    std_logic;  -- Currently only for logic analyzer input
-      TXD                  : in    std_logic_vector(15 downto 0);  -- Data to be transmitted
-      TXD_VLD              : in    std_logic;  -- Flag for valid data; initiates data transfer
-      JDAQ_RATE            : in    std_logic;  -- requested DAQ rate from JTAG interface
-      RATE_1_25            : out   std_logic;  -- Flag to indicate 1.25 Gbps line rate operation
-      RATE_3_2             : out   std_logic;  -- Flag to indicate 3.2 Gbps line rate operation
-      TX_ACK               : out   std_logic;  -- Handshake signal indicates preamble has been sent, data flow should start
-      DAQ_DATA_CLK         : out   std_logic  -- Clock that should be used for passing data and controls to this module    
-      );
-  end component;
-
-  component dmb_receiver is
-    generic (
-      USE_2p56GbE : integer := 0;
-      SIM_SPEEDUP : integer := 0
-      );
-    port (
-      -- Chip Scope Pro Logic Analyzer control -- bgb
-      CSP_GTX_MAC_LA_CTRL : inout std_logic_vector(35 downto 0);
-      CSP_PKT_FRM_LA_CTRL : inout std_logic_vector(35 downto 0);
-      CSP_FIFO_LA_CTRL    : inout std_logic_vector(35 downto 0);
-
-      --External signals
+  component dmb_receiver
+    port(
       RST              : in  std_logic;
-      ORX2_01_N        : in  std_logic;
-      ORX2_01_P        : in  std_logic;
-      ORX2_02_N        : in  std_logic;
-      ORX2_02_P        : in  std_logic;
-      ORX2_03_N        : in  std_logic;
-      ORX2_03_P        : in  std_logic;
-      ORX2_04_N        : in  std_logic;
-      ORX2_04_P        : in  std_logic;
-      ORX2_05_N        : in  std_logic;
-      ORX2_05_P        : in  std_logic;
-      ORX2_06_N        : in  std_logic;
-      ORX2_06_P        : in  std_logic;
-      ORX2_07_N        : in  std_logic;
-      ORX2_07_P        : in  std_logic;
-      ORX2_08_N        : in  std_logic;
-      ORX2_08_P        : in  std_logic;
-      ORX2_09_N        : in  std_logic;
-      ORX2_09_P        : in  std_logic;
-      ORX2_10_N        : in  std_logic;
-      ORX2_10_P        : in  std_logic;
-      ORX2_11_N        : in  std_logic;
-      ORX2_11_P        : in  std_logic;
-      ORX2_12_N        : in  std_logic;
-      ORX2_12_P        : in  std_logic;
-      DCFEB1_DATA      : out std_logic_vector(15 downto 0);
-      DCFEB2_DATA      : out std_logic_vector(15 downto 0);
-      DCFEB3_DATA      : out std_logic_vector(15 downto 0);
-      DCFEB4_DATA      : out std_logic_vector(15 downto 0);
-      DCFEB5_DATA      : out std_logic_vector(15 downto 0);
-      DCFEB6_DATA      : out std_logic_vector(15 downto 0);
-      DCFEB7_DATA      : out std_logic_vector(15 downto 0);
-      DCFEB_DATA_VALID : out std_logic_vector(NFEB downto 1);
-
-      --Internal signals
-      FIFO_VME_MODE          : in  std_logic;
-      FIFO_SEL               : in  std_logic_vector(8 downto 1);
-      RD_EN_FF               : in  std_logic_vector(8 downto 1);
-      WR_EN_FF               : in  std_logic_vector(8 downto 1);
-      FF_DATA_IN             : in  std_logic_vector(15 downto 0);
-      FF_DATA_OUT            : out std_logic_vector(15 downto 0);
-      FF_WRD_CNT             : out std_logic_vector(11 downto 0);
-      FF_STATUS              : out std_logic_vector(15 downto 0);
-      DMBVME_CLK_S2          : in  std_logic;
-      DAQ_RX_125REFCLK       : in  std_logic;
-      DAQ_RX_160REFCLK_115_0 : in  std_logic
+--      // External signals
+      DAQ_SIGDET       : in  std_logic;
+      DAQ_RX_N         : in  std_logic;
+      DAQ_RX_P         : in  std_logic;
+      DAQ_TDIS         : out std_logic;
+      DAQ_TX_N         : out std_logic;
+      DAQ_TX_P         : out std_logic;
+--      // Internal signals
+      DAQ_RX_125REFCLK : in  std_logic;
+      DAQ_RX_160REFCLK : in  std_logic;
+      DAQ_RX_WDATA     : out std_logic_vector(15 downto 0);
+      DAQ_RXD_VLD      : out std_logic;
+      DAQ_SD           : out std_logic;
+      DAQ_DATA_CLK     : out std_logic
       );
   end component;
-
 
   component mode_pb_sel is
     port (
@@ -502,11 +518,9 @@ architecture bdf_type of ODMB_V6 is
       );  
     port
       (clk           : in  std_logic;
-       clk80           : in  std_logic;
        rst           : in  std_logic;
        l1a           : in  std_logic;
        l1a_match     : in  std_logic;
-       tx_ack        : in  std_logic;
        dcfeb_dv      : out std_logic;
        dcfeb_data    : out std_logic_vector(15 downto 0);
        adc_mask      : out std_logic_vector(11 downto 0);
@@ -522,8 +536,6 @@ architecture bdf_type of ODMB_V6 is
 
   component ODMB_CTRL is
     port (
-      ga : in std_logic_vector(4 downto 0);
-
       mbc_fsel    : out std_logic_vector(47 downto 1);
       mbc_jtag_ir : out std_logic_vector(9 downto 0);
 
@@ -566,53 +578,59 @@ architecture bdf_type of ODMB_V6 is
 
 -- From/To FIFOs
 
-      fifo_rd_ck   : out std_logic;
-      data_fifo_re : out std_logic_vector(NFEB+2 downto 1);
-      data_fifo_oe : out std_logic_vector(NFEB+2 downto 1);
+      fifo_rd_ck : out std_logic;
+      fifo_rd_en : out std_logic_vector(9 downto 1);
+      fifo_sel   : out std_logic_vector(3 downto 0);
 
-      fifo_out : in std_logic_vector(15 downto 0);
+      fifo_out : in std_logic_vector(17 downto 0);
 
       fifo_mrst_b : out std_logic;      -- ok -> fifo_mrst* - to FIFOs 
       fifo_prst_b : out std_logic;      -- ok -> fifo_pst* - to FIFOs 
 
-      fifo_full_b  : in std_logic_vector(NFEB+2 downto 1);  -- full*(7 DOWNTO 1) - from FIFOs 
-      fifo_half_b  : in std_logic_vector(NFEB+2 downto 1);  -- half*(7 DOWNTO 1) - from FIFOs 
-      fifo_pae_b   : in std_logic_vector(NFEB+2 downto 1);  -- paef*(7 DOWNTO 1) - from FIFOs 
-      fifo_empty_b : in std_logic_vector(NFEB+2 downto 1);  -- emptyf*(7 DOWNTO 1) - from FIFOs 
+      fifo_full_b  : in std_logic_vector(9 downto 1);  -- full*(7 DOWNTO 1) - from FIFOs 
+      fifo_half_b  : in std_logic_vector(9 downto 1);  -- half*(7 DOWNTO 1) - from FIFOs 
+      fifo_pae_b   : in std_logic_vector(9 downto 1);  -- paef*(7 DOWNTO 1) - from FIFOs 
+      fifo_empty_b : in std_logic_vector(9 downto 1);  -- emptyf*(7 DOWNTO 1) - from FIFOs 
 
 -- From CAFIFO to Data FIFOs
-      dcfeb_fifo_wr_en : out std_logic_vector(NFEB downto 1);
-      alct_fifo_wr_en  : out std_logic;
-      tmb_fifo_wr_en   : out std_logic;
-      cafifo_l1a_match : out std_logic_vector(NFEB+2 downto 1);  -- L1A_MATCH from TRGCNTRL to CAFIFO sent to generate Data  
+    dcfeb_fifo_wr_en : out std_logic_vector(NFEB downto 1);
+    dcfeb_fifo_rd_en : out std_logic_vector(NFEB downto 1);
+
+    alct_fifo_wr_en : out std_logic;
+    alct_fifo_rd_en : out std_logic;
+
+    tmb_fifo_wr_en : out std_logic;
+    tmb_fifo_rd_en : out std_logic;
+
+    cafifo_l1a_match : out std_logic_vector(NFEB+2 downto 0);  -- L1A_MATCH from TRGCNTRL to CAFIFO
 
 -- From ALCT,TMB,DCFEBs to CAFIFO
-      alct_dv     : in std_logic;
-      tmb_dv      : in std_logic;
-      dcfeb0_dv   : in std_logic;
-      dcfeb0_data : in std_logic_vector(15 downto 0);
-      dcfeb1_dv   : in std_logic;
-      dcfeb1_data : in std_logic_vector(15 downto 0);
-      dcfeb2_dv   : in std_logic;
-      dcfeb2_data : in std_logic_vector(15 downto 0);
-      dcfeb3_dv   : in std_logic;
-      dcfeb3_data : in std_logic_vector(15 downto 0);
-      dcfeb4_dv   : in std_logic;
-      dcfeb4_data : in std_logic_vector(15 downto 0);
-      dcfeb5_dv   : in std_logic;
-      dcfeb5_data : in std_logic_vector(15 downto 0);
-      dcfeb6_dv   : in std_logic;
-      dcfeb6_data : in std_logic_vector(15 downto 0);
+      alct_dv        : in std_logic;
+      tmb_dv         : in std_logic;
+      dcfeb0_dv       : in std_logic;
+      dcfeb0_data     : in std_logic_vector(15 downto 0);
+      dcfeb1_dv       : in std_logic;
+      dcfeb1_data     : in std_logic_vector(15 downto 0);
+      dcfeb2_dv       : in std_logic;
+      dcfeb2_data     : in std_logic_vector(15 downto 0);
+      dcfeb3_dv       : in std_logic;
+      dcfeb3_data     : in std_logic_vector(15 downto 0);
+      dcfeb4_dv       : in std_logic;
+      dcfeb4_data     : in std_logic_vector(15 downto 0);
+      dcfeb5_dv       : in std_logic;
+      dcfeb5_data     : in std_logic_vector(15 downto 0);
+      dcfeb6_dv       : in std_logic;
+      dcfeb6_data     : in std_logic_vector(15 downto 0);
 
--- From/To DCFEBs (FF-EMU-MOD)
+-- From/To Bs (FF-EMU-MOD)
 
       ul_dav   : in std_logic_vector(6 downto 0);  -- davf(5 DOWNTO 1) - from DCFEBs 
       ul_movlp : in std_logic_vector(6 downto 0);  -- movlp(5 DOWNTO 1) - from DCFEBs
 
+      dcfeb_l1a_match : out std_logic_vector(NFEB downto 1);  -- lctf(5 DOWNTO 1) - to DCFEBs
+      dcfeb_l1a       : out std_logic;  -- febrst - to DCFEBs
       dcfeb_injpulse  : out std_logic;  -- inject - to DCFEBs
       dcfeb_extpulse  : out std_logic;  -- extpulse - to DCFEBs
-      dcfeb_l1a       : out std_logic;
-      dcfeb_l1a_match : out std_logic_vector(NFEB downto 1);
 
 -- From/To LVMB
 
@@ -727,8 +745,8 @@ architecture bdf_type of ODMB_V6 is
       fifo_rm_en : out std_logic_vector (9 downto 1);
       fifo_tm_en : out std_logic_vector (9 downto 1);
 
-      fifo_in  : out std_logic_vector (15 downto 0);
-      fifo_out : in  std_logic_vector (15 downto 0);
+      fifo_in  : out std_logic_vector (17 downto 0);
+      fifo_out : in  std_logic_vector (17 downto 0);
 
 -- To/From DCFEB ADCs and DACs
 
@@ -782,22 +800,13 @@ architecture bdf_type of ODMB_V6 is
       tfifo_wc    : in  std_logic_vector(9 downto 0);
       tfifo_rc    : in  std_logic_vector(9 downto 0);
       tfifo_str   : in  std_logic_vector(15 downto 0);
-      tfifo_wr_en : out std_logic_vector(8 downto 1);
-      tfifo_rd_en : out std_logic_vector(8 downto 1);
-      tfifo_sel   : out std_logic_vector(8 downto 1);
+      tfifo_wr_en : out std_logic_vector(7 downto 0);
+      tfifo_rd_en : out std_logic_vector(7 downto 0);
+      tfifo_sel   : out std_logic_vector(7 downto 0);
       tfifo_mode  : out std_logic;
 
       flf_ctrl : out std_logic_vector(15 downto 0);
-      flf_data : in  std_logic_vector(15 downto 0);
-
-      tc_l1a : OUT std_logic;
-      tc_alct_dav : OUT std_logic;
-      tc_tmb_dav : OUT std_logic;
-      tc_lct : OUT std_logic_vector(NFEB downto 1);
-      ddu_data : IN std_logic_vector(15 downto 0);
-      ddu_data_valid : IN std_logic;
-      tc_run : OUT std_logic
-
+      flf_data : in  std_logic_vector(15 downto 0)
 
       );
 
@@ -839,12 +848,6 @@ architecture bdf_type of ODMB_V6 is
       );
   end component;
 
--- Global signals
-  signal LOGICL   : std_logic                     := '0';
-  signal LOGICH   : std_logic                     := '1';
-  signal LOGIC36L : std_logic_vector(35 downto 0) := (others => '0');
-  signal LOGIC36H : std_logic_vector(35 downto 0) := (others => '1');
-
 -- Test Signals From/To J3
 
   signal d_in, d_out, d_oe : std_logic_vector(63 downto 0);
@@ -881,48 +884,48 @@ architecture bdf_type of ODMB_V6 is
 
 -- To/From FIFOs
 
-
   signal dcfeb0_data                     : std_logic_vector (15 downto 0);
-  signal dcfeb0_fifo_in, dcfeb0_fifo_out : std_logic_vector (15 downto 0);
+  signal dcfeb0_fifo_in, dcfeb0_fifo_out : std_logic_vector (17 downto 0);
   signal dcfeb0_data_valid               : std_logic;
 
   signal dcfeb1_data                     : std_logic_vector (15 downto 0);
-  signal dcfeb1_fifo_in, dcfeb1_fifo_out : std_logic_vector (15 downto 0);
+  signal dcfeb1_fifo_in, dcfeb1_fifo_out : std_logic_vector (17 downto 0);
   signal dcfeb1_data_valid               : std_logic;
 
   signal dcfeb2_data                     : std_logic_vector (15 downto 0);
-  signal dcfeb2_fifo_in, dcfeb2_fifo_out : std_logic_vector (15 downto 0);
+  signal dcfeb2_fifo_in, dcfeb2_fifo_out : std_logic_vector (17 downto 0);
   signal dcfeb2_data_valid               : std_logic;
 
   signal dcfeb3_data                     : std_logic_vector (15 downto 0);
-  signal dcfeb3_fifo_in, dcfeb3_fifo_out : std_logic_vector (15 downto 0);
+  signal dcfeb3_fifo_in, dcfeb3_fifo_out : std_logic_vector (17 downto 0);
   signal dcfeb3_data_valid               : std_logic;
 
   signal dcfeb4_data                     : std_logic_vector (15 downto 0);
-  signal dcfeb4_fifo_in, dcfeb4_fifo_out : std_logic_vector (15 downto 0);
+  signal dcfeb4_fifo_in, dcfeb4_fifo_out : std_logic_vector (17 downto 0);
   signal dcfeb4_data_valid               : std_logic;
 
   signal dcfeb5_data                     : std_logic_vector (15 downto 0);
-  signal dcfeb5_fifo_in, dcfeb5_fifo_out : std_logic_vector (15 downto 0);
+  signal dcfeb5_fifo_in, dcfeb5_fifo_out : std_logic_vector (17 downto 0);
   signal dcfeb5_data_valid               : std_logic;
 
   signal dcfeb6_data                     : std_logic_vector (15 downto 0);
-  signal dcfeb6_fifo_in, dcfeb6_fifo_out : std_logic_vector (15 downto 0);
+  signal dcfeb6_fifo_in, dcfeb6_fifo_out : std_logic_vector (17 downto 0);
   signal dcfeb6_data_valid               : std_logic;
 
-  signal dcfeb7_fifo_in, dcfeb7_fifo_out        : std_logic_vector (15 downto 0);
-  signal tmb_data, tmb_fifo_in, tmb_fifo_out    : std_logic_vector (15 downto 0);
-  signal tmb_data_valid                         : std_logic;
-  signal alct_data, alct_fifo_in, alct_fifo_out : std_logic_vector (15 downto 0);
-  signal alct_data_valid                        : std_logic;
+  signal dcfeb7_data, dcfeb7_fifo_in, dcfeb7_fifo_out : std_logic_vector (17 downto 0);
+  signal dcfeb7_data_valid                            : std_logic;
+  signal tmb_data, tmb_fifo_in, tmb_fifo_out          : std_logic_vector (17 downto 0);
+  signal tmb_data_valid                               : std_logic;
+  signal alct_data, alct_fifo_in, alct_fifo_out       : std_logic_vector (17 downto 0);
+  signal alct_data_valid                              : std_logic;
 
   signal fifo_mrst_b, fifo_prst_b                   : std_logic;
   signal fifo_wr_ck, fifo_rd_ck                     : std_logic;
   signal fifo_tm_wr_en, fifo_wr_en, fifo_rd_en      : std_logic_vector(9 downto 1);
   signal fifo_rw_en, fifo_rm_en, fifo_tm_en         : std_logic_vector (9 downto 1);
   signal fifo_full, fifo_half, fifo_pae, fifo_empty : std_logic_vector (9 downto 1);
-  signal fifo_oe                                    : std_logic_vector (NFEB+2 downto 1);
-  signal fifo_in, fifo_out                          : std_logic_vector (15 downto 0);
+  signal fifo_sel                                   : std_logic_vector (3 downto 0);
+  signal fifo_in, fifo_out                          : std_logic_vector (17 downto 0);
 
 -- TTC Signals
 
@@ -966,49 +969,139 @@ architecture bdf_type of ODMB_V6 is
   signal test_tkn_tx                               : std_logic;
   signal tkn_error                                 : std_logic_vector(7 downto 1);
 
-  -- dmb_receiver
-  signal FIFO_VME_MODE    : std_logic                    := '0';
-  signal FIFO_SEL         : std_logic_vector(8 downto 1) := (others => '0');
-  signal RD_EN_FF         : std_logic_vector(8 downto 1) := (others => '0');
-  signal WR_EN_FF         : std_logic_vector(8 downto 1) := (others => '0');
-  signal FF_DATA_IN       : std_logic_vector(15 downto 0);
-  signal FF_DATA_OUT      : std_logic_vector(15 downto 0);
-  signal FF_WRD_CNT       : std_logic_vector(11 downto 0);
-  signal FF_STATUS        : std_logic_vector(15 downto 0);
-  signal DMBVME_CLK_S2    : std_logic                    := '0';
-  signal DAQ_RX_125REFCLK : std_logic                    := '0';
 
+-- DCFEB0 FF_EMU_EMU I/O Signals
 
+  signal dcfeb0_tx_dat, dcfeb0_rx_dat, dcfeb0_clk_en, dcfeb0_rec_clk : std_logic;
 
--- DCFEB I/O Signals
+  signal dcfeb0_flf_p1_tx, dcfeb0_flf_p2_tx, dcfeb0_flf_e1_tx, dcfeb0_flf_e2_tx : std_logic;
+  signal dcfeb0_tkn_tx                                                          : std_logic;
+  signal dcfeb0_vlf_e1_tx, dcfeb0_vlf_e2_tx, dcfeb0_vlf_e3_tx                   : std_logic;  -- not used
+  signal dcfeb0_vlf_ta1_tx, dcfeb0_vlf_ta2_tx, dcfeb0_vlf_ta3_tx                : std_logic;  -- not used
+  signal dcfeb0_vlf_tb1_tx, dcfeb0_vlf_tb2_tx                                   : std_logic;  -- not used
 
-  type dcfeb_data_type is array (NFEB downto 1) of std_logic_vector(15 downto 0);
-  signal gen_dcfeb_data                                   : dcfeb_data_type;
-  signal rx_dcfeb_data                                    : dcfeb_data_type;
-  signal dcfeb_data                                       : dcfeb_data_type;
-  signal orx_dcfeb_data_n, orx_dcfeb_data_p : std_logic_vector(12 downto 1);
-  signal orx2_buf_n, orx2_buf_p : std_logic_vector(12 downto 1);
-  signal gen_dcfeb_data_p, rx_dcfeb_data_p : std_logic_vector(NFEB downto 1);
-  signal gen_dcfeb_data_n, rx_dcfeb_data_n : std_logic_vector(NFEB downto 1);
-  signal gen_dcfeb_data_valid                             : std_logic_vector(NFEB downto 1);
-  signal rx_dcfeb_data_valid                              : std_logic_vector(NFEB downto 1);
-  signal dcfeb_data_valid                                 : std_logic_vector(NFEB downto 1);
+  signal dcfeb0_flf_p1_rx, dcfeb0_flf_p2_rx, dcfeb0_flf_e1_rx, dcfeb0_flf_e2_rx     : std_logic;
+  signal dcfeb0_flf_p1_cnt, dcfeb0_flf_p2_cnt, dcfeb0_flf_e1_cnt, dcfeb0_flf_e2_cnt : std_logic_vector(15 downto 0);
+  signal dcfeb0_tkn_rx                                                              : std_logic;
+  signal dcfeb0_vlf_e1_rx, dcfeb0_vlf_e2_rx, dcfeb0_vlf_e3_rx                       : std_logic;  -- not used
+  signal dcfeb0_vlf_ta1_rx, dcfeb0_vlf_ta2_rx, dcfeb0_vlf_ta3_rx                    : std_logic;  -- not used
+  signal dcfeb0_vlf_tb1_rx, dcfeb0_vlf_tb2_rx                                       : std_logic;  -- not used
 
-  signal rx_dcfeb_sel, opt_dcfeb_sel : std_logic;
-  type dcfeb_addr_type is array (NFEB downto 1) of std_logic_vector(3 downto 0);
-  constant dcfeb_addr                : dcfeb_addr_type := ("1000", "1001", "1010", "1011", "1100", "1101", "1110");
+-- DCFEB1 FF_EMU_EMU I/O Signals
 
+  signal dcfeb1_tx_dat, dcfeb1_rx_dat, dcfeb1_clk_en, dcfeb1_rec_clk : std_logic;
 
-  signal dcfeb0_data_p, dcfeb0_data_n                                                           : std_logic;
-  signal dcfeb0_daq_tdis, dcfeb0_rate_1_25, dcfeb0_rate_3_2, dcfeb0_tx_ack, dcfeb0_daq_data_clk : std_logic;
+  signal dcfeb1_flf_p1_tx, dcfeb1_flf_p2_tx, dcfeb1_flf_e1_tx, dcfeb1_flf_e2_tx : std_logic;
+  signal dcfeb1_tkn_tx                                                          : std_logic;
+  signal dcfeb1_vlf_e1_tx, dcfeb1_vlf_e2_tx, dcfeb1_vlf_e3_tx                   : std_logic;  -- not used
+  signal dcfeb1_vlf_ta1_tx, dcfeb1_vlf_ta2_tx, dcfeb1_vlf_ta3_tx                : std_logic;  -- not used
+  signal dcfeb1_vlf_tb1_tx, dcfeb1_vlf_tb2_tx                                   : std_logic;  -- not used
 
+  signal dcfeb1_flf_p1_rx, dcfeb1_flf_p2_rx, dcfeb1_flf_e1_rx, dcfeb1_flf_e2_rx     : std_logic;
+  signal dcfeb1_flf_p1_cnt, dcfeb1_flf_p2_cnt, dcfeb1_flf_e1_cnt, dcfeb1_flf_e2_cnt : std_logic_vector(15 downto 0);
+  signal dcfeb1_tkn_rx                                                              : std_logic;
+  signal dcfeb1_vlf_e1_rx, dcfeb1_vlf_e2_rx, dcfeb1_vlf_e3_rx                       : std_logic;  -- not used
+  signal dcfeb1_vlf_ta1_rx, dcfeb1_vlf_ta2_rx, dcfeb1_vlf_ta3_rx                    : std_logic;  -- not used
+  signal dcfeb1_vlf_tb1_rx, dcfeb1_vlf_tb2_rx                                       : std_logic;  -- not used
+
+-- DCFEB2 FF_EMU_EMU I/O Signals
+
+  signal dcfeb2_tx_dat, dcfeb2_rx_dat, dcfeb2_clk_en, dcfeb2_rec_clk : std_logic;
+
+  signal dcfeb2_flf_p1_tx, dcfeb2_flf_p2_tx, dcfeb2_flf_e1_tx, dcfeb2_flf_e2_tx : std_logic;
+  signal dcfeb2_tkn_tx                                                          : std_logic;
+  signal dcfeb2_vlf_e1_tx, dcfeb2_vlf_e2_tx, dcfeb2_vlf_e3_tx                   : std_logic;  -- not used
+  signal dcfeb2_vlf_ta1_tx, dcfeb2_vlf_ta2_tx, dcfeb2_vlf_ta3_tx                : std_logic;  -- not used
+  signal dcfeb2_vlf_tb1_tx, dcfeb2_vlf_tb2_tx                                   : std_logic;  -- not used
+
+  signal dcfeb2_flf_p1_rx, dcfeb2_flf_p2_rx, dcfeb2_flf_e1_rx, dcfeb2_flf_e2_rx     : std_logic;
+  signal dcfeb2_flf_p1_cnt, dcfeb2_flf_p2_cnt, dcfeb2_flf_e1_cnt, dcfeb2_flf_e2_cnt : std_logic_vector(15 downto 0);
+  signal dcfeb2_tkn_rx                                                              : std_logic;
+  signal dcfeb2_vlf_e1_rx, dcfeb2_vlf_e2_rx, dcfeb2_vlf_e3_rx                       : std_logic;  -- not used
+  signal dcfeb2_vlf_ta1_rx, dcfeb2_vlf_ta2_rx, dcfeb2_vlf_ta3_rx                    : std_logic;  -- not used
+  signal dcfeb2_vlf_tb1_rx, dcfeb2_vlf_tb2_rx                                       : std_logic;  -- not used
+
+-- DCFEB3 FF_EMU_EMU I/O Signals
+
+  signal dcfeb3_tx_dat, dcfeb3_rx_dat, dcfeb3_clk_en, dcfeb3_rec_clk : std_logic;
+
+  signal dcfeb3_flf_p1_tx, dcfeb3_flf_p2_tx, dcfeb3_flf_e1_tx, dcfeb3_flf_e2_tx : std_logic;
+  signal dcfeb3_tkn_tx                                                          : std_logic;
+  signal dcfeb3_vlf_e1_tx, dcfeb3_vlf_e2_tx, dcfeb3_vlf_e3_tx                   : std_logic;  -- not used
+  signal dcfeb3_vlf_ta1_tx, dcfeb3_vlf_ta2_tx, dcfeb3_vlf_ta3_tx                : std_logic;  -- not used
+  signal dcfeb3_vlf_tb1_tx, dcfeb3_vlf_tb2_tx                                   : std_logic;  -- not used
+
+  signal dcfeb3_flf_p1_rx, dcfeb3_flf_p2_rx, dcfeb3_flf_e1_rx, dcfeb3_flf_e2_rx     : std_logic;
+  signal dcfeb3_flf_p1_cnt, dcfeb3_flf_p2_cnt, dcfeb3_flf_e1_cnt, dcfeb3_flf_e2_cnt : std_logic_vector(15 downto 0);
+  signal dcfeb3_tkn_rx                                                              : std_logic;
+  signal dcfeb3_vlf_e1_rx, dcfeb3_vlf_e2_rx, dcfeb3_vlf_e3_rx                       : std_logic;  -- not used
+  signal dcfeb3_vlf_ta1_rx, dcfeb3_vlf_ta2_rx, dcfeb3_vlf_ta3_rx                    : std_logic;  -- not used
+  signal dcfeb3_vlf_tb1_rx, dcfeb3_vlf_tb2_rx                                       : std_logic;  -- not used
+
+-- DCFEB4 FF_EMU_EMU I/O Signals
+
+  signal dcfeb4_tx_dat, dcfeb4_rx_dat, dcfeb4_clk_en, dcfeb4_rec_clk : std_logic;
+
+  signal dcfeb4_flf_p1_tx, dcfeb4_flf_p2_tx, dcfeb4_flf_e1_tx, dcfeb4_flf_e2_tx : std_logic;
+  signal dcfeb4_tkn_tx                                                          : std_logic;
+  signal dcfeb4_vlf_e1_tx, dcfeb4_vlf_e2_tx, dcfeb4_vlf_e3_tx                   : std_logic;  -- not used
+  signal dcfeb4_vlf_ta1_tx, dcfeb4_vlf_ta2_tx, dcfeb4_vlf_ta3_tx                : std_logic;  -- not used
+  signal dcfeb4_vlf_tb1_tx, dcfeb4_vlf_tb2_tx                                   : std_logic;  -- not used
+
+  signal dcfeb4_flf_p1_rx, dcfeb4_flf_p2_rx, dcfeb4_flf_e1_rx, dcfeb4_flf_e2_rx     : std_logic;
+  signal dcfeb4_flf_p1_cnt, dcfeb4_flf_p2_cnt, dcfeb4_flf_e1_cnt, dcfeb4_flf_e2_cnt : std_logic_vector(15 downto 0);
+  signal dcfeb4_tkn_rx                                                              : std_logic;
+  signal dcfeb4_vlf_e1_rx, dcfeb4_vlf_e2_rx, dcfeb4_vlf_e3_rx                       : std_logic;  -- not used
+  signal dcfeb4_vlf_ta1_rx, dcfeb4_vlf_ta2_rx, dcfeb4_vlf_ta3_rx                    : std_logic;  -- not used
+  signal dcfeb4_vlf_tb1_rx, dcfeb4_vlf_tb2_rx                                       : std_logic;  -- not used
+
+-- DCFEB5 FF_EMU_EMU I/O Signals
+
+  signal dcfeb5_tx_dat, dcfeb5_rx_dat, dcfeb5_clk_en, dcfeb5_rec_clk : std_logic;
+
+  signal dcfeb5_flf_p1_tx, dcfeb5_flf_p2_tx, dcfeb5_flf_e1_tx, dcfeb5_flf_e2_tx : std_logic;
+  signal dcfeb5_tkn_tx                                                          : std_logic;
+  signal dcfeb5_vlf_e1_tx, dcfeb5_vlf_e2_tx, dcfeb5_vlf_e3_tx                   : std_logic;  -- not used
+  signal dcfeb5_vlf_ta1_tx, dcfeb5_vlf_ta2_tx, dcfeb5_vlf_ta3_tx                : std_logic;  -- not used
+  signal dcfeb5_vlf_tb1_tx, dcfeb5_vlf_tb2_tx                                   : std_logic;  -- not used
+
+  signal dcfeb5_flf_p1_rx, dcfeb5_flf_p2_rx, dcfeb5_flf_e1_rx, dcfeb5_flf_e2_rx     : std_logic;
+  signal dcfeb5_flf_p1_cnt, dcfeb5_flf_p2_cnt, dcfeb5_flf_e1_cnt, dcfeb5_flf_e2_cnt : std_logic_vector(15 downto 0);
+  signal dcfeb5_tkn_rx                                                              : std_logic;
+  signal dcfeb5_vlf_e1_rx, dcfeb5_vlf_e2_rx, dcfeb5_vlf_e3_rx                       : std_logic;  -- not used
+  signal dcfeb5_vlf_ta1_rx, dcfeb5_vlf_ta2_rx, dcfeb5_vlf_ta3_rx                    : std_logic;  -- not used
+  signal dcfeb5_vlf_tb1_rx, dcfeb5_vlf_tb2_rx                                       : std_logic;  -- not used
+
+-- DCFEB6 FF_EMU_EMU I/O Signals
+
+  signal dcfeb6_tx_dat, dcfeb6_rx_dat, dcfeb6_clk_en, dcfeb6_rec_clk : std_logic;
+
+  signal dcfeb6_flf_p1_tx, dcfeb6_flf_p2_tx, dcfeb6_flf_e1_tx, dcfeb6_flf_e2_tx : std_logic;
+  signal dcfeb6_tkn_tx                                                          : std_logic;
+  signal dcfeb6_vlf_e1_tx, dcfeb6_vlf_e2_tx, dcfeb6_vlf_e3_tx                   : std_logic;  -- not used
+  signal dcfeb6_vlf_ta1_tx, dcfeb6_vlf_ta2_tx, dcfeb6_vlf_ta3_tx                : std_logic;  -- not used
+  signal dcfeb6_vlf_tb1_tx, dcfeb6_vlf_tb2_tx                                   : std_logic;  -- not used
+
+  signal dcfeb6_flf_p1_rx, dcfeb6_flf_p2_rx, dcfeb6_flf_e1_rx, dcfeb6_flf_e2_rx     : std_logic;
+  signal dcfeb6_flf_p1_cnt, dcfeb6_flf_p2_cnt, dcfeb6_flf_e1_cnt, dcfeb6_flf_e2_cnt : std_logic_vector(15 downto 0);
+  signal dcfeb6_tkn_rx                                                              : std_logic;
+  signal dcfeb6_vlf_e1_rx, dcfeb6_vlf_e2_rx, dcfeb6_vlf_e3_rx                       : std_logic;  -- not used
+  signal dcfeb6_vlf_ta1_rx, dcfeb6_vlf_ta2_rx, dcfeb6_vlf_ta3_rx                    : std_logic;  -- not used
+  signal dcfeb6_vlf_tb1_rx, dcfeb6_vlf_tb2_rx                                       : std_logic;  -- not used
+
+-- FF_EMU_EMU I/O Global Signals
+
+  signal reg_init                           : std_logic_vector(8 downto 0);
+  signal ta_delay                           : std_logic_vector(7 downto 0);
+  signal tb_delay                           : std_logic_vector(7 downto 0);
+  signal vlf_dv, flf_dv, rx_sync, rx_resync : std_logic_vector(7 downto 0);
 
 -- From/To OTs 
 
-  signal otx1 : std_logic_vector(12 DOWNTO 1);
-  signal otx2 : std_logic_vector(12 DOWNTO 1);
-  signal orx1 : std_logic_vector(12 DOWNTO 1);
-  signal orx2 : std_logic_vector(12 DOWNTO 1);
+  signal otx1_01, otx1_02, otx1_03, otx1_04, otx1_05, otx1_06, otx1_07, otx1_08, otx1_09, otx1_10, otx1_11, otx1_12 : std_logic;
+  signal otx2_01, otx2_02, otx2_03, otx2_04, otx2_05, otx2_06, otx2_07, otx2_08, otx2_09, otx2_10, otx2_11, otx2_12 : std_logic;
+  signal orx1_01, orx1_02, orx1_03, orx1_04, orx1_05, orx1_06, orx1_07, orx1_08, orx1_09, orx1_10, orx1_11, orx1_12 : std_logic;
+  signal orx2_01, orx2_02, orx2_03, orx2_04, orx2_05, orx2_06, orx2_07, orx2_08, orx2_09, orx2_10, orx2_11, orx2_12 : std_logic;
 
 -- From/To Giga-Bit Links
 
@@ -1071,34 +1164,67 @@ architecture bdf_type of ODMB_V6 is
   signal mbc_jtag_tdi : std_logic;
   signal mbc_jtag_tdo : std_logic;
 
--- Test FIFOs
+-- Test FIFO (DUAL_CLK)
 
-  type dcfeb_gbrx_data_type is array (NFEB+1 downto 1) of std_logic_vector(15 downto 0);
-  signal dcfeb_gbrx_data : dcfeb_gbrx_data_type;
+  signal dcfeb0_gbrx_data                             : std_logic_vector(15 downto 0);
+  signal dcfeb0_gbrx_data_valid, dcfeb0_gbrx_data_clk : std_logic;
+  signal dcfeb0_tfifo_in, dcfeb0_tfifo_out            : std_logic_vector(15 downto 0);
+  signal dcfeb0_fifo_wr_cnt, dcfeb0_fifo_rd_cnt       : std_logic_vector(9 downto 0);
+  signal dcfeb0_fifo_wr_en, dcfeb0_fifo_wr_ck         : std_logic;
+  signal dcfeb0_fifo_rd_en, dcfeb0_fifo_rd_ck         : std_logic;
 
-  signal dcfeb_gbrx_data_valid : std_logic_vector(NFEB+1 downto 1) := (others => '0');
-  signal dcfeb_gbrx_data_clk   : std_logic_vector(NFEB+1 downto 1) := (others => '0');
+  signal dcfeb1_gbrx_data                             : std_logic_vector(15 downto 0);
+  signal dcfeb1_gbrx_data_valid, dcfeb1_gbrx_data_clk : std_logic;
+  signal dcfeb1_tfifo_in, dcfeb1_tfifo_out            : std_logic_vector(15 downto 0);
+  signal dcfeb1_fifo_wr_cnt, dcfeb1_fifo_rd_cnt       : std_logic_vector(9 downto 0);
+  signal dcfeb1_fifo_wr_en, dcfeb1_fifo_wr_ck         : std_logic;
+  signal dcfeb1_fifo_rd_en, dcfeb1_fifo_rd_ck         : std_logic;
 
-  signal dcfeb_tfifo_empty  : std_logic_vector(NFEB+1 downto 1);
-  signal dcfeb_tfifo_aempty : std_logic_vector(NFEB+1 downto 1);
-  signal dcfeb_tfifo_afull  : std_logic_vector(NFEB+1 downto 1);
-  signal dcfeb_tfifo_full   : std_logic_vector(NFEB+1 downto 1);
+  signal dcfeb2_gbrx_data                             : std_logic_vector(15 downto 0);
+  signal dcfeb2_gbrx_data_valid, dcfeb2_gbrx_data_clk : std_logic;
+  signal dcfeb2_tfifo_in, dcfeb2_tfifo_out            : std_logic_vector(15 downto 0);
+  signal dcfeb2_fifo_wr_cnt, dcfeb2_fifo_rd_cnt       : std_logic_vector(9 downto 0);
+  signal dcfeb2_fifo_wr_en, dcfeb2_fifo_wr_ck         : std_logic;
+  signal dcfeb2_fifo_rd_en, dcfeb2_fifo_rd_ck         : std_logic;
 
-  type dcfeb_tfifo_data_type is array (NFEB+1 downto 1) of std_logic_vector(15 downto 0);
-  signal dcfeb_tfifo_in  : dcfeb_tfifo_data_type;
-  signal dcfeb_tfifo_out : dcfeb_tfifo_data_type;
+  signal dcfeb3_gbrx_data                             : std_logic_vector(15 downto 0);
+  signal dcfeb3_gbrx_data_valid, dcfeb3_gbrx_data_clk : std_logic;
+  signal dcfeb3_tfifo_in, dcfeb3_tfifo_out            : std_logic_vector(15 downto 0);
+  signal dcfeb3_fifo_wr_cnt, dcfeb3_fifo_rd_cnt       : std_logic_vector(9 downto 0);
+  signal dcfeb3_fifo_wr_en, dcfeb3_fifo_wr_ck         : std_logic;
+  signal dcfeb3_fifo_rd_en, dcfeb3_fifo_rd_ck         : std_logic;
 
-  type dcfeb_tfifo_cnt_type is array (NFEB+1 downto 1) of std_logic_vector(9 downto 0);
-  signal dcfeb_tfifo_wr_cnt : dcfeb_tfifo_cnt_type;
-  signal dcfeb_tfifo_rd_cnt : dcfeb_tfifo_cnt_type;
+  signal dcfeb4_gbrx_data                             : std_logic_vector(15 downto 0);
+  signal dcfeb4_gbrx_data_valid, dcfeb4_gbrx_data_clk : std_logic;
+  signal dcfeb4_tfifo_in, dcfeb4_tfifo_out            : std_logic_vector(15 downto 0);
+  signal dcfeb4_fifo_wr_cnt, dcfeb4_fifo_rd_cnt       : std_logic_vector(9 downto 0);
+  signal dcfeb4_fifo_wr_en, dcfeb4_fifo_wr_ck         : std_logic;
+  signal dcfeb4_fifo_rd_en, dcfeb4_fifo_rd_ck         : std_logic;
 
-  signal dcfeb_tfifo_wr_en : std_logic_vector(NFEB+1 downto 1) := (others => '0');
-  signal dcfeb_tfifo_wr_ck : std_logic_vector(NFEB+1 downto 1) := (others => '0');
-  signal dcfeb_tfifo_rd_en : std_logic_vector(NFEB+1 downto 1) := (others => '0');
-  signal dcfeb_tfifo_rd_ck : std_logic_vector(NFEB+1 downto 1) := (others => '0');
+  signal dcfeb5_gbrx_data                             : std_logic_vector(15 downto 0);
+  signal dcfeb5_gbrx_data_valid, dcfeb5_gbrx_data_clk : std_logic;
+  signal dcfeb5_tfifo_in, dcfeb5_tfifo_out            : std_logic_vector(15 downto 0);
+  signal dcfeb5_fifo_wr_cnt, dcfeb5_fifo_rd_cnt       : std_logic_vector(9 downto 0);
+  signal dcfeb5_fifo_wr_en, dcfeb5_fifo_wr_ck         : std_logic;
+  signal dcfeb5_fifo_rd_en, dcfeb5_fifo_rd_ck         : std_logic;
+
+  signal dcfeb6_gbrx_data                             : std_logic_vector(15 downto 0);
+  signal dcfeb6_gbrx_data_valid, dcfeb6_gbrx_data_clk : std_logic;
+  signal dcfeb6_tfifo_in, dcfeb6_tfifo_out            : std_logic_vector(15 downto 0);
+  signal dcfeb6_fifo_wr_cnt, dcfeb6_fifo_rd_cnt       : std_logic_vector(9 downto 0);
+  signal dcfeb6_fifo_wr_en, dcfeb6_fifo_wr_ck         : std_logic;
+  signal dcfeb6_fifo_rd_en, dcfeb6_fifo_rd_ck         : std_logic;
+
+  signal dcfeb7_gbrx_data                             : std_logic_vector(15 downto 0);
+  signal dcfeb7_gbrx_data_valid, dcfeb7_gbrx_data_clk : std_logic;
+  signal dcfeb7_tfifo_in, dcfeb7_tfifo_out            : std_logic_vector(15 downto 0);
+  signal dcfeb7_fifo_wr_cnt, dcfeb7_fifo_rd_cnt       : std_logic_vector(9 downto 0);
+  signal dcfeb7_fifo_wr_en, dcfeb7_fifo_wr_ck         : std_logic;
+  signal dcfeb7_fifo_rd_en, dcfeb7_fifo_rd_ck         : std_logic;
+
+  signal empty, a_empty, a_full, full : std_logic_vector(7 downto 0);
 
 -- FIFOs (SYNC)
-
   signal dcfeb0_wr_cnt, dcfeb0_rd_cnt : std_logic_vector(9 downto 0);
   signal dcfeb0_wr_err, dcfeb0_rd_err : std_logic;
   signal dcfeb1_wr_cnt, dcfeb1_rd_cnt : std_logic_vector(9 downto 0);
@@ -1118,14 +1244,11 @@ architecture bdf_type of ODMB_V6 is
   signal alct_wr_cnt, alct_rd_cnt     : std_logic_vector(9 downto 0);
   signal alct_wr_err, alct_rd_err     : std_logic;
 
-  type dcfeb_adc_mask_type is array (NFEB downto 1) of std_logic_vector(11 downto 0);
-  signal dcfeb_adc_mask : dcfeb_adc_mask_type;
+  signal dcfeb0_adc_mask, dcfeb1_adc_mask, dcfeb2_adc_mask, dcfeb3_adc_mask, dcfeb4_adc_mask, dcfeb5_adc_mask, dcfeb6_adc_mask : std_logic_vector(11 downto 0);
 
-  type dcfeb_fsel_type is array (NFEB downto 1) of std_logic_vector(32 downto 0);
-  signal dcfeb_fsel : dcfeb_fsel_type;
+  signal dcfeb0_fsel, dcfeb1_fsel, dcfeb2_fsel, dcfeb3_fsel, dcfeb4_fsel, dcfeb5_fsel, dcfeb6_fsel : std_logic_vector(32 downto 0);
 
-  type dcfeb_jtag_ir_type is array (NFEB downto 1) of std_logic_vector(9 downto 0);
-  signal dcfeb_jtag_ir : dcfeb_jtag_ir_type;
+  signal dcfeb0_jtag_ir, dcfeb1_jtag_ir, dcfeb2_jtag_ir, dcfeb3_jtag_ir, dcfeb4_jtag_ir, dcfeb5_jtag_ir, dcfeb6_jtag_ir : std_logic_vector(9 downto 0);
 
   signal mbc_fsel : std_logic_vector(47 downto 1);
 
@@ -1148,9 +1271,9 @@ architecture bdf_type of ODMB_V6 is
   signal tfifo_data         : std_logic_vector(15 downto 0);
   signal tfifo_wc, tfifo_rc : std_logic_vector(9 downto 0);
   signal tfifo_str          : std_logic_vector(15 downto 0);
-  signal tfifo_wr_en        : std_logic_vector(8 downto 1);
-  signal tfifo_rd_en        : std_logic_vector(8 downto 1);
-  signal tfifo_sel          : std_logic_vector(8 downto 1);
+  signal tfifo_wr_en        : std_logic_vector(7 downto 0);
+  signal tfifo_rd_en        : std_logic_vector(7 downto 0);
+  signal tfifo_sel          : std_logic_vector(7 downto 0);
   signal tfifo_mode         : std_logic;
 
   signal b_orx2_01_p, b_orx2_01_n : std_logic;
@@ -1170,29 +1293,32 @@ architecture bdf_type of ODMB_V6 is
   signal select_diagnostic : integer := 0;
 
 -- CAFIFO related signals
-  signal data_fifo_oe     : std_logic_vector(NFEB+2 downto 1) := (others => '0');
-  signal data_fifo_re     : std_logic_vector(NFEB+2 downto 1) := (others => '0');
-  signal data_fifo_re_b   : std_logic_vector(NFEB+2 downto 1) := (others => '0');
-  signal dcfeb_fifo_wr_en : std_logic_vector(NFEB downto 1)   := (others => '0');
-  signal alct_fifo_wr_en  : std_logic                         := '0';
-  signal tmb_fifo_wr_en   : std_logic                         := '0';
+  signal dcfeb_fifo_wr_en : std_logic_vector(NFEB downto 1) := (others => '0');
+  signal dcfeb_fifo_rd_en : std_logic_vector(NFEB downto 1) := (others => '0');
+  signal alct_fifo_wr_en : std_logic := '0';
+  signal alct_fifo_rd_en : std_logic := '0';
+  signal tmb_fifo_wr_en : std_logic := '0';
+  signal tmb_fifo_rd_en : std_logic := '0';
+  
+  signal cafifo_l1a_match : std_logic_vector(NFEB+2 downto 0);  -- L1A_MATCH from TRGCNTRL to CAFIFO sent to generate Data
 
-  signal cafifo_l1a_match : std_logic_vector(NFEB+2 downto 1);  -- L1A_MATCH from TRGCNTRL to CAFIFO sent to generate Data
+  signal dcfeb_data_valid : std_logic_vector(NFEB downto 1);
 
+  signal dg_alct_data_valid : std_logic;
+  signal dg_tmb_data_valid  : std_logic;
 
+  type dcfeb_data_type is array (NFEB downto 1) of std_logic_vector(15 downto 0);
+  signal dcfeb_data : dcfeb_data_type;
 
-  signal gen_alct_data : std_logic_vector(15 downto 0);
-  signal gen_tmb_data  : std_logic_vector(15 downto 0);
-
-  signal gen_alct_data_valid : std_logic;
-  signal gen_tmb_data_valid  : std_logic;
+  signal dg_alct_data : std_logic_vector(15 downto 0);
+  signal dg_tmb_data  : std_logic_vector(15 downto 0);
 
   type dcfeb_fifo_data_type is array (NFEB downto 1) of std_logic_vector(15 downto 0);
   signal dcfeb_fifo_in  : dcfeb_fifo_data_type;
   signal dcfeb_fifo_out : dcfeb_fifo_data_type;
 
-  signal gen_alct_fifo_in, gen_tmb_fifo_in   : std_logic_vector(15 downto 0);
-  signal gen_alct_fifo_out, gen_tmb_fifo_out : std_logic_vector(15 downto 0);
+  signal dg_alct_fifo_in, dg_tmb_fifo_in   : std_logic_vector(15 downto 0);
+  signal dg_alct_fifo_out, dg_tmb_fifo_out : std_logic_vector(15 downto 0);
 
   type dcfeb_fifo_cnt_type is array (NFEB downto 1) of std_logic_vector(9 downto 0);
   signal dcfeb_fifo_wr_cnt : dcfeb_fifo_cnt_type;
@@ -1206,24 +1332,10 @@ architecture bdf_type of ODMB_V6 is
   signal dcfeb_fifo_afull  : std_logic_vector(NFEB downto 1);
   signal dcfeb_fifo_full   : std_logic_vector(NFEB downto 1);
 
-  signal data_fifo_empty_b                 : std_logic_vector(NFEB+2 downto 1);
   signal alct_fifo_empty, tmb_fifo_empty   : std_logic;
   signal alct_fifo_aempty, tmb_fifo_aempty : std_logic;
   signal alct_fifo_afull, tmb_fifo_afull   : std_logic;
   signal alct_fifo_full, tmb_fifo_full     : std_logic;
-
-  signal dcfeb_daq_tdis     : std_logic_vector(NFEB downto 1);
-  signal dcfeb_tx_ack       : std_logic_vector(NFEB downto 1);
-  signal dcfeb_daq_data_clk : std_logic_vector(NFEB downto 1);
-
-  signal int_l1a, tc_l1a : std_logic;
-  signal int_alct_dav, tc_alct_dav : std_logic;
-  signal int_tmb_dav, tc_tmb_dav : std_logic;
-  signal int_lct, tc_lct : std_logic_vector(NFEB downto 0);
-  signal ddu_data : std_logic_vector(15 downto 0) := (others => '0');
-  signal ddu_data_valid : std_logic := '0';
-
-  signal tc_run : std_logic;
 
 begin
 
@@ -1301,7 +1413,7 @@ begin
   process (clk2p5, pll1_locked)
   begin
     if pll1_locked = '0' then
-      por_reg <= x"0FFFFFFF";
+      por_reg <= x"FFFFFFFF";
     elsif clk2p5'event and clk2p5 = '1' then
       por_reg <= por_reg(30 downto 0) & '0';
     end if;
@@ -1386,52 +1498,51 @@ begin
   leds(10) <= not pb(2);                -- PB4
   leds(11) <= not pb(3);                -- PB5
 
-  flf_status : process (dcfeb_adc_mask, dcfeb_fsel, dcfeb_jtag_ir, mbc_fsel, mbc_jtag_ir, flf_ctrl)
+  flf_status : process (dcfeb0_adc_mask, dcfeb0_fsel, dcfeb0_jtag_ir,
+                        dcfeb1_adc_mask, dcfeb1_fsel, dcfeb1_jtag_ir,
+                        dcfeb2_adc_mask, dcfeb2_fsel, dcfeb2_jtag_ir,
+                        dcfeb3_adc_mask, dcfeb3_fsel, dcfeb3_jtag_ir,
+                        dcfeb4_adc_mask, dcfeb4_fsel, dcfeb4_jtag_ir,
+                        dcfeb5_adc_mask, dcfeb5_fsel, dcfeb5_jtag_ir,
+                        dcfeb6_adc_mask, dcfeb6_fsel, dcfeb6_jtag_ir,
+                        mbc_fsel, mbc_jtag_ir, flf_ctrl)
 
   begin
     
     case flf_ctrl(4 downto 0) is
 
-      when "00000" => flf_data <= "0000" & dcfeb_adc_mask(1);
-      when "00001" => flf_data <= dcfeb_fsel(1)(15 downto 0);
-      when "00010" => flf_data <= dcfeb_fsel(1)(31 downto 16);
-      when "00011" => flf_data <= "00" & dcfeb_jtag_ir(1) & "000" & dcfeb_fsel(1)(31);
-
-      when "00100" => flf_data <= "0000" & dcfeb_adc_mask(2);
-      when "00101" => flf_data <= dcfeb_fsel(2)(15 downto 0);
-      when "00110" => flf_data <= dcfeb_fsel(2)(31 downto 16);
-      when "00111" => flf_data <= "00" & dcfeb_jtag_ir(2) & "000" & dcfeb_fsel(2)(31);
-
-      when "01000" => flf_data <= "0000" & dcfeb_adc_mask(3);
-      when "01001" => flf_data <= dcfeb_fsel(3)(15 downto 0);
-      when "01010" => flf_data <= dcfeb_fsel(3)(31 downto 16);
-      when "01011" => flf_data <= "00" & dcfeb_jtag_ir(3) & "000" & dcfeb_fsel(3)(31);
-
-      when "01100" => flf_data <= "0000" & dcfeb_adc_mask(4);
-      when "01101" => flf_data <= dcfeb_fsel(4)(15 downto 0);
-      when "01110" => flf_data <= dcfeb_fsel(4)(31 downto 16);
-      when "01111" => flf_data <= "00" & dcfeb_jtag_ir(4) & "000" & dcfeb_fsel(4)(31);
-
-      when "10000" => flf_data <= "0000" & dcfeb_adc_mask(5);
-      when "10001" => flf_data <= dcfeb_fsel(5)(15 downto 0);
-      when "10010" => flf_data <= dcfeb_fsel(5)(31 downto 16);
-      when "10011" => flf_data <= "00" & dcfeb_jtag_ir(5) & "000" & dcfeb_fsel(5)(31);
-
-      when "10100" => flf_data <= "0000" & dcfeb_adc_mask(6);
-      when "10101" => flf_data <= dcfeb_fsel(6)(15 downto 0);
-      when "10110" => flf_data <= dcfeb_fsel(6)(31 downto 16);
-      when "10111" => flf_data <= "00" & dcfeb_jtag_ir(6) & "000" & dcfeb_fsel(6)(31);
-
-      when "11000" => flf_data <= "0000" & dcfeb_adc_mask(7);
-      when "11001" => flf_data <= dcfeb_fsel(7)(15 downto 0);
-      when "11010" => flf_data <= dcfeb_fsel(7)(31 downto 16);
-      when "11011" => flf_data <= "00" & dcfeb_jtag_ir(7) & "000" & dcfeb_fsel(7)(31);
-
+      when "00000" => flf_data <= "0000" & dcfeb0_adc_mask(11 downto 0);
+      when "00001" => flf_data <= dcfeb0_fsel(15 downto 0);
+      when "00010" => flf_data <= dcfeb0_fsel(31 downto 16);
+      when "00011" => flf_data <= "00" & dcfeb0_jtag_ir(9 downto 0) & "000" & dcfeb0_fsel(31);
+      when "00100" => flf_data <= "0000" & dcfeb1_adc_mask(11 downto 0);
+      when "00101" => flf_data <= dcfeb1_fsel(15 downto 0);
+      when "00110" => flf_data <= dcfeb1_fsel(31 downto 16);
+      when "00111" => flf_data <= "00" & dcfeb1_jtag_ir(9 downto 0) & "000" & dcfeb1_fsel(31);
+      when "01000" => flf_data <= "0000" & dcfeb2_adc_mask(11 downto 0);
+      when "01001" => flf_data <= dcfeb2_fsel(15 downto 0);
+      when "01010" => flf_data <= dcfeb2_fsel(31 downto 16);
+      when "01011" => flf_data <= "00" & dcfeb2_jtag_ir(9 downto 0) & "000" & dcfeb2_fsel(31);
+      when "01100" => flf_data <= "0000" & dcfeb3_adc_mask(11 downto 0);
+      when "01101" => flf_data <= dcfeb3_fsel(15 downto 0);
+      when "01110" => flf_data <= dcfeb3_fsel(31 downto 16);
+      when "01111" => flf_data <= "00" & dcfeb3_jtag_ir(9 downto 0) & "000" & dcfeb3_fsel(31);
+      when "10000" => flf_data <= "0000" & dcfeb4_adc_mask(11 downto 0);
+      when "10001" => flf_data <= dcfeb4_fsel(15 downto 0);
+      when "10010" => flf_data <= dcfeb4_fsel(31 downto 16);
+      when "10011" => flf_data <= "00" & dcfeb4_jtag_ir(9 downto 0) & "000" & dcfeb4_fsel(31);
+      when "10100" => flf_data <= "0000" & dcfeb5_adc_mask(11 downto 0);
+      when "10101" => flf_data <= dcfeb5_fsel(15 downto 0);
+      when "10110" => flf_data <= dcfeb5_fsel(31 downto 16);
+      when "10111" => flf_data <= "00" & dcfeb5_jtag_ir(9 downto 0) & "000" & dcfeb5_fsel(31);
+      when "11000" => flf_data <= "0000" & dcfeb6_adc_mask(11 downto 0);
+      when "11001" => flf_data <= dcfeb6_fsel(15 downto 0);
+      when "11010" => flf_data <= dcfeb6_fsel(31 downto 16);
+      when "11011" => flf_data <= "00" & dcfeb6_jtag_ir(9 downto 0) & "000" & dcfeb6_fsel(31);
       when "11100" => flf_data <= mbc_fsel(16 downto 1);
       when "11101" => flf_data <= mbc_fsel(32 downto 17);
       when "11110" => flf_data <= '0' & mbc_fsel(47 downto 33);
       when "11111" => flf_data <= "00" & mbc_jtag_ir(9 downto 0) & "0000";
-
       when others  => flf_data <= "0000000000000000";
     end case;
     
@@ -1455,19 +1566,60 @@ begin
 
 -- From ORX1
 
-GEN_ORX2 : for I in 12 downto 1 generate  
-begin
-  orx2_ibuf_p : IBUF port map (O => orx2_buf_p(I), I => orx2_p(I));
-  orx2_ibuf_n : IBUF port map (O => orx2_buf_n(I), I => orx2_n(I));
-end generate GEN_ORX2;
+-- orx1_01
+  orx1_01_buf : IBUFDS port map (I => orx1_01_p, IB => orx1_01_n, O => orx1_01);
+-- orx1_02
+  orx1_02_buf : IBUFDS port map (I => orx1_02_p, IB => orx1_02_n, O => orx1_02);
+-- orx1_03
+  orx1_03_buf : IBUFDS port map (I => orx1_03_p, IB => orx1_03_n, O => orx1_03);
+-- orx1_04
+  orx1_04_buf : IBUFDS port map (I => orx1_04_p, IB => orx1_04_n, O => orx1_04);
+-- orx1_05
+  orx1_05_buf : IBUFDS port map (I => orx1_05_p, IB => orx1_05_n, O => orx1_05);
+-- orx1_06
+  orx1_06_buf : IBUFDS port map (I => orx1_06_p, IB => orx1_06_n, O => orx1_06);
+-- orx1_07
+  orx1_07_buf : IBUFDS port map (I => orx1_07_p, IB => orx1_07_n, O => orx1_07);
+-- orx1_08
+  orx1_08_buf : IBUFDS port map (I => orx1_08_p, IB => orx1_08_n, O => orx1_08);
+-- orx1_09
+  orx1_09_buf : IBUFDS port map (I => orx1_09_p, IB => orx1_09_n, O => orx1_09);
+-- orx1_10
+  orx1_10_buf : IBUFDS port map (I => orx1_10_p, IB => orx1_10_n, O => orx1_10);
+-- orx1_11
+  orx1_11_buf : IBUFDS port map (I => orx1_11_p, IB => orx1_11_n, O => orx1_11);
+-- orx1_12
+  orx1_12_buf : IBUFDS port map (I => orx1_12_p, IB => orx1_12_n, O => orx1_12);
 
 
 -- From ORX2
 
---  GEN_ORX2 : for I in 12 downto 1 generate  
---  begin
---    orx2_buf : IBUFDS port map (I => orx2_p(I), IB => orx2_n(I), O => orx2(I));
---  end generate GEN_ORX2;
+-- orx2_01
+  orx2_01_buf : IBUFDS port map (I => orx2_01_p, IB => orx2_01_n, O => orx2_01);
+-- orx2_01_buf : IBUFDS_DIFF_OUT port map (I=>orx2_01_p, IB=>orx2_01_n, O=>b_orx2_01_p, OB=>b_orx2_01_n);
+-- orx2_02
+  orx2_02_buf : IBUFDS port map (I => orx2_02_p, IB => orx2_02_n, O => orx2_02);
+-- orx2_03
+  orx2_03_buf : IBUFDS port map (I => orx2_03_p, IB => orx2_03_n, O => orx2_03);
+-- orx2_04
+  orx2_04_buf : IBUFDS port map (I => orx2_04_p, IB => orx2_04_n, O => orx2_04);
+-- orx2_05
+  orx2_05_buf : IBUFDS port map (I => orx2_05_p, IB => orx2_05_n, O => orx2_05);
+-- orx2_06
+  orx2_06_buf : IBUFDS port map (I => orx2_06_p, IB => orx2_06_n, O => orx2_06);
+-- orx2_07
+  orx2_07_buf : IBUFDS port map (I => orx2_07_p, IB => orx2_07_n, O => orx2_07);
+-- orx2_08
+  orx2_08_buf : IBUFDS port map (I => orx2_08_p, IB => orx2_08_n, O => orx2_08);
+-- orx2_09
+  orx2_09_buf : IBUFDS port map (I => orx2_09_p, IB => orx2_09_n, O => orx2_09);
+-- orx2_10
+  orx2_10_buf : IBUFDS port map (I => orx2_10_p, IB => orx2_10_n, O => orx2_10);
+-- orx2_11
+  orx2_11_buf : IBUFDS port map (I => orx2_11_p, IB => orx2_11_n, O => orx2_11);
+-- orx2_12
+  orx2_12_buf : IBUFDS port map (I => orx2_12_p, IB => orx2_12_n, O => orx2_12);
+
 
 -- From QPLL
 
@@ -1527,17 +1679,58 @@ end generate GEN_ORX2;
 
 -- To TX1 
 
-  GEN_OTX1 : for I in 12 downto 1 generate  
-  begin
-    otx1_buf : OBUFDS port map (I => otx1(I), O => otx1_p(I), OB => otx1_n(I));
-  end generate GEN_OTX1;
+-- otx1_01
+  otx1_01_buf : OBUFDS port map (I => otx1_01, O => otx1_01_p, OB => otx1_01_n);
+-- otx1_02
+  otx1_02_buf : OBUFDS port map (I => otx1_02, O => otx1_02_p, OB => otx1_02_n);
+-- otx1_03
+  otx1_03_buf : OBUFDS port map (I => otx1_03, O => otx1_03_p, OB => otx1_03_n);
+-- otx1_04
+  otx1_04_buf : OBUFDS port map (I => otx1_04, O => otx1_04_p, OB => otx1_04_n);
+-- otx1_05
+  otx1_05_buf : OBUFDS port map (I => otx1_05, O => otx1_05_p, OB => otx1_05_n);
+-- otx1_06
+  otx1_06_buf : OBUFDS port map (I => otx1_06, O => otx1_06_p, OB => otx1_06_n);
+-- otx1_07
+  otx1_07_buf : OBUFDS port map (I => otx1_07, O => otx1_07_p, OB => otx1_07_n);
+-- otx1_08
+  otx1_08_buf : OBUFDS port map (I => otx1_08, O => otx1_08_p, OB => otx1_08_n);
+-- otx1_09
+  otx1_09_buf : OBUFDS port map (I => otx1_09, O => otx1_09_p, OB => otx1_09_n);
+-- otx1_10
+  otx1_10_buf : OBUFDS port map (I => otx1_10, O => otx1_10_p, OB => otx1_10_n);
+-- 
+  otx1_11_buf : OBUFDS port map (I => otx1_11, O => otx1_11_p, OB => otx1_11_n);
+-- otx1_12
+  otx1_12_buf : OBUFDS port map (I => otx1_12, O => otx1_12_p, OB => otx1_12_n);
 
 -- To TX2 
 
-  GEN_OTX2 : for I in 12 downto 1 generate  
-  begin
-    otx2_buf : OBUFDS port map (I => otx2(I), O => otx2_p(I), OB => otx2_n(I));
-  end generate GEN_OTX2;
+-- otx2_01
+  otx2_01_buf : OBUFDS port map (I => otx2_01, O => otx2_01_p, OB => otx2_01_n);
+-- otx2_02
+  otx2_02_buf : OBUFDS port map (I => otx2_02, O => otx2_02_p, OB => otx2_02_n);
+-- otx2_03
+  otx2_03_buf : OBUFDS port map (I => otx2_03, O => otx2_03_p, OB => otx2_03_n);
+-- otx2_04
+  otx2_04_buf : OBUFDS port map (I => otx2_04, O => otx2_04_p, OB => otx2_04_n);
+-- otx2_05
+  otx2_05_buf : OBUFDS port map (I => otx2_05, O => otx2_05_p, OB => otx2_05_n);
+-- otx2_06
+  otx2_06_buf : OBUFDS port map (I => otx2_06, O => otx2_06_p, OB => otx2_06_n);
+-- otx2_07
+  otx2_07_buf : OBUFDS port map (I => otx2_07, O => otx2_07_p, OB => otx2_07_n);
+-- otx2_08
+  otx2_08_buf : OBUFDS port map (I => otx2_08, O => otx2_08_p, OB => otx2_08_n);
+-- otx2_09
+  otx2_09_buf : OBUFDS port map (I => otx2_09, O => otx2_09_p, OB => otx2_09_n);
+-- otx2_10
+  otx2_10_buf : OBUFDS port map (I => otx2_10, O => otx2_10_p, OB => otx2_10_n);
+-- otx2_11
+  otx2_11_buf : OBUFDS port map (I => otx2_11, O => otx2_11_p, OB => otx2_11_n);
+-- otx2_12
+  otx2_12_buf : OBUFDS port map (I => otx2_12, O => otx2_12_p, OB => otx2_12_n);
+
 
 -- To Test Connector
 
@@ -1774,7 +1967,7 @@ end generate GEN_ORX2;
       CLKOUT1_DIVIDE     => 16,         -- clk40 = CMSCLK(40 MHz)
       CLKOUT2_DIVIDE     => 64,   -- clk10 = MIDCLK(10 MHz)               
       CLKOUT3_DIVIDE     => 128,        -- clk5 - generates clk2p5 and clk1p25
-      CLKOUT4_DIVIDE     => 8,          -- Not used
+      CLKOUT4_DIVIDE     => 128,        -- Not used
       CLKOUT5_DIVIDE     => 16,         -- Not used
       CLKOUT6_DIVIDE     => 16,         -- Not used
       CLKOUT4_CASCADE    => false,  -- Cascase CLKOUT4 counter with CLKOUT6 (TRUE/FALSE)
@@ -1785,8 +1978,7 @@ end generate GEN_ORX2;
       )
     port map (
       -- Clock Outputs: 1-bit (each) User configurable clock outputs
-      CLKOUT0   => open,                -- 1-bit CLKOUT0 output
-      --CLKOUT0   => pll_clk80,           -- 1-bit CLKOUT0 output
+      CLKOUT0   => pll_clk80,           -- 1-bit CLKOUT0 output
       CLKOUT0B  => open,                -- 1-bit Inverted CLKOUT0 output
       CLKOUT1   => pll_clk40,           -- 1-bit CLKOUT1 output
       CLKOUT1B  => open,                -- 1-bit Inverted CLKOUT1 output
@@ -1794,7 +1986,7 @@ end generate GEN_ORX2;
       CLKOUT2B  => open,                -- 1-bit Inverted CLKOUT2 output
       CLKOUT3   => pll_clk5,            -- 1-bit CLKOUT3 output
       CLKOUT3B  => open,                -- 1-bit Inverted CLKOUT3 output
-      CLKOUT4   => pll_clk80,           -- 1-bit CLKOUT4 output
+      CLKOUT4   => open,                -- 1-bit CLKOUT4 output
       CLKOUT5   => open,                -- 1-bit CLKOUT5 output
       CLKOUT6   => open,                -- 1-bit CLKOUT6 output
       -- Feedback Clocks: 1-bit (each) Clock feedback ports
@@ -1832,15 +2024,48 @@ end generate GEN_ORX2;
 
 -- ------------------------------------------------------------------------------------------------- 
 
--- CODE_G (FF-LYNX Management - O-DMB-V1)
-
--- TX_DAT to DCFEBs
-
-  otx1 <= (others => '0');
+-- CODE_G (FF-LYNX Management)
 
 -- TX_CLK to DCFEBs
 
-  otx2 <= (others => '0');
+  otx2_01 <= '0';
+  otx2_02 <= '0';
+  otx2_03 <= '0';
+  otx2_04 <= '0';
+  otx2_05 <= '0';
+  otx2_06 <= '0';
+  otx2_07 <= '0';
+  otx2_08 <= '0';
+  otx2_09 <= '0';
+  otx2_10 <= '0';
+  otx2_11 <= '0';
+  otx2_12 <= '0';
+
+-- TX_DAT to DCFEBs
+
+  otx1_01 <= '0';
+  otx1_02 <= '0';
+  otx1_03 <= '0';
+  otx1_04 <= '0';
+  otx1_05 <= '0';
+  otx1_06 <= '0';
+  otx1_07 <= '0';
+  otx1_08 <= '0';
+  otx1_09 <= '0';
+-- otx1_10 <= '0'; 
+-- otx1_11 <= '0'; 
+-- otx1_12 <= '0';
+
+-- dcfeb0_rx_dat <= orx1_01;
+  dcfeb0_rx_dat <= dcfeb0_tx_dat;
+-- dcfeb1_rx_dat <= orx1_02;    
+-- dcfeb2_rx_dat <= orx1_03;
+  dcfeb3_rx_dat <= orx1_04;
+  dcfeb4_rx_dat <= orx1_05;
+  dcfeb5_rx_dat <= orx1_06;
+  dcfeb6_rx_dat <= orx1_07;
+
+
 
   vme_dtack_v6_b <= int_vme_dtack_v6_b;
 
@@ -2013,31 +2238,16 @@ end generate GEN_ORX2;
       tfifo_mode  => tfifo_mode,
 
       flf_ctrl => flf_ctrl,
-      flf_data => flf_data,
-
-      tc_l1a => tc_l1a,
-      tc_alct_dav => tc_alct_dav,
-      tc_tmb_dav => tc_tmb_dav,
-      tc_lct => tc_lct,
-      ddu_data => gtx0_data,
-      ddu_data_valid => gtx0_data_valid,
-      tc_run => tc_run
-
+      flf_data => flf_data
 
       );
 
-int_l1a <= tc_l1a when (tc_run = '1') else ccb_l1acc;
-int_alct_dav <= tc_alct_dav when (tc_run = '1') else lctdav2;
-int_tmb_dav <= tc_tmb_dav when (tc_run = '1') else lctdav1;
-int_lct <= tc_lct when (tc_run = '1') else rawlct;
-tc_run_out <= tc_run;
+
 
 -- ODMB_CTRL FPGA
 
   MBC : ODMB_CTRL
     port map (
-
-      ga => vme_ga,
 
       mbc_fsel    => mbc_fsel,
       mbc_jtag_ir => mbc_jtag_ir,
@@ -2053,21 +2263,14 @@ tc_run_out <= tc_run;
       ccb_rsvi   => ccb_rsvi,           -- ccbrsv(14 downto 12) - to J3
       ccb_bx0    => ccb_bx0,            -- bx0 - from J3
       ccb_bxrst  => ccb_bxrst,          -- bxrst - from J3
---      ccb_l1acc  => ccb_l1acc,          -- l1acc - from J3
--- from testctrl
-      ccb_l1acc  => int_l1a,          -- l1acc - from J3 
+      ccb_l1acc  => ccb_l1acc,          -- l1acc - from J3
       ccb_l1arst => ccb_l1arst,         -- l1rst - from J3
       ccb_l1rls  => ccb_l1rls,          -- l1rls - to J3
       ccb_clken  => ccb_clken,          -- clken - from J3
 
--- from testctrl
---      rawlct    => rawlct,              -- rawlct(NFEB downto 0) - from J4
-      rawlct    => int_lct,              -- rawlct(NFEB downto 0) - from -- from testctrl
---      tmb_dav   => lctdav1,             -- lctdav1 - from J4
-      tmb_dav   => int_tmb_dav,             -- lctdav1 - from J4
--- from testctrl
---      alct_dav  => lctdav2,             -- lctdav2 - from J4
-      alct_dav  => int_alct_dav,             -- lctdav2 - from J4
+      rawlct    => rawlct,              -- rawlct(NFEB downto 0) - from J4
+      tmb_dav   => lctdav1,             -- lctdav1 - from J4
+      alct_dav  => lctdav2,             -- lctdav2 - from J4
       lctrqst   => lctrqst,             -- lctrqst(2 downto 1) - to J4
       rsvtd_in  => rsvtd_in,            -- spare(7 DOWNTO 3) - to J4
 --              rsvtd_out => rsvtd_out(6 downto 3),                                                                                     -- spare(7 DOWNTO 3) - from J4
@@ -2089,30 +2292,33 @@ tc_run_out <= tc_run;
 
 -- From/To FIFOs
 
-      fifo_rd_ck   => fifo_rd_ck,
-      data_fifo_re => data_fifo_re_b,
-      data_fifo_oe => data_fifo_oe,
+      fifo_rd_ck => fifo_rd_ck,
+      fifo_rd_en => fifo_rd_en,
+      fifo_sel   => fifo_sel,
 
       fifo_out => fifo_out,
 
       fifo_mrst_b => fifo_mrst_b,       -- ok -> fifo_mrst* - to FIFOs 
       fifo_prst_b => fifo_prst_b,       -- ok -> fifo_prst* - to FIFOs 
 
-      fifo_full_b  => fifo_full,          -- full*(7 DOWNTO 1) - from FIFOs 
-      fifo_half_b  => fifo_half,          -- half*(7 DOWNTO 1) - from FIFOs 
-      fifo_pae_b   => fifo_pae,           -- paef*(7 DOWNTO 1) - from FIFOs 
-      fifo_empty_b => data_fifo_empty_b,  -- emptyf*(7 DOWNTO 1) - from FIFOs 
+      fifo_full_b  => fifo_full,        -- full*(7 DOWNTO 1) - from FIFOs 
+      fifo_half_b  => fifo_half,        -- half*(7 DOWNTO 1) - from FIFOs 
+      fifo_pae_b   => fifo_pae,         -- paef*(7 DOWNTO 1) - from FIFOs 
+      fifo_empty_b => fifo_empty,       -- emptyf*(7 DOWNTO 1) - from FIFOs 
 
 -- From CAFIFO to Data FIFOs
-      dcfeb_fifo_wr_en => dcfeb_fifo_wr_en,
-      alct_fifo_wr_en  => alct_fifo_wr_en,
-      tmb_fifo_wr_en   => tmb_fifo_wr_en,
-
-      cafifo_l1a_match => cafifo_l1a_match,
+    dcfeb_fifo_wr_en =>  dcfeb_fifo_wr_en ,
+    dcfeb_fifo_rd_en =>  dcfeb_fifo_rd_en ,
+    alct_fifo_wr_en  =>  alct_fifo_wr_en  ,
+    alct_fifo_rd_en  =>  alct_fifo_rd_en  ,
+    tmb_fifo_wr_en   =>  tmb_fifo_wr_en   ,
+    tmb_fifo_rd_en   =>  tmb_fifo_rd_en   , 
+    
+    cafifo_l1a_match => cafifo_l1a_match  ,
 
 -- From ALCT,TMB,DCFEBs to CAFIFO
-      alct_dv     => gen_alct_data_valid,
-      tmb_dv      => gen_tmb_data_valid,
+      alct_dv     => dg_alct_data_valid,
+      tmb_dv      => dg_tmb_data_valid,
       dcfeb0_dv   => dcfeb_data_valid(1),
       dcfeb0_data => dcfeb_data(1),
       dcfeb1_dv   => dcfeb_data_valid(2),
@@ -2196,16 +2402,27 @@ tc_run_out <= tc_run;
   orx2_08_sd <= orx2_sd;
 
 -- FIFO MUX
-  fifo_out <= dcfeb_fifo_out(1) when data_fifo_oe = "111111110" else
-              dcfeb_fifo_out(2) when data_fifo_oe = "111111101" else
-              dcfeb_fifo_out(3) when data_fifo_oe = "111111011" else
-              dcfeb_fifo_out(4) when data_fifo_oe = "111110111" else
-              dcfeb_fifo_out(5) when data_fifo_oe = "111101111" else
-              dcfeb_fifo_out(6) when data_fifo_oe = "111011111" else
-              dcfeb_fifo_out(7) when data_fifo_oe = "110111111" else
-              gen_tmb_fifo_out  when data_fifo_oe = "101111111" else
-              gen_alct_fifo_out when data_fifo_oe = "011111111" else
-              (others => 'Z');
+
+  fifo_mux_out_proc : process(fifo_sel, dcfeb0_fifo_out, dcfeb1_fifo_out, dcfeb2_fifo_out, dcfeb3_fifo_out,
+                              dcfeb4_fifo_out, dcfeb5_fifo_out, dcfeb6_fifo_out, tmb_fifo_out, alct_fifo_out)
+
+  begin
+
+    case fifo_sel is
+
+      when "0000" => fifo_out <= dcfeb0_fifo_out;
+      when "0001" => fifo_out <= dcfeb1_fifo_out;
+      when "0010" => fifo_out <= dcfeb2_fifo_out;
+      when "0011" => fifo_out <= dcfeb3_fifo_out;
+      when "0100" => fifo_out <= dcfeb4_fifo_out;
+      when "0101" => fifo_out <= dcfeb5_fifo_out;
+      when "0110" => fifo_out <= dcfeb6_fifo_out;
+      when "0111" => fifo_out <= tmb_fifo_out;
+      when "1000" => fifo_out <= alct_fifo_out;
+      when others => fifo_out <= (others => '0');
+    end case;
+    
+  end process;
 
 -- DCFEB FIFO WR_EN GENERATION
 
@@ -2226,107 +2443,257 @@ tc_run_out <= tc_run;
 
   fifo_wr_en <= "000000000";            -- to remove error 528!!!
 
--- Test FIFO Management
+-- FIFO Management
 
   FIFO_OUT_SEL_PM : fifo_outdata_sel
+    
     port map (
+
       fifo_sel      => tfifo_sel,
-      fifo0_outdata => dcfeb_tfifo_out(1),
-      fifo1_outdata => dcfeb_tfifo_out(2),
-      fifo2_outdata => dcfeb_tfifo_out(3),
-      fifo3_outdata => dcfeb_tfifo_out(4),
-      fifo4_outdata => dcfeb_tfifo_out(5),
-      fifo5_outdata => dcfeb_tfifo_out(6),
-      fifo6_outdata => dcfeb_tfifo_out(7),
-      fifo7_outdata => dcfeb_tfifo_out(8),
-      fifo_outdata  => tfifo_data);
+      fifo0_outdata => dcfeb0_tfifo_out,
+      fifo1_outdata => dcfeb1_tfifo_out,
+      fifo2_outdata => dcfeb2_tfifo_out,
+      fifo3_outdata => dcfeb3_tfifo_out,
+      fifo4_outdata => dcfeb4_tfifo_out,
+      fifo5_outdata => dcfeb5_tfifo_out,
+      fifo6_outdata => dcfeb6_tfifo_out,
+      fifo7_outdata => dcfeb7_tfifo_out,
+      fifo_outdata  => tfifo_data
+
+      );
 
   FIFO_WC_SEL_PM : fifo_wc_sel
+    
     port map (
+
       fifo_sel => tfifo_sel,
-      fifo0_wc => dcfeb_tfifo_wr_cnt(1),
-      fifo1_wc => dcfeb_tfifo_wr_cnt(2),
-      fifo2_wc => dcfeb_tfifo_wr_cnt(3),
-      fifo3_wc => dcfeb_tfifo_wr_cnt(4),
-      fifo4_wc => dcfeb_tfifo_wr_cnt(5),
-      fifo5_wc => dcfeb_tfifo_wr_cnt(6),
-      fifo6_wc => dcfeb_tfifo_wr_cnt(7),
-      fifo7_wc => dcfeb_tfifo_wr_cnt(8),
-      fifo_wc  => tfifo_wc);
+      fifo0_wc => dcfeb0_fifo_wr_cnt,
+      fifo1_wc => dcfeb1_fifo_wr_cnt,
+      fifo2_wc => dcfeb2_fifo_wr_cnt,
+      fifo3_wc => dcfeb3_fifo_wr_cnt,
+      fifo4_wc => dcfeb4_fifo_wr_cnt,
+      fifo5_wc => dcfeb5_fifo_wr_cnt,
+      fifo6_wc => dcfeb6_fifo_wr_cnt,
+      fifo7_wc => dcfeb7_fifo_wr_cnt,
+      fifo_wc  => tfifo_wc
+
+      );
 
   FIFO_RC_SEL_PM : fifo_rc_sel
+    
     port map (
+
       fifo_sel => tfifo_sel,
-      fifo0_rc => dcfeb_tfifo_rd_cnt(1),
-      fifo1_rc => dcfeb_tfifo_rd_cnt(2),
-      fifo2_rc => dcfeb_tfifo_rd_cnt(3),
-      fifo3_rc => dcfeb_tfifo_rd_cnt(4),
-      fifo4_rc => dcfeb_tfifo_rd_cnt(5),
-      fifo5_rc => dcfeb_tfifo_rd_cnt(6),
-      fifo6_rc => dcfeb_tfifo_rd_cnt(7),
-      fifo7_rc => dcfeb_tfifo_rd_cnt(8),
-      fifo_rc  => tfifo_rc);
+      fifo0_rc => dcfeb0_fifo_rd_cnt,
+      fifo1_rc => dcfeb1_fifo_rd_cnt,
+      fifo2_rc => dcfeb2_fifo_rd_cnt,
+      fifo3_rc => dcfeb3_fifo_rd_cnt,
+      fifo4_rc => dcfeb4_fifo_rd_cnt,
+      fifo5_rc => dcfeb5_fifo_rd_cnt,
+      fifo6_rc => dcfeb6_fifo_rd_cnt,
+      fifo7_rc => dcfeb7_fifo_rd_cnt,
+      fifo_rc  => tfifo_rc
 
-  tfifo_str(0)  <= dcfeb_tfifo_empty(1);
-  tfifo_str(1)  <= dcfeb_tfifo_full(1);
-  tfifo_str(2)  <= dcfeb_tfifo_empty(2);
-  tfifo_str(3)  <= dcfeb_tfifo_full(2);
-  tfifo_str(4)  <= dcfeb_tfifo_empty(3);
-  tfifo_str(5)  <= dcfeb_tfifo_full(3);
-  tfifo_str(6)  <= dcfeb_tfifo_empty(4);
-  tfifo_str(7)  <= dcfeb_tfifo_full(4);
-  tfifo_str(8)  <= dcfeb_tfifo_empty(5);
-  tfifo_str(9)  <= dcfeb_tfifo_full(5);
-  tfifo_str(10) <= dcfeb_tfifo_empty(6);
-  tfifo_str(11) <= dcfeb_tfifo_full(6);
-  tfifo_str(12) <= dcfeb_tfifo_empty(7);
-  tfifo_str(13) <= dcfeb_tfifo_full(7);
-  tfifo_str(14) <= dcfeb_tfifo_empty(8);
-  tfifo_str(15) <= dcfeb_tfifo_full(8);
+      );
 
-  GEN_DCFEB_TFIFO : for I in NFEB+1 downto 1 generate  -- (dummy DCFEB7 for GBRX test only)
+  fifo_status : process (empty, full)
 
   begin
+    tfifo_str(0)  <= empty(0);
+    tfifo_str(1)  <= full(0);
+--  tfifo_str(15 downto 2) <= "00000000000000";
+    tfifo_str(2)  <= empty(1);
+    tfifo_str(3)  <= full(1);
+    tfifo_str(4)  <= empty(2);
+    tfifo_str(5)  <= full(2);
+    tfifo_str(6)  <= empty(3);
+    tfifo_str(7)  <= full(3);
+    tfifo_str(8)  <= empty(4);
+    tfifo_str(9)  <= full(4);
+    tfifo_str(10) <= empty(5);
+    tfifo_str(11) <= full(5);
+    tfifo_str(12) <= empty(6);
+    tfifo_str(13) <= full(6);
+    tfifo_str(14) <= empty(7);
+    tfifo_str(15) <= full(7);
+  end process;
 
-    dcfeb_gbrx_data(I)       <= (others => '0');
-    dcfeb_gbrx_data_valid(I) <= '0';
-    dcfeb_gbrx_data_clk(I)   <= '0';
+  dcfeb0_gbrx_test : process(tfifo_mode, dcfeb0_gbrx_data, dcfeb0_gbrx_data_valid, dcfeb0_gbrx_data_clk,
+                             vme_data_in, tfifo_wr_en, tfifo_rd_en, clk2p5)
+  begin
+    if (tfifo_mode = '1') then
+      dcfeb0_tfifo_in   <= dcfeb0_gbrx_data;
+      dcfeb0_fifo_wr_en <= dcfeb0_gbrx_data_valid;
+--              dcfeb0_fifo_wr_ck <= dcfeb0_gbrx_data_clk;
+      dcfeb0_fifo_wr_ck <= clk2p5;
+      dcfeb0_fifo_rd_en <= tfifo_rd_en(0);
+      dcfeb0_fifo_rd_ck <= clk2p5;
+    else
+      dcfeb0_tfifo_in   <= vme_data_in;
+      dcfeb0_fifo_wr_en <= tfifo_wr_en(0);
+      dcfeb0_fifo_wr_ck <= clk2p5;
+      dcfeb0_fifo_rd_en <= tfifo_rd_en(0);
+      dcfeb0_fifo_rd_ck <= clk2p5;
+    end if;
 
-    dcfeb_tfifo_in(I)    <= dcfeb_gbrx_data(I)       when (tfifo_mode = '1') else vme_data_in;
-    dcfeb_tfifo_wr_en(I) <= dcfeb_gbrx_data_valid(I) when (tfifo_mode = '1') else tfifo_wr_en(I);
---  dcfeb_tfifo_wr_ck(I) <= dcfeb_gbrx_data_clk(I) when (tfifo_mode = '1') else clk2p5;;
-    dcfeb_tfifo_wr_ck(I) <= clk2p5;
-    dcfeb_tfifo_rd_en(I) <= tfifo_rd_en(I);
-    dcfeb_tfifo_rd_ck(I) <= clk2p5;
+  end process;
+  
+  dcfeb1_gbrx_test : process(tfifo_mode, dcfeb1_gbrx_data, dcfeb1_gbrx_data_valid, dcfeb1_gbrx_data_clk,
+                             vme_data_in, tfifo_wr_en, tfifo_rd_en, clk2p5)
+  begin
+    if (tfifo_mode = '1') then
+      dcfeb1_tfifo_in   <= dcfeb1_gbrx_data;
+      dcfeb1_fifo_wr_en <= dcfeb1_gbrx_data_valid;
+--              dcfeb1_fifo_wr_ck <= dcfeb1_gbrx_data_clk;
+      dcfeb1_fifo_wr_ck <= clk2p5;
+      dcfeb1_fifo_rd_en <= tfifo_rd_en(1);
+      dcfeb1_fifo_rd_ck <= clk2p5;
+    else
+      dcfeb1_tfifo_in   <= vme_data_in;
+      dcfeb1_fifo_wr_en <= tfifo_wr_en(1);
+      dcfeb1_fifo_wr_ck <= clk2p5;
+      dcfeb1_fifo_rd_en <= tfifo_rd_en(1);
+      dcfeb1_fifo_rd_ck <= clk2p5;
+    end if;
+    
+  end process;
 
-    DCFEB_TFIFO : FIFO_DUALCLOCK_MACRO
-      generic map (
-        DEVICE                  => "VIRTEX6",  -- Target Device: "VIRTEX5", "VIRTEX6" 
-        ALMOST_FULL_OFFSET      => X"0080",  -- Sets almost full threshold
-        ALMOST_EMPTY_OFFSET     => X"0080",  -- Sets the almost empty threshold
-        DATA_WIDTH              => 16,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
-        FIFO_SIZE               => "18Kb",   -- Target BRAM, "18Kb" or "36Kb" 
-        FIRST_WORD_FALL_THROUGH => false)  -- Sets the FIFO FWFT to TRUE or FALSE
+  dcfeb2_gbrx_test : process(tfifo_mode, dcfeb2_gbrx_data, dcfeb2_gbrx_data_valid, dcfeb2_gbrx_data_clk,
+                             vme_data_in, tfifo_wr_en, tfifo_rd_en, clk2p5)
+  begin
+    if (tfifo_mode = '1') then
+      dcfeb2_tfifo_in   <= dcfeb2_gbrx_data;
+      dcfeb2_fifo_wr_en <= dcfeb2_gbrx_data_valid;
+--              dcfeb2_fifo_wr_ck <= dcfeb2_gbrx_data_clk;
+      dcfeb2_fifo_wr_ck <= clk2p5;
+      dcfeb2_fifo_rd_en <= tfifo_rd_en(2);
+      dcfeb2_fifo_rd_ck <= clk2p5;
+    else
+      dcfeb2_tfifo_in   <= vme_data_in;
+      dcfeb2_fifo_wr_en <= tfifo_wr_en(2);
+      dcfeb2_fifo_wr_ck <= clk2p5;
+      dcfeb2_fifo_rd_en <= tfifo_rd_en(2);
+      dcfeb2_fifo_rd_ck <= clk2p5;
+    end if;
+    
+  end process;
 
-      port map (
-        ALMOSTEMPTY => dcfeb_tfifo_aempty(I),  -- Output almost empty 
-        ALMOSTFULL  => dcfeb_tfifo_afull(I),   -- Output almost full
-        DO          => dcfeb_tfifo_out(I),     -- Output data
-        EMPTY       => dcfeb_tfifo_empty(I),   -- Output empty
-        FULL        => dcfeb_tfifo_full(I),    -- Output full
-        RDCOUNT     => dcfeb_tfifo_rd_cnt(I),  -- Output read count
-        RDERR       => open,                   -- Output read error
-        WRCOUNT     => dcfeb_tfifo_wr_cnt(I),  -- Output write count
-        WRERR       => open,                   -- Output write error
-        DI          => dcfeb_tfifo_in(I),      -- Input data
-        RDCLK       => dcfeb_tfifo_rd_ck(I),   -- Input read clock
-        RDEN        => dcfeb_tfifo_rd_en(I),   -- Input read enable
-        RST         => reset,                  -- Input reset
-        WRCLK       => dcfeb_tfifo_wr_ck(I),   -- Input write clock
-        WREN        => dcfeb_tfifo_wr_en(I)    -- Input write enable
-        );
+  dcfeb3_gbrx_test : process(tfifo_mode, dcfeb3_gbrx_data, dcfeb3_gbrx_data_valid, dcfeb3_gbrx_data_clk,
+                             vme_data_in, tfifo_wr_en, tfifo_rd_en, clk2p5)
+  begin
+    if (tfifo_mode = '1') then
+      dcfeb3_tfifo_in   <= dcfeb3_gbrx_data;
+      dcfeb3_fifo_wr_en <= dcfeb3_gbrx_data_valid;
+--              dcfeb3_fifo_wr_ck <= dcfeb3_gbrx_data_clk;
+      dcfeb3_fifo_wr_ck <= clk2p5;
+      dcfeb3_fifo_rd_en <= tfifo_rd_en(3);
+      dcfeb3_fifo_rd_ck <= clk2p5;
+    else
+      dcfeb3_tfifo_in   <= vme_data_in;
+      dcfeb3_fifo_wr_en <= tfifo_wr_en(3);
+      dcfeb3_fifo_wr_ck <= clk2p5;
+      dcfeb3_fifo_rd_en <= tfifo_rd_en(3);
+      dcfeb3_fifo_rd_ck <= clk2p5;
+    end if;
+    
+  end process;
 
-  end generate GEN_DCFEB_TFIFO;
+  dcfeb4_gbrx_test : process(tfifo_mode, dcfeb4_gbrx_data, dcfeb4_gbrx_data_valid, dcfeb4_gbrx_data_clk,
+                             vme_data_in, tfifo_wr_en, tfifo_rd_en, clk2p5)
+  begin
+    if (tfifo_mode = '1') then
+--              dcfeb4_tfifo_in <= dcfeb4_gbrx_data;
+--              dcfeb4_fifo_wr_en <= dcfeb4_gbrx_data_valid;
+--              dcfeb4_fifo_wr_ck <= dcfeb4_gbrx_data_clk;
+--              dcfeb4_fifo_rd_en <= tfifo_rd_en(4);
+--              dcfeb4_fifo_rd_ck <= clk2p5;
+      dcfeb4_tfifo_in   <= vme_data_in;
+      dcfeb4_fifo_wr_en <= tfifo_wr_en(4);
+--              dcfeb4_fifo_wr_ck <= dcfeb4_gbrx_data_clk;
+      dcfeb4_fifo_wr_ck <= clk2p5;
+      dcfeb4_fifo_rd_en <= tfifo_rd_en(4);
+      dcfeb4_fifo_rd_ck <= clk2p5;
+    else
+      dcfeb4_tfifo_in   <= vme_data_in;
+      dcfeb4_fifo_wr_en <= tfifo_wr_en(4);
+      dcfeb4_fifo_wr_ck <= clk2p5;
+      dcfeb4_fifo_rd_en <= tfifo_rd_en(4);
+      dcfeb4_fifo_rd_ck <= clk2p5;
+    end if;
+    
+  end process;
+
+  dcfeb5_gbrx_test : process(tfifo_mode, dcfeb5_gbrx_data, dcfeb5_gbrx_data_valid, dcfeb5_gbrx_data_clk,
+                             vme_data_in, tfifo_wr_en, tfifo_rd_en, clk2p5)
+  begin
+    if (tfifo_mode = '1') then
+--              dcfeb5_tfifo_in <= dcfeb5_gbrx_data;
+--              dcfeb5_fifo_wr_en <= dcfeb5_gbrx_data_valid;
+--              dcfeb5_fifo_wr_ck <= dcfeb5_gbrx_data_clk;
+--              dcfeb5_fifo_rd_en <= tfifo_rd_en(5);
+--              dcfeb5_fifo_rd_ck <= clk2p5;
+      dcfeb5_tfifo_in   <= vme_data_in;
+      dcfeb5_fifo_wr_en <= tfifo_wr_en(5);
+      dcfeb5_fifo_wr_ck <= clk2p5;
+      dcfeb5_fifo_rd_en <= tfifo_rd_en(5);
+      dcfeb5_fifo_rd_ck <= clk2p5;
+    else
+      dcfeb5_tfifo_in   <= vme_data_in;
+      dcfeb5_fifo_wr_en <= tfifo_wr_en(5);
+      dcfeb5_fifo_wr_ck <= clk2p5;
+      dcfeb5_fifo_rd_en <= tfifo_rd_en(5);
+      dcfeb5_fifo_rd_ck <= clk2p5;
+    end if;
+    
+  end process;
+
+  dcfeb6_gbrx_test : process(tfifo_mode, dcfeb6_gbrx_data, dcfeb6_gbrx_data_valid, dcfeb6_gbrx_data_clk,
+                             vme_data_in, tfifo_wr_en, tfifo_rd_en, clk2p5)
+  begin
+    if (tfifo_mode = '1') then
+--              dcfeb6_tfifo_in <= dcfeb6_gbrx_data;
+--              dcfeb6_fifo_wr_en <= dcfeb6_gbrx_data_valid;
+--              dcfeb6_fifo_wr_ck <= dcfeb6_gbrx_data_clk;
+--              dcfeb6_fifo_rd_en <= tfifo_rd_en(6);
+--              dcfeb6_fifo_rd_ck <= clk2p5;
+      dcfeb6_tfifo_in   <= vme_data_in;
+      dcfeb6_fifo_wr_en <= tfifo_wr_en(6);
+      dcfeb6_fifo_wr_ck <= clk2p5;
+      dcfeb6_fifo_rd_en <= tfifo_rd_en(6);
+      dcfeb6_fifo_rd_ck <= clk2p5;
+    else
+      dcfeb6_tfifo_in   <= vme_data_in;
+      dcfeb6_fifo_wr_en <= tfifo_wr_en(6);
+      dcfeb6_fifo_wr_ck <= clk2p5;
+      dcfeb6_fifo_rd_en <= tfifo_rd_en(6);
+      dcfeb6_fifo_rd_ck <= clk2p5;
+    end if;
+    
+  end process;
+
+  dcfeb7_gbrx_test : process(tfifo_mode, dcfeb7_gbrx_data, dcfeb7_gbrx_data_valid, dcfeb7_gbrx_data_clk,
+                             vme_data_in, tfifo_wr_en, tfifo_rd_en, clk2p5)
+  begin
+    if (tfifo_mode = '1') then
+--              dcfeb7_tfifo_in <= dcfeb7_gbrx_data;
+--              dcfeb7_fifo_wr_en <= dcfeb7_gbrx_data_valid;
+--              dcfeb7_fifo_wr_ck <= dcfeb7_gbrx_data_clk;
+--              dcfeb7_fifo_rd_en <= tfifo_rd_en(7);
+--              dcfeb7_fifo_rd_ck <= clk2p5;
+      dcfeb7_tfifo_in   <= vme_data_in;
+      dcfeb7_fifo_wr_en <= tfifo_wr_en(7);
+      dcfeb7_fifo_wr_ck <= clk2p5;
+      dcfeb7_fifo_rd_en <= tfifo_rd_en(7);
+      dcfeb7_fifo_rd_ck <= clk2p5;
+    else
+      dcfeb7_tfifo_in   <= vme_data_in;
+      dcfeb7_fifo_wr_en <= tfifo_wr_en(7);
+      dcfeb7_fifo_wr_ck <= clk2p5;
+      dcfeb7_fifo_rd_en <= tfifo_rd_en(7);
+      dcfeb7_fifo_rd_ck <= clk2p5;
+    end if;
+    
+  end process;
 
 -- To CAFIFO
 
@@ -2339,19 +2706,46 @@ tc_run_out <= tc_run;
       l1a            => dcfeb_l1a,
       alct_l1a_match => cafifo_l1a_match(NFEB+2),
       tmb_l1a_match  => cafifo_l1a_match(NFEB+1),
-      alct_dv        => gen_alct_data_valid,
-      alct_data      => gen_alct_data,
-      tmb_dv         => gen_tmb_data_valid,
-      tmb_data       => gen_tmb_data);
-
+      alct_dv        => dg_alct_data_valid,
+      alct_data      => dg_alct_data,
+      tmb_dv         => dg_tmb_data_valid,
+      tmb_data       => dg_tmb_data);
 
 
   
-  data_fifo_re      <= not data_fifo_re_b;
---  data_fifo_empty_b <= (not alct_fifo_empty) & (not tmb_fifo_empty) & (not dcfeb_fifo_empty);
-  data_fifo_empty_b <= alct_fifo_empty & tmb_fifo_empty & dcfeb_fifo_empty;
+  GEN_DCFEB_FIFO : for I in NFEB downto 1 generate
+  begin
+    dcfeb_fifo_in(I) <= dcfeb_data(I);
+    DCFEB_FIFO : FIFO_DUALCLOCK_MACRO
+      generic map (
+        DEVICE                  => "VIRTEX6",  -- Target Device: "VIRTEX5", "VIRTEX6" 
+        ALMOST_FULL_OFFSET      => X"0080",  -- Sets almost full threshold
+        ALMOST_EMPTY_OFFSET     => X"0080",  -- Sets the almost empty threshold
+        DATA_WIDTH              => 16,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
+        FIFO_SIZE               => "18Kb",   -- Target BRAM, "18Kb" or "36Kb" 
+        FIRST_WORD_FALL_THROUGH => false)  -- Sets the FIFO FWFT to TRUE or FALSE
 
-  gen_alct_fifo_in <= gen_alct_data;
+      port map (
+        ALMOSTEMPTY => dcfeb_fifo_aempty(I),  -- Output almost empty 
+        ALMOSTFULL  => dcfeb_fifo_afull(I),   -- Output almost full
+        DO          => dcfeb_fifo_out(I),     -- Output data
+        EMPTY       => dcfeb_fifo_empty(I),   -- Output empty
+        FULL        => dcfeb_fifo_full(I),    -- Output full
+        RDCOUNT     => dcfeb_fifo_rd_cnt(I),  -- Output read count
+        RDERR       => open,                  -- Output read error
+        WRCOUNT     => dcfeb_fifo_wr_cnt(I),  -- Output write count
+        WRERR       => open,                  -- Output write error
+        DI          => dcfeb_fifo_in(I),      -- Input data
+        RDCLK       => clk40,                 -- Input read clock
+        RDEN        => dcfeb_fifo_rd_en(I),   -- Input read enable
+        RST         => reset,                 -- Input reset
+        WRCLK       => clk40,                 -- Input write clock
+        WREN        => dcfeb_fifo_wr_en(I)    -- Input write enable
+        );
+
+  end generate GEN_DCFEB_FIFO;
+
+  dg_alct_fifo_in <= dg_alct_data;
 
   ALCT_FIFO : FIFO_DUALCLOCK_MACRO
     generic map (
@@ -2363,25 +2757,24 @@ tc_run_out <= tc_run;
       FIRST_WORD_FALL_THROUGH => false)  -- Sets the FIFO FWFT to TRUE or FALSE
 
     port map (
-      ALMOSTEMPTY => alct_fifo_aempty,      -- Output almost empty 
-      ALMOSTFULL  => alct_fifo_afull,       -- Output almost full
-      DO          => gen_alct_fifo_out,     -- Output data
-      EMPTY       => alct_fifo_empty,       -- Output empty
-      FULL        => alct_fifo_full,        -- Output full
-      RDCOUNT     => alct_fifo_rd_cnt,      -- Output read count
-      RDERR       => open,                  -- Output read error
-      WRCOUNT     => alct_fifo_wr_cnt,      -- Output write count
-      WRERR       => open,                  -- Output write error
-      DI          => gen_alct_fifo_in,      -- Input data
-      RDCLK       => clk40,                 -- Input read clock
-      RDEN        => data_fifo_re(NFEB+2),  -- Input read enable
-      RST         => reset,                 -- Input reset
-      WRCLK       => clk40,                 -- Input write clock
-      WREN        => alct_fifo_wr_en        -- Input write enable
+      ALMOSTEMPTY => alct_fifo_aempty,  -- Output almost empty 
+      ALMOSTFULL  => alct_fifo_afull,   -- Output almost full
+      DO          => dg_alct_fifo_out,  -- Output data
+      EMPTY       => alct_fifo_empty,   -- Output empty
+      FULL        => alct_fifo_full,    -- Output full
+      RDCOUNT     => alct_fifo_rd_cnt,  -- Output read count
+      RDERR       => open,              -- Output read error
+      WRCOUNT     => alct_fifo_wr_cnt,  -- Output write count
+      WRERR       => open,              -- Output write error
+      DI          => dg_alct_fifo_in,   -- Input data
+      RDCLK       => clk40,             -- Input read clock
+      RDEN        => alct_fifo_rd_en,   -- Input read enable
+      RST         => reset,             -- Input reset
+      WRCLK       => clk40,             -- Input write clock
+      WREN        => alct_fifo_wr_en    -- Input write enable
       );
 
-
-  gen_tmb_fifo_in <= gen_tmb_data;
+  dg_tmb_fifo_in <= dg_tmb_data;
 
   TMB_FIFO : FIFO_DUALCLOCK_MACRO
     generic map (
@@ -2393,72 +2786,773 @@ tc_run_out <= tc_run;
       FIRST_WORD_FALL_THROUGH => false)  -- Sets the FIFO FWFT to TRUE or FALSE
 
     port map (
-      ALMOSTEMPTY => tmb_fifo_aempty,       -- Output almost empty 
-      ALMOSTFULL  => tmb_fifo_afull,        -- Output almost full
-      DO          => gen_tmb_fifo_out,      -- Output data
-      EMPTY       => tmb_fifo_empty,        -- Output empty
-      FULL        => tmb_fifo_full,         -- Output full
-      RDCOUNT     => tmb_fifo_rd_cnt,       -- Output read count
-      RDERR       => open,                  -- Output read error
-      WRCOUNT     => tmb_fifo_wr_cnt,       -- Output write count
-      WRERR       => open,                  -- Output write error
-      DI          => gen_tmb_fifo_in,       -- Input data
-      RDCLK       => clk40,                 -- Input read clock
-      RDEN        => data_fifo_re(NFEB+1),  -- Input read enable
-      RST         => reset,                 -- Input reset
-      WRCLK       => clk40,                 -- Input write clock
-      WREN        => tmb_fifo_wr_en         -- Input write enable
+      ALMOSTEMPTY => tmb_fifo_aempty,   -- Output almost empty 
+      ALMOSTFULL  => tmb_fifo_afull,    -- Output almost full
+      DO          => dg_tmb_fifo_out,   -- Output data
+      EMPTY       => tmb_fifo_empty,    -- Output empty
+      FULL        => tmb_fifo_full,     -- Output full
+      RDCOUNT     => tmb_fifo_rd_cnt,   -- Output read count
+      RDERR       => open,              -- Output read error
+      WRCOUNT     => tmb_fifo_wr_cnt,   -- Output write count
+      WRERR       => open,              -- Output write error
+      DI          => dg_tmb_fifo_in,    -- Input data
+      RDCLK       => clk40,             -- Input read clock
+      RDEN        => tmb_fifo_rd_en,    -- Input read enable
+      RST         => reset,             -- Input reset
+      WRCLK       => clk40,             -- Input write clock
+      WREN        => tmb_fifo_wr_en     -- Input write enable
       );
 
 -- DCFEB0
 
+-- b2v_dcfeb0_gbrx : dmb_receiver
+--   port map (
+--   RST => reset,
+----    // External signals
+--      DAQ_SIGDET => orx2_01_sd,
+--      DAQ_RX_N => orx2_01_n,
+--      DAQ_RX_P => orx2_01_p,
+--      DAQ_TDIS => open,
+--      DAQ_TX_N => open,
+--      DAQ_TX_P => open,
+----    // Internal signals
+--      DAQ_RX_125REFCLK => '0',
+--      DAQ_RX_160REFCLK => cdc_clk(4),
+--      DAQ_RX_WDATA => dcfeb0_gbrx_data(15 downto 0),
+--      DAQ_RXD_VLD => dcfeb0_gbrx_data_valid,
+--      DAQ_SD => open,
+--      DAQ_DATA_CLK => dcfeb0_gbrx_data_clk
+--  );
+
+  dcfeb0_gbrx_data(15 downto 0) <= (others => '0');
+  dcfeb0_gbrx_data_valid        <= '0';
+  dcfeb0_gbrx_data_clk          <= '0';
+
+  FIFO_DUALCLOCK_MACRO_dcfeb0 : FIFO_DUALCLOCK_MACRO
+    generic map (
+      DEVICE                  => "VIRTEX6",  -- Target Device: "VIRTEX5", "VIRTEX6" 
+      ALMOST_FULL_OFFSET      => X"0080",    -- Sets almost full threshold
+      ALMOST_EMPTY_OFFSET     => X"0080",    -- Sets the almost empty threshold
+      DATA_WIDTH              => 16,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
+      FIFO_SIZE               => "18Kb",     -- Target BRAM, "18Kb" or "36Kb" 
+      FIRST_WORD_FALL_THROUGH => false)  -- Sets the FIFO FWFT to TRUE or FALSE
+
+    port map (
+      ALMOSTEMPTY => a_empty(0),          -- Output almost empty 
+      ALMOSTFULL  => a_full(0),           -- Output almost full
+      DO          => dcfeb0_tfifo_out,    -- Output data
+      EMPTY       => empty(0),            -- Output empty
+      FULL        => full(0),             -- Output full
+      RDCOUNT     => dcfeb0_fifo_rd_cnt,  -- Output read count
+      RDERR       => open,                -- Output read error
+      WRCOUNT     => dcfeb0_fifo_wr_cnt,  -- Output write count
+      WRERR       => open,                -- Output write error
+      DI          => dcfeb0_tfifo_in,     -- Input data
+      RDCLK       => dcfeb0_fifo_rd_ck,   -- Input read clock
+      RDEN        => dcfeb0_fifo_rd_en,   -- Input read enable
+      RST         => reset,               -- Input reset
+      WRCLK       => dcfeb0_fifo_wr_ck,   -- Input write clock
+      WREN        => dcfeb0_fifo_wr_en    -- Input write enable
+      );
 
   dl_resync(1) <= dl_global_rst;
 
+  dcfeb0_fifo_in_proc : process(fifo_rm_en, dcfeb0_data_valid, fifo_tm_en, fifo_tm_wr_en, fifo_rw_en, dcfeb0_data, fifo_out, fifo_in)
+  begin
+    if (fifo_rm_en(1) = '1') then
+      dcfeb0_fifo_in <= "00" & dcfeb0_data;
+    elsif (fifo_rw_en(1) = '1') then
+      dcfeb0_fifo_in <= fifo_out;
+    else
+      dcfeb0_fifo_in <= fifo_in;
+    end if;
+
+  end process;
+
+  b2v_dcfeb0_fifo : FIFO_SYNC_MACRO
+    generic map (
+      DEVICE              => "VIRTEX6",  -- Target Device: "VIRTEX5, "VIRTEX6" 
+      ALMOST_FULL_OFFSET  => X"0080",   -- Sets almost full threshold
+      ALMOST_EMPTY_OFFSET => X"0080",   -- Sets the almost empty threshold
+      DATA_WIDTH          => 18,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
+      FIFO_SIZE           => "18Kb")    -- Target BRAM, "18Kb" or "36Kb" 
+    port map (
+      ALMOSTEMPTY => fifo_pae(1),       -- Output almost empty 
+      ALMOSTFULL  => fifo_half(1),      -- Output almost full
+      DO          => dcfeb0_fifo_out,   -- Output data
+      EMPTY       => fifo_empty(1),     -- Output empty
+      FULL        => fifo_full(1),      -- Output full
+      RDCOUNT     => dcfeb0_rd_cnt,     -- Output read count
+      RDERR       => dcfeb0_rd_err,     -- Output read error
+      WRCOUNT     => dcfeb0_wr_cnt,     -- Output write count
+      WRERR       => dcfeb0_wr_err,     -- Output write error
+      CLK         => fifo_wr_ck,        -- Input clock
+      DI          => dcfeb0_fifo_in,    -- Input data
+      RDEN        => fifo_rd_en(1),     -- Input read enable
+      RST         => reset,             -- Input reset
+      WREN        => fifo_wr_en(1)      -- Input write enable
+      );
+
+  DCFEB0_V6_PM : DCFEB_V6
+    generic map(
+      dcfeb_addr => "1000")
+    port map(
+      clk           => clk40,
+      rst           => reset,
+      l1a           => dcfeb_l1a,
+      l1a_match     => dcfeb_l1a_match(1),
+      dcfeb_dv      => dcfeb_data_valid(1),
+      dcfeb_data    => dcfeb_data(1),
+      adc_mask      => dcfeb0_adc_mask,
+      dcfeb_fsel    => dcfeb0_fsel,
+      dcfeb_jtag_ir => dcfeb0_jtag_ir,
+      trst          => reset,
+      tck           => dl_jtag_tck(1),
+      tms           => dl_jtag_tms,
+      tdi           => dl_jtag_tdi,
+      rtn_shft_en   => dl_rtn_shft_en(1),
+      tdo           => dl_jtag_tdo(1));
 
 -- DCFEB1
 
 
+--b2v_dcfeb1_gbrx : dmb_receiver
+--   port map (
+--   RST => reset,
+----    // External signals
+--      DAQ_SIGDET => orx2_02_sd,
+--      DAQ_RX_N => orx2_02_n,
+--      DAQ_RX_P => orx2_02_p,
+--      DAQ_TDIS => open,
+--      DAQ_TX_N => open,
+--      DAQ_TX_P => open,
+----    // Internal signals
+--      DAQ_RX_125REFCLK => cdc_clk(3),
+--      DAQ_RX_160REFCLK => cdc_clk(3),
+--      DAQ_RX_WDATA => dcfeb1_gbrx_data(15 downto 0),
+--      DAQ_RXD_VLD => dcfeb1_gbrx_data_valid,
+--      DAQ_SD => open,
+--      DAQ_DATA_CLK => dcfeb1_gbrx_data_clk
+--  );
+
+  dcfeb1_gbrx_data(15 downto 0) <= (others => '0');
+  dcfeb1_gbrx_data_valid        <= '0';
+  dcfeb1_gbrx_data_clk          <= '0';
+
+  FIFO_DUALCLOCK_MACRO_dcfeb1 : FIFO_DUALCLOCK_MACRO
+    generic map (
+      DEVICE                  => "VIRTEX6",  -- Target Device: "VIRTEX5", "VIRTEX6" 
+      ALMOST_FULL_OFFSET      => X"0080",    -- Sets almost full threshold
+      ALMOST_EMPTY_OFFSET     => X"0080",    -- Sets the almost empty threshold
+      DATA_WIDTH              => 16,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
+      FIFO_SIZE               => "18Kb",     -- Target BRAM, "18Kb" or "36Kb" 
+      FIRST_WORD_FALL_THROUGH => false)  -- Sets the FIFO FWFT to TRUE or FALSE
+    port map (
+      ALMOSTEMPTY => a_empty(1),        -- Output almost empty 
+      ALMOSTFULL  => a_full(1),         -- Output almost full
+      DO          => dcfeb1_tfifo_out,  -- Output data
+      EMPTY       => empty(1),          -- Output empty
+      FULL        => full(1),           -- Output full
+      RDCOUNT     => dcfeb1_fifo_rd_cnt,     -- Output read count
+      RDERR       => open,              -- Output read error
+      WRCOUNT     => dcfeb1_fifo_wr_cnt,     -- Output write count
+      WRERR       => open,              -- Output write error
+      DI          => dcfeb1_tfifo_in,   -- Input data
+      RDCLK       => dcfeb1_fifo_rd_ck,  -- Input read clock
+      RDEN        => dcfeb1_fifo_rd_en,  -- Input read enable
+      RST         => reset,             -- Input reset
+      WRCLK       => dcfeb1_fifo_wr_ck,  -- Input write clock
+      WREN        => dcfeb1_fifo_wr_en  -- Input write enable
+      );
+
   dl_resync(2) <= dl_global_rst;
 
+  dcfeb1_fifo_in_proc : process(fifo_rm_en, dcfeb1_data_valid, fifo_tm_en, fifo_tm_wr_en, fifo_rw_en, dcfeb1_data, fifo_out, fifo_in)
+
+  begin
+    if (fifo_rm_en(2) = '1') then
+      dcfeb1_fifo_in <= "00" & dcfeb1_data;
+    elsif (fifo_rw_en(2) = '1') then
+      dcfeb1_fifo_in <= fifo_out;
+    else
+      dcfeb1_fifo_in <= fifo_in;
+    end if;
+
+  end process;
+
+  b2v_dcfeb1_fifo : FIFO_SYNC_MACRO
+    generic map (
+      DEVICE              => "VIRTEX6",  -- Target Device: "VIRTEX5, "VIRTEX6" 
+      ALMOST_FULL_OFFSET  => X"0080",   -- Sets almost full threshold
+      ALMOST_EMPTY_OFFSET => X"0080",   -- Sets the almost empty threshold
+      DATA_WIDTH          => 18,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
+      FIFO_SIZE           => "18Kb")    -- Target BRAM, "18Kb" or "36Kb" 
+    port map (
+      ALMOSTEMPTY => fifo_pae(2),       -- Output almost empty 
+      ALMOSTFULL  => fifo_half(2),      -- Output almost full
+      DO          => dcfeb1_fifo_out,   -- Output data
+      EMPTY       => fifo_empty(2),     -- Output empty
+      FULL        => fifo_full(2),      -- Output full
+      RDCOUNT     => dcfeb1_rd_cnt,     -- Output read count
+      RDERR       => dcfeb1_rd_err,     -- Output read error
+      WRCOUNT     => dcfeb1_wr_cnt,     -- Output write count
+      WRERR       => dcfeb1_wr_err,     -- Output write error
+      CLK         => fifo_wr_ck,        -- Input clock
+      DI          => dcfeb1_fifo_in,    -- Input data
+      RDEN        => fifo_rd_en(2),     -- Input read enable
+      RST         => reset,             -- Input reset
+      WREN        => fifo_wr_en(2)      -- Input write enable
+      );
+
+  DCFEB1_V6_PM : DCFEB_V6
+    generic map(
+      dcfeb_addr => "1001")
+    port map(
+      clk           => clk40,
+      rst           => reset,
+      l1a           => dcfeb_l1a,
+      l1a_match     => dcfeb_l1a_match(2),
+      dcfeb_dv      => dcfeb_data_valid(2),
+      dcfeb_data    => dcfeb_data(2),
+      adc_mask      => dcfeb1_adc_mask,
+      dcfeb_fsel    => dcfeb1_fsel,
+      dcfeb_jtag_ir => dcfeb1_jtag_ir,
+      trst          => reset,
+      tck           => dl_jtag_tck(2),
+      tms           => dl_jtag_tms,
+      tdi           => dl_jtag_tdi,
+      rtn_shft_en   => dl_rtn_shft_en(2),
+      tdo           => dl_jtag_tdo(2));
 
 -- DCFEB2
 
+-- b2v_dcfeb2_gbrx : dmb_receiver
+--    port map (
+--    RST => reset,
+-- --   // External signals
+--      DAQ_SIGDET => orx2_03_sd,
+--      DAQ_RX_N => orx2_03_n,
+--      DAQ_RX_P => orx2_03_p,
+--      DAQ_TDIS => open,
+--      DAQ_TX_N => open,
+--      DAQ_TX_P => open,
+-- --   // Internal signals
+--      DAQ_RX_125REFCLK => cdc_clk(2),
+--      DAQ_RX_160REFCLK => cdc_clk(2),
+--      DAQ_RX_WDATA => dcfeb2_gbrx_data(15 downto 0),
+--      DAQ_RXD_VLD => dcfeb2_gbrx_data_valid,
+--      DAQ_SD => open,
+--      DAQ_DATA_CLK => dcfeb2_gbrx_data_clk
+--   );
+
+  dcfeb2_gbrx_data(15 downto 0) <= (others => '0');
+  dcfeb2_gbrx_data_valid        <= '0';
+  dcfeb2_gbrx_data_clk          <= '0';
+
+  FIFO_DUALCLOCK_MACRO_dcfeb2 : FIFO_DUALCLOCK_MACRO
+    generic map (
+      DEVICE                  => "VIRTEX6",  -- Target Device: "VIRTEX5", "VIRTEX6" 
+      ALMOST_FULL_OFFSET      => X"0080",    -- Sets almost full threshold
+      ALMOST_EMPTY_OFFSET     => X"0080",    -- Sets the almost empty threshold
+      DATA_WIDTH              => 16,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
+      FIFO_SIZE               => "18Kb",     -- Target BRAM, "18Kb" or "36Kb" 
+      FIRST_WORD_FALL_THROUGH => false)  -- Sets the FIFO FWFT to TRUE or FALSE
+    port map (
+      ALMOSTEMPTY => a_empty(2),        -- Output almost empty 
+      ALMOSTFULL  => a_full(2),         -- Output almost full
+      DO          => dcfeb2_tfifo_out,  -- Output data
+      EMPTY       => empty(2),          -- Output empty
+      FULL        => full(2),           -- Output full
+      RDCOUNT     => dcfeb2_fifo_rd_cnt,     -- Output read count
+      RDERR       => open,              -- Output read error
+      WRCOUNT     => dcfeb2_fifo_wr_cnt,     -- Output write count
+      WRERR       => open,              -- Output write error
+      DI          => dcfeb2_tfifo_in,   -- Input data
+      RDCLK       => dcfeb2_fifo_rd_ck,  -- Input read clock
+      RDEN        => dcfeb2_fifo_rd_en,  -- Input read enable
+      RST         => reset,             -- Input reset
+      WRCLK       => dcfeb2_fifo_wr_ck,  -- Input write clock
+      WREN        => dcfeb2_fifo_wr_en  -- Input write enable
+      );
 
   dl_resync(3) <= dl_global_rst;
 
+  dcfeb2_fifo_in_proc : process(fifo_rm_en, dcfeb2_data_valid, fifo_tm_en, fifo_tm_wr_en, fifo_rw_en, dcfeb2_data, fifo_out, fifo_in)
+
+  begin
+    if (fifo_rm_en(3) = '1') then
+      dcfeb2_fifo_in <= "00" & dcfeb2_data;
+    elsif (fifo_rw_en(3) = '1') then
+      dcfeb2_fifo_in <= fifo_out;
+    else
+      dcfeb2_fifo_in <= fifo_in;
+    end if;
+
+  end process;
+
+  b2v_dcfeb2_fifo : FIFO_SYNC_MACRO
+    generic map (
+      DEVICE              => "VIRTEX6",  -- Target Device: "VIRTEX5, "VIRTEX6" 
+      ALMOST_FULL_OFFSET  => X"0080",   -- Sets almost full threshold
+      ALMOST_EMPTY_OFFSET => X"0080",   -- Sets the almost empty threshold
+      DATA_WIDTH          => 18,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
+      FIFO_SIZE           => "18Kb")    -- Target BRAM, "18Kb" or "36Kb" 
+    port map (
+      ALMOSTEMPTY => fifo_pae(3),       -- Output almost empty 
+      ALMOSTFULL  => fifo_half(3),      -- Output almost full
+      DO          => dcfeb2_fifo_out,   -- Output data
+      EMPTY       => fifo_empty(3),     -- Output empty
+      FULL        => fifo_full(3),      -- Output full
+      RDCOUNT     => dcfeb2_rd_cnt,     -- Output read count
+      RDERR       => dcfeb2_rd_err,     -- Output read error
+      WRCOUNT     => dcfeb2_wr_cnt,     -- Output write count
+      WRERR       => dcfeb2_wr_err,     -- Output write error
+      CLK         => fifo_wr_ck,        -- Input clock
+      DI          => dcfeb2_fifo_in,    -- Input data
+      RDEN        => fifo_rd_en(3),     -- Input read enable
+      RST         => reset,             -- Input reset
+      WREN        => fifo_wr_en(3)      -- Input write enable
+      );
+
+  DCFEB2_V6_PM : DCFEB_V6
+    generic map(
+      dcfeb_addr => "1010")
+    port map(
+      clk           => clk40,
+      rst           => reset,
+      l1a           => dcfeb_l1a,
+      l1a_match     => dcfeb_l1a_match(3),
+      dcfeb_dv      => dcfeb_data_valid(3),
+      dcfeb_data    => dcfeb_data(3),
+      adc_mask      => dcfeb2_adc_mask,
+      dcfeb_fsel    => dcfeb2_fsel,
+      dcfeb_jtag_ir => dcfeb2_jtag_ir,
+      trst          => reset,
+      tck           => dl_jtag_tck(3),
+      tms           => dl_jtag_tms,
+      tdi           => dl_jtag_tdi,
+      rtn_shft_en   => dl_rtn_shft_en(3),
+      tdo           => dl_jtag_tdo(3));
 
 -- DCFEB3
 
+--      b2v_dcfeb3_gbrx : dmb_receiver
+--         port map (
+--         RST => reset,
+--      --      // External signals
+--              DAQ_SIGDET => orx2_04_sd,
+--              DAQ_RX_N => orx2_04_n,
+--              DAQ_RX_P => orx2_04_p,
+--              DAQ_TDIS => open,
+--              DAQ_TX_N => open,
+--              DAQ_TX_P => open,
+--      --      // Internal signals
+--              DAQ_RX_125REFCLK => cdc_clk(3),
+--              DAQ_RX_160REFCLK => cdc_clk(3),
+--              DAQ_RX_WDATA => dcfeb3_gbrx_data(15 downto 0),
+--              DAQ_RXD_VLD => dcfeb3_gbrx_data_valid,
+--              DAQ_SD => open,
+--              DAQ_DATA_CLK => dcfeb3_gbrx_data_clk
+--        );
+
+  dcfeb3_gbrx_data(15 downto 0) <= (others => '0');
+  dcfeb3_gbrx_data_valid        <= '0';
+  dcfeb3_gbrx_data_clk          <= '0';
+
+  FIFO_DUALCLOCK_MACRO_dcfeb3 : FIFO_DUALCLOCK_MACRO
+    generic map (
+      DEVICE                  => "VIRTEX6",  -- Target Device: "VIRTEX5", "VIRTEX6" 
+      ALMOST_FULL_OFFSET      => X"0080",    -- Sets almost full threshold
+      ALMOST_EMPTY_OFFSET     => X"0080",    -- Sets the almost empty threshold
+      DATA_WIDTH              => 16,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
+      FIFO_SIZE               => "18Kb",     -- Target BRAM, "18Kb" or "36Kb" 
+      FIRST_WORD_FALL_THROUGH => false)  -- Sets the FIFO FWFT to TRUE or FALSE
+    port map (
+      ALMOSTEMPTY => a_empty(3),        -- Output almost empty 
+      ALMOSTFULL  => a_full(3),         -- Output almost full
+      DO          => dcfeb3_tfifo_out,  -- Output data
+      EMPTY       => empty(3),          -- Output empty
+      FULL        => full(3),           -- Output full
+      RDCOUNT     => dcfeb3_fifo_rd_cnt,     -- Output read count
+      RDERR       => open,              -- Output read error
+      WRCOUNT     => dcfeb3_fifo_wr_cnt,     -- Output write count
+      WRERR       => open,              -- Output write error
+      DI          => dcfeb3_tfifo_in,   -- Input data
+      RDCLK       => dcfeb3_fifo_rd_ck,  -- Input read clock
+      RDEN        => dcfeb3_fifo_rd_en,  -- Input read enable
+      RST         => reset,             -- Input reset
+      WRCLK       => dcfeb3_fifo_wr_ck,  -- Input write clock
+      WREN        => dcfeb3_fifo_wr_en  -- Input write enable
+      );
 
   dl_resync(4) <= dl_global_rst;
 
+  dcfeb3_fifo_in_proc : process(fifo_rm_en, dcfeb3_data_valid, fifo_tm_en, fifo_tm_wr_en, fifo_rw_en, dcfeb3_data, fifo_out, fifo_in)
+
+  begin
+    if (fifo_rm_en(4) = '1') then
+      dcfeb3_fifo_in <= "00" & dcfeb3_data;
+    elsif (fifo_rw_en(4) = '1') then
+      dcfeb3_fifo_in <= fifo_out;
+    else
+      dcfeb3_fifo_in <= fifo_in;
+    end if;
+
+  end process;
+
+  b2v_dcfeb3_fifo : FIFO_SYNC_MACRO
+    generic map (
+      DEVICE              => "VIRTEX6",  -- Target Device: "VIRTEX5, "VIRTEX6" 
+      ALMOST_FULL_OFFSET  => X"0080",   -- Sets almost full threshold
+      ALMOST_EMPTY_OFFSET => X"0080",   -- Sets the almost empty threshold
+      DATA_WIDTH          => 18,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
+      FIFO_SIZE           => "18Kb")    -- Target BRAM, "18Kb" or "36Kb" 
+    port map (
+      ALMOSTEMPTY => fifo_pae(4),       -- Output almost empty 
+      ALMOSTFULL  => fifo_half(4),      -- Output almost full
+      DO          => dcfeb3_fifo_out,   -- Output data
+      EMPTY       => fifo_empty(4),     -- Output empty
+      FULL        => fifo_full(4),      -- Output full
+      RDCOUNT     => dcfeb3_rd_cnt,     -- Output read count
+      RDERR       => dcfeb3_rd_err,     -- Output read error
+      WRCOUNT     => dcfeb3_wr_cnt,     -- Output write count
+      WRERR       => dcfeb3_wr_err,     -- Output write error
+      CLK         => fifo_wr_ck,        -- Input clock
+      DI          => dcfeb3_fifo_in,    -- Input data
+      RDEN        => fifo_rd_en(4),     -- Input read enable
+      RST         => reset,             -- Input reset
+      WREN        => fifo_wr_en(4)      -- Input write enable
+      );
+
+  DCFEB3_V6_PM : DCFEB_V6
+    generic map(
+      dcfeb_addr => "1011")
+    port map(
+      clk           => clk40,
+      rst           => reset,
+      l1a           => dcfeb_l1a,
+      l1a_match     => dcfeb_l1a_match(4),
+      dcfeb_dv      => dcfeb_data_valid(4),
+      dcfeb_data    => dcfeb_data(4),
+      adc_mask      => dcfeb3_adc_mask,
+      dcfeb_fsel    => dcfeb3_fsel,
+      dcfeb_jtag_ir => dcfeb3_jtag_ir,
+      trst          => reset,
+      tck           => dl_jtag_tck(4),
+      tms           => dl_jtag_tms,
+      tdi           => dl_jtag_tdi,
+      rtn_shft_en   => dl_rtn_shft_en(4),
+      tdo           => dl_jtag_tdo(4));
 
 -- DCFEB4
 
+  FIFO_DUALCLOCK_MACRO_dcfeb4 : FIFO_DUALCLOCK_MACRO
+    generic map (
+      DEVICE                  => "VIRTEX6",  -- Target Device: "VIRTEX5", "VIRTEX6" 
+      ALMOST_FULL_OFFSET      => X"0080",    -- Sets almost full threshold
+      ALMOST_EMPTY_OFFSET     => X"0080",    -- Sets the almost empty threshold
+      DATA_WIDTH              => 16,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
+      FIFO_SIZE               => "18Kb",     -- Target BRAM, "18Kb" or "36Kb" 
+      FIRST_WORD_FALL_THROUGH => false)  -- Sets the FIFO FWFT to TRUE or FALSE
+    port map (
+      ALMOSTEMPTY => a_empty(4),        -- Output almost empty 
+      ALMOSTFULL  => a_full(4),         -- Output almost full
+      DO          => dcfeb4_tfifo_out,  -- Output data
+      EMPTY       => empty(4),          -- Output empty
+      FULL        => full(4),           -- Output full
+      RDCOUNT     => dcfeb4_fifo_rd_cnt,     -- Output read count
+      RDERR       => open,              -- Output read error
+      WRCOUNT     => dcfeb4_fifo_wr_cnt,     -- Output write count
+      WRERR       => open,              -- Output write error
+      DI          => dcfeb4_tfifo_in,   -- Input data
+      RDCLK       => dcfeb4_fifo_rd_ck,  -- Input read clock
+      RDEN        => dcfeb4_fifo_rd_en,  -- Input read enable
+      RST         => reset,             -- Input reset
+      WRCLK       => dcfeb4_fifo_wr_ck,  -- Input write clock
+      WREN        => dcfeb4_fifo_wr_en  -- Input write enable
+      );
+
   dl_resync(5) <= dl_global_rst;
 
+  dcfeb4_fifo_in_proc : process(fifo_rm_en, dcfeb4_data_valid, fifo_tm_en, fifo_tm_wr_en, fifo_rw_en, dcfeb4_data, fifo_out, fifo_in)
 
+  begin
+    if (fifo_rm_en(5) = '1') then
+      dcfeb4_fifo_in <= "00" & dcfeb4_data;
+    elsif (fifo_rw_en(5) = '1') then
+      dcfeb4_fifo_in <= fifo_out;
+    else
+      dcfeb4_fifo_in <= fifo_in;
+    end if;
+
+  end process;
+
+  b2v_dcfeb4_fifo : FIFO_SYNC_MACRO
+    generic map (
+      DEVICE              => "VIRTEX6",  -- Target Device: "VIRTEX5, "VIRTEX6" 
+      ALMOST_FULL_OFFSET  => X"0080",   -- Sets almost full threshold
+      ALMOST_EMPTY_OFFSET => X"0080",   -- Sets the almost empty threshold
+      DATA_WIDTH          => 18,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
+      FIFO_SIZE           => "18Kb")    -- Target BRAM, "18Kb" or "36Kb" 
+    port map (
+      ALMOSTEMPTY => fifo_pae(5),       -- Output almost empty 
+      ALMOSTFULL  => fifo_half(5),      -- Output almost full
+      DO          => dcfeb4_fifo_out,   -- Output data
+      EMPTY       => fifo_empty(5),     -- Output empty
+      FULL        => fifo_full(5),      -- Output full
+      RDCOUNT     => dcfeb4_rd_cnt,     -- Output read count
+      RDERR       => dcfeb4_rd_err,     -- Output read error
+      WRCOUNT     => dcfeb4_wr_cnt,     -- Output write count
+      WRERR       => dcfeb4_wr_err,     -- Output write error
+      CLK         => fifo_wr_ck,        -- Input clock
+      DI          => dcfeb4_fifo_in,    -- Input data
+      RDEN        => fifo_rd_en(5),     -- Input read enable
+      RST         => reset,             -- Input reset
+      WREN        => fifo_wr_en(5)      -- Input write enable
+      );
+
+  DCFEB4_V6_PM : DCFEB_V6
+    generic map(
+      dcfeb_addr => "1100")
+    port map(
+      clk           => clk40,
+      rst           => reset,
+      l1a           => dcfeb_l1a,
+      l1a_match     => dcfeb_l1a_match(5),
+      dcfeb_dv      => dcfeb_data_valid(5),
+      dcfeb_data    => dcfeb_data(5),
+      adc_mask      => dcfeb4_adc_mask,
+      dcfeb_fsel    => dcfeb4_fsel,
+      dcfeb_jtag_ir => dcfeb4_jtag_ir,
+      trst          => reset,
+      tck           => dl_jtag_tck(5),
+      tms           => dl_jtag_tms,
+      tdi           => dl_jtag_tdi,
+      rtn_shft_en   => dl_rtn_shft_en(5),
+      tdo           => dl_jtag_tdo(5));
 
 -- DCFEB5
 
+  FIFO_DUALCLOCK_MACRO_dcfeb5 : FIFO_DUALCLOCK_MACRO
+    generic map (
+      DEVICE                  => "VIRTEX6",  -- Target Device: "VIRTEX5", "VIRTEX6" 
+      ALMOST_FULL_OFFSET      => X"0080",    -- Sets almost full threshold
+      ALMOST_EMPTY_OFFSET     => X"0080",    -- Sets the almost empty threshold
+      DATA_WIDTH              => 16,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
+      FIFO_SIZE               => "18Kb",     -- Target BRAM, "18Kb" or "36Kb" 
+      FIRST_WORD_FALL_THROUGH => false)  -- Sets the FIFO FWFT to TRUE or FALSE
+    port map (
+      ALMOSTEMPTY => a_empty(5),        -- Output almost empty 
+      ALMOSTFULL  => a_full(5),         -- Output almost full
+      DO          => dcfeb5_tfifo_out,  -- Output data
+      EMPTY       => empty(5),          -- Output empty
+      FULL        => full(5),           -- Output full
+      RDCOUNT     => dcfeb5_fifo_rd_cnt,     -- Output read count
+      RDERR       => open,              -- Output read error
+      WRCOUNT     => dcfeb5_fifo_wr_cnt,     -- Output write count
+      WRERR       => open,              -- Output write error
+      DI          => dcfeb5_tfifo_in,   -- Input data
+      RDCLK       => dcfeb5_fifo_rd_ck,  -- Input read clock
+      RDEN        => dcfeb5_fifo_rd_en,  -- Input read enable
+      RST         => reset,             -- Input reset
+      WRCLK       => dcfeb5_fifo_wr_ck,  -- Input write clock
+      WREN        => dcfeb5_fifo_wr_en  -- Input write enable
+      );
 
   dl_resync(6) <= dl_global_rst;
 
+  dcfeb5_fifo_in_proc : process(fifo_rm_en, dcfeb5_data_valid, fifo_tm_en, fifo_tm_wr_en, fifo_rw_en, dcfeb5_data, fifo_out, fifo_in)
 
+  begin
+    if (fifo_rm_en(6) = '1') then
+      dcfeb5_fifo_in <= "00" & dcfeb5_data;
+    elsif (fifo_rw_en(6) = '1') then
+      dcfeb5_fifo_in <= fifo_out;
+    else
+      dcfeb5_fifo_in <= fifo_in;
+    end if;
+
+  end process;
+
+  b2v_dcfeb5_fifo : FIFO_SYNC_MACRO
+    generic map (
+      DEVICE              => "VIRTEX6",  -- Target Device: "VIRTEX5, "VIRTEX6" 
+      ALMOST_FULL_OFFSET  => X"0080",   -- Sets almost full threshold
+      ALMOST_EMPTY_OFFSET => X"0080",   -- Sets the almost empty threshold
+      DATA_WIDTH          => 18,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
+      FIFO_SIZE           => "18Kb")    -- Target BRAM, "18Kb" or "36Kb" 
+    port map (
+      ALMOSTEMPTY => fifo_pae(6),       -- Output almost empty 
+      ALMOSTFULL  => fifo_half(6),      -- Output almost full
+      DO          => dcfeb5_fifo_out,   -- Output data
+      EMPTY       => fifo_empty(6),     -- Output empty
+      FULL        => fifo_full(6),      -- Output full
+      RDCOUNT     => dcfeb5_rd_cnt,     -- Output read count
+      RDERR       => dcfeb5_rd_err,     -- Output read error
+      WRCOUNT     => dcfeb5_wr_cnt,     -- Output write count
+      WRERR       => dcfeb5_wr_err,     -- Output write error
+      CLK         => fifo_wr_ck,        -- Input clock
+      DI          => dcfeb5_fifo_in,    -- Input data
+      RDEN        => fifo_rd_en(6),     -- Input read enable
+      RST         => reset,             -- Input reset
+      WREN        => fifo_wr_en(6)      -- Input write enable
+      );
+
+  DCFEB5_V6_PM : DCFEB_V6
+    generic map(
+      dcfeb_addr => "1101")
+    port map(
+      clk           => clk40,
+      rst           => reset,
+      l1a           => dcfeb_l1a,
+      l1a_match     => dcfeb_l1a_match(6),
+      dcfeb_dv      => dcfeb_data_valid(6),
+      dcfeb_data    => dcfeb_data(6),
+      adc_mask      => dcfeb5_adc_mask,
+      dcfeb_fsel    => dcfeb5_fsel,
+      dcfeb_jtag_ir => dcfeb5_jtag_ir,
+      trst          => reset,
+      tck           => dl_jtag_tck(6),
+      tms           => dl_jtag_tms,
+      tdi           => dl_jtag_tdi,
+      rtn_shft_en   => dl_rtn_shft_en(6),
+      tdo           => dl_jtag_tdo(6));
 
 -- DCFEB6
 
+  FIFO_DUALCLOCK_MACRO_dcfeb6 : FIFO_DUALCLOCK_MACRO
+    generic map (
+      DEVICE                  => "VIRTEX6",  -- Target Device: "VIRTEX5", "VIRTEX6" 
+      ALMOST_FULL_OFFSET      => X"0080",    -- Sets almost full threshold
+      ALMOST_EMPTY_OFFSET     => X"0080",    -- Sets the almost empty threshold
+      DATA_WIDTH              => 16,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
+      FIFO_SIZE               => "18Kb",     -- Target BRAM, "18Kb" or "36Kb" 
+      FIRST_WORD_FALL_THROUGH => false)  -- Sets the FIFO FWFT to TRUE or FALSE
+    port map (
+      ALMOSTEMPTY => a_empty(6),        -- Output almost empty 
+      ALMOSTFULL  => a_full(6),         -- Output almost full
+      DO          => dcfeb6_tfifo_out,  -- Output data
+      EMPTY       => empty(6),          -- Output empty
+      FULL        => full(6),           -- Output full
+      RDCOUNT     => dcfeb6_fifo_rd_cnt,     -- Output read count
+      RDERR       => open,              -- Output read error
+      WRCOUNT     => dcfeb6_fifo_wr_cnt,     -- Output write count
+      WRERR       => open,              -- Output write error
+      DI          => dcfeb6_tfifo_in,   -- Input data
+      RDCLK       => dcfeb6_fifo_rd_ck,  -- Input read clock
+      RDEN        => dcfeb6_fifo_rd_en,  -- Input read enable
+      RST         => reset,             -- Input reset
+      WRCLK       => dcfeb6_fifo_wr_ck,  -- Input write clock
+      WREN        => dcfeb6_fifo_wr_en  -- Input write enable
+      );
 
   dl_resync(7) <= dl_global_rst;
 
+  dcfeb6_fifo_in_proc : process(fifo_rm_en, dcfeb6_data_valid, fifo_tm_en, fifo_tm_wr_en, fifo_rw_en, dcfeb6_data, fifo_out, fifo_in)
+
+  begin
+--      fifo_wr_en(7) <= (dcfeb6_data_valid and fifo_rm_en(7)) or (fifo_tm_wr_en(7) and fifo_tm_en(7));
+    if (fifo_rm_en(7) = '1') then
+      dcfeb6_fifo_in <= "00" & dcfeb6_data;
+    elsif (fifo_rw_en(7) = '1') then
+      dcfeb6_fifo_in <= fifo_out;
+    else
+      dcfeb6_fifo_in <= fifo_in;
+    end if;
+
+  end process;
+
+--b2v_dcfeb6_fifo : fifo_generator_v6_2
+--PORT MAP(
+--      rst => reset,
+--      wr_clk => fifo_wr_ck,
+--      rd_clk => fifo_rd_ck,
+--      din => dcfeb6_fifo_in,
+--      wr_en => fifo_wr_en(7),
+--      rd_en => fifo_rd_en(7),
+--      dout => dcfeb6_fifo_out,
+--      full => fifo_full(7),
+--      empty => fifo_empty(7),
+--      prog_full => fifo_half(7),
+--      prog_empty => fifo_pae(7));
+
+  b2v_dcfeb6_fifo : FIFO_SYNC_MACRO
+    generic map (
+      DEVICE              => "VIRTEX6",  -- Target Device: "VIRTEX5, "VIRTEX6" 
+      ALMOST_FULL_OFFSET  => X"0080",   -- Sets almost full threshold
+      ALMOST_EMPTY_OFFSET => X"0080",   -- Sets the almost empty threshold
+      DATA_WIDTH          => 18,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
+      FIFO_SIZE           => "18Kb")    -- Target BRAM, "18Kb" or "36Kb" 
+    port map (
+      ALMOSTEMPTY => fifo_pae(7),       -- Output almost empty 
+      ALMOSTFULL  => fifo_half(7),      -- Output almost full
+      DO          => dcfeb6_fifo_out,   -- Output data
+      EMPTY       => fifo_empty(7),     -- Output empty
+      FULL        => fifo_full(7),      -- Output full
+      RDCOUNT     => dcfeb6_rd_cnt,     -- Output read count
+      RDERR       => dcfeb6_rd_err,     -- Output read error
+      WRCOUNT     => dcfeb6_wr_cnt,     -- Output write count
+      WRERR       => dcfeb6_wr_err,     -- Output write error
+      CLK         => fifo_wr_ck,        -- Input clock
+      DI          => dcfeb6_fifo_in,    -- Input data
+      RDEN        => fifo_rd_en(7),     -- Input read enable
+      RST         => reset,             -- Input reset
+      WREN        => fifo_wr_en(7)      -- Input write enable
+      );
+
+  DCFEB6_V6_PM : DCFEB_V6
+    generic map(
+      dcfeb_addr => "1110")
+    port map(
+      clk           => clk40,
+      rst           => reset,
+      l1a           => dcfeb_l1a,
+      l1a_match     => dcfeb_l1a_match(7),
+      dcfeb_dv      => dcfeb_data_valid(7),
+      dcfeb_data    => dcfeb_data(7),
+      adc_mask      => dcfeb6_adc_mask,
+      dcfeb_fsel    => dcfeb6_fsel,
+      dcfeb_jtag_ir => dcfeb6_jtag_ir,
+      trst          => reset,
+      tck           => dl_jtag_tck(7),
+      tms           => dl_jtag_tms,
+      tdi           => dl_jtag_tdi,
+      rtn_shft_en   => dl_rtn_shft_en(7),
+      tdo           => dl_jtag_tdo(7));
+
+-- DCFEB7 (dummy - for GBRX test only)
+
+  FIFO_DUALCLOCK_MACRO_dcfeb7 : FIFO_DUALCLOCK_MACRO
+    generic map (
+      DEVICE                  => "VIRTEX6",  -- Target Device: "VIRTEX5", "VIRTEX6" 
+      ALMOST_FULL_OFFSET      => X"0080",    -- Sets almost full threshold
+      ALMOST_EMPTY_OFFSET     => X"0080",    -- Sets the almost empty threshold
+      DATA_WIDTH              => 16,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
+      FIFO_SIZE               => "18Kb",     -- Target BRAM, "18Kb" or "36Kb" 
+      FIRST_WORD_FALL_THROUGH => false)  -- Sets the FIFO FWFT to TRUE or FALSE
+    port map (
+      ALMOSTEMPTY => a_empty(7),        -- Output almost empty 
+      ALMOSTFULL  => a_full(7),         -- Output almost full
+      DO          => dcfeb7_tfifo_out,  -- Output data
+      EMPTY       => empty(7),          -- Output empty
+      FULL        => full(7),           -- Output full
+      RDCOUNT     => dcfeb7_fifo_rd_cnt,     -- Output read count
+      RDERR       => open,              -- Output read error
+      WRCOUNT     => dcfeb7_fifo_wr_cnt,     -- Output write count
+      WRERR       => open,              -- Output write error
+      DI          => dcfeb7_tfifo_in,   -- Input data
+      RDCLK       => dcfeb7_fifo_rd_ck,  -- Input read clock
+      RDEN        => dcfeb7_fifo_rd_en,  -- Input read enable
+      RST         => reset,             -- Input reset
+      WRCLK       => dcfeb7_fifo_wr_ck,  -- Input write clock
+      WREN        => dcfeb7_fifo_wr_en  -- Input write enable
+      );
 
 -- TMB0
 
-  tmb_data <= tmb(15 downto 0);
---  tmb_data(16 downto 0) <= tmb(16 downto 0);
---  tmb_data(17)          <= '0';
---  tmb_data_valid        <= tmb(17);
+  tmb_data(16 downto 0) <= tmb(16 downto 0);
+  tmb_data(17)          <= '0';
+  tmb_data_valid        <= tmb(17);
 
   tmb_fifo_in_proc : process(fifo_rm_en, tmb_data_valid, fifo_tm_en, fifo_tm_wr_en, fifo_rw_en, tmb_data, fifo_out, fifo_in)
 
@@ -2474,12 +3568,27 @@ tc_run_out <= tc_run;
 
   end process;
 
+
+--b2v_tmb_fifo : fifo_generator_v6_2
+--PORT MAP(
+--      rst => reset,
+--      wr_clk => fifo_wr_ck,
+--      rd_clk => fifo_rd_ck,
+--      din => tmb_fifo_in,
+--      wr_en => fifo_wr_en(8),
+--      rd_en => fifo_rd_en(8),
+--      dout => tmb_fifo_out,
+--      full => fifo_full(8),
+--      empty => fifo_empty(8),
+--      prog_full => fifo_half(8),
+--      prog_empty => fifo_pae(8));
+
   b2v_tmb_fifo : FIFO_SYNC_MACRO
     generic map (
       DEVICE              => "VIRTEX6",  -- Target Device: "VIRTEX5, "VIRTEX6" 
       ALMOST_FULL_OFFSET  => X"0080",   -- Sets almost full threshold
       ALMOST_EMPTY_OFFSET => X"0080",   -- Sets the almost empty threshold
-      DATA_WIDTH          => 16,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
+      DATA_WIDTH          => 18,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
       FIFO_SIZE           => "18Kb")    -- Target BRAM, "18Kb" or "36Kb" 
     port map (
       ALMOSTEMPTY => fifo_pae(8),       -- Output almost empty 
@@ -2500,10 +3609,9 @@ tc_run_out <= tc_run;
 
 -- TMB1
 
-  alct_data <= alct(15 downto 0);
---  alct_data(16 downto 0) <= alct(16 downto 0);
---  alct_data(17)          <= '0';
---  alct_data_valid        <= alct(17);
+  alct_data(16 downto 0) <= alct(16 downto 0);
+  alct_data(17)          <= '0';
+  alct_data_valid        <= alct(17);
 
   alct_fifo_in_proc : process(fifo_rm_en, alct_data_valid, fifo_tm_en, fifo_tm_wr_en, fifo_rw_en, alct_data, fifo_out, fifo_in)
 
@@ -2519,12 +3627,27 @@ tc_run_out <= tc_run;
 
   end process;
 
+
+--b2v_alct_fifo : fifo_generator_v6_2
+--PORT MAP(
+--      rst => reset,
+--      wr_clk => fifo_wr_ck,
+--      rd_clk => fifo_rd_ck,
+--      din => alct_fifo_in,
+--      wr_en => fifo_wr_en(9),
+--      rd_en => fifo_rd_en(9),
+--      dout => alct_fifo_out,
+--      full => fifo_full(9),
+--      empty => fifo_empty(9),
+--      prog_full => fifo_half(9),
+--      prog_empty => fifo_pae(9));
+
   b2v_alct_fifo : FIFO_SYNC_MACRO
     generic map (
       DEVICE              => "VIRTEX6",  -- Target Device: "VIRTEX5, "VIRTEX6" 
       ALMOST_FULL_OFFSET  => X"0080",   -- Sets almost full threshold
       ALMOST_EMPTY_OFFSET => X"0080",   -- Sets the almost empty threshold
-      DATA_WIDTH          => 16,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
+      DATA_WIDTH          => 18,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
       FIFO_SIZE           => "18Kb")    -- Target BRAM, "18Kb" or "36Kb" 
     port map (
       ALMOSTEMPTY => fifo_pae(9),       -- Output almost empty 
@@ -2543,6 +3666,28 @@ tc_run_out <= tc_run;
       WREN        => fifo_wr_en(9)      -- Input write enable
       );
 
+-- Dummy JTAG Slave
+
+--  PMAP_JTAG_SLAVE: jtag_slave
+--  port map (
+--              tck => dl_jtag_tck(1),
+--              reset => reset,
+--              tdi => dl_jtag_tdi,
+--              tms => dl_jtag_tms,
+--              tdo => dl_jtag_tdo(1),
+--              dreg0 => jtag_dr0,
+--              dreg1 => open,
+--              dreg2 => open,
+--              dreg3 => open,
+--              ireg => jtag_ir
+  --   );
+
+--d_out(0) <= dl_jtag_tck(1);
+--d_out(1) <= dl_jtag_tms;
+--d_out(2) <= dl_jtag_tdi;
+--d_out(3) <= dl_jtag_tdo(1);
+--d_out(8 downto 4) <= jtag_ir(4 downto 0);
+--d_out(40 downto 32) <= jtag_dr0(8 downto 0);
 
 -- LVMB ADCs
 
@@ -2617,164 +3762,5 @@ tc_run_out <= tc_run;
       adc_ce           => int_lvmb_csb,
       sdo              => int_lvmb_sdout);
 
-
-  orx_dcfeb_data_n <= orx2_buf_n;
-  orx_dcfeb_data_p <= orx2_buf_p;
-
-  DMB_RX_PM : dmb_receiver
-    generic map (
-      USE_2p56GbE => 1,
-      SIM_SPEEDUP => 1
-      )
-    port map (
-      -- Chip Scope Pro Logic Analyzer control -- bgb
-      CSP_GTX_MAC_LA_CTRL => LOGIC36L,
-      CSP_PKT_FRM_LA_CTRL => LOGIC36L,
-      CSP_FIFO_LA_CTRL    => LOGIC36L,
-
-
-      --External signals
-      RST              => reset,
-      ORX2_01_N        => rx_dcfeb_data_n(1),
-      ORX2_01_P        => rx_dcfeb_data_p(1),
-      ORX2_02_N        => rx_dcfeb_data_n(2),
-      ORX2_02_P        => rx_dcfeb_data_p(2),
-      ORX2_03_N        => rx_dcfeb_data_n(3),
-      ORX2_03_P        => rx_dcfeb_data_p(3),
-      ORX2_04_N        => rx_dcfeb_data_n(4),
-      ORX2_04_P        => rx_dcfeb_data_p(4),
-      ORX2_05_N        => rx_dcfeb_data_n(5),
-      ORX2_05_P        => rx_dcfeb_data_p(5),
-      ORX2_06_N        => rx_dcfeb_data_n(6),
-      ORX2_06_P        => rx_dcfeb_data_p(6),
-      ORX2_07_N        => rx_dcfeb_data_n(7),
-      ORX2_07_P        => rx_dcfeb_data_p(7),
-      ORX2_08_N        => orx2_buf_n(8),
-      ORX2_08_P        => orx2_buf_p(8),
-      ORX2_09_N        => orx2_buf_n(9),
-      ORX2_09_P        => orx2_buf_p(9),
-      ORX2_10_N        => orx2_buf_n(10),
-      ORX2_10_P        => orx2_buf_p(10),
-      ORX2_11_N        => orx2_buf_n(11),
-      ORX2_11_P        => orx2_buf_p(11),
-      ORX2_12_N        => orx2_buf_n(12),
-      ORX2_12_P        => orx2_buf_p(12),
-      DCFEB1_DATA      => rx_dcfeb_data(1),
-      DCFEB2_DATA      => rx_dcfeb_data(2),
-      DCFEB3_DATA      => rx_dcfeb_data(3),
-      DCFEB4_DATA      => rx_dcfeb_data(4),
-      DCFEB5_DATA      => rx_dcfeb_data(5),
-      DCFEB6_DATA      => rx_dcfeb_data(6),
-      DCFEB7_DATA      => rx_dcfeb_data(7),
-      DCFEB_DATA_VALID => rx_dcfeb_data_valid,
-      --Internal signals
-      FIFO_VME_MODE          => fifo_vme_mode,
-      FIFO_SEL               => fifo_sel,
-      RD_EN_FF               => rd_en_ff,
-      WR_EN_FF               => wr_en_ff,
-      FF_DATA_IN             => ff_data_in,
-      FF_DATA_OUT            => ff_data_out,
-      FF_WRD_CNT             => ff_wrd_cnt,
-      FF_STATUS              => ff_status,
-      DMBVME_CLK_S2          => dmbvme_clk_s2,
-      DAQ_RX_125REFCLK       => daq_rx_125refclk,
-      DAQ_RX_160REFCLK_115_0 => clk80
-      );
-
-  rx_dcfeb_sel  <= '1';
-  opt_dcfeb_sel <= '0';
-
-  GEN_DCFEB : for I in NFEB downto 1 generate
-  begin
-
-    dcfeb_data_valid(I) <= rx_dcfeb_data_valid(I) when (rx_dcfeb_sel = '1') else gen_dcfeb_data_valid(I);
-
-    rx_dcfeb_data_p(I) <= orx_dcfeb_data_p(I) when (opt_dcfeb_sel = '1') else gen_dcfeb_data_p(I);
-    rx_dcfeb_data_n(I) <= orx_dcfeb_data_n(I) when (opt_dcfeb_sel = '1') else gen_dcfeb_data_n(I);
-
-    dcfeb_fifo_in(I) <= fifo_in when ((fifo_rm_en(I) = '0') and (fifo_rw_en(I) = '0')) else 
-                        fifo_out when ((fifo_rm_en(I) = '0') and (fifo_rw_en(I) = '1')) else
-                        rx_dcfeb_data(I) when (rx_dcfeb_sel = '1') else 
-                        gen_dcfeb_data(I);
-
-    DCFEB_V6_PM : DCFEB_V6
-      generic map(
-        dcfeb_addr => dcfeb_addr(I))
-      port map(
-        clk           => clk40,
-        clk80         => clk80,
-        rst           => reset,
-        l1a           => dcfeb_l1a,
-        l1a_match     => dcfeb_l1a_match(I),
-        tx_ack        => dcfeb_tx_ack(I), -- 1 if rx_dcfeb_sel = 0!!!
-        dcfeb_dv      => gen_dcfeb_data_valid(I),
-        dcfeb_data    => gen_dcfeb_data(I),
-        adc_mask      => dcfeb_adc_mask(I),
-        dcfeb_fsel    => dcfeb_fsel(I),
-        dcfeb_jtag_ir => dcfeb_jtag_ir(I),
-        trst          => reset,
-        tck           => dl_jtag_tck(I),
-        tms           => dl_jtag_tms,
-        tdi           => dl_jtag_tdi,
-        rtn_shft_en   => dl_rtn_shft_en(I),
-        tdo           => dl_jtag_tdo(I));
-
--- dcfeb_tx_ack(I) to be connected to data generator in DCFEB_V6!!!
-
-    DCFEB_TX_PM : daq_optical_out
-      generic map(
-        USE_CHIPSCOPE => 0,
-        SIM_SPEEDUP   => 1
-        )
-      port map(
-        DAQ_TX_VIO_CNTRL     => LOGIC36L,
-        DAQ_TX_LA_CNTRL      => LOGIC36L,
-        RST                  => reset,
-        DAQ_RX_N             => LOGICL,
-        DAQ_RX_P             => LOGICH,
-        DAQ_TDIS             => dcfeb_daq_tdis(I),
-        DAQ_TX_N             => gen_dcfeb_data_n(I),
-        DAQ_TX_P             => gen_dcfeb_data_p(I),
-        DAQ_TX_125REFCLK     => LOGICL,  -- daq_tx_125refclk,
-        DAQ_TX_125REFCLK_DV2 => LOGICL,  -- daq_tx_125refclk_dv2,
-        DAQ_TX_160REFCLK     => clk80,
-        L1A_MATCH            => LOGICL,
-        TXD                  => gen_dcfeb_data(I),
-        TXD_VLD              => gen_dcfeb_data_valid(I),
-        JDAQ_RATE            => LOGICH,  -- '0' selects clock: 125 MHz (1.25 Gb), '1' selects 160 MHz (3.2 Gb)
-        RATE_1_25            => open,
-        RATE_3_2             => open,
-        TX_ACK               => dcfeb_tx_ack(I),
-        DAQ_DATA_CLK         => dcfeb_daq_data_clk(I));
-
-    DCFEB_FIFO_PM : FIFO_DUALCLOCK_MACRO
-      generic map (
-        DEVICE                  => "VIRTEX6",  -- Target Device: "VIRTEX5", "VIRTEX6" 
-        ALMOST_FULL_OFFSET      => X"0080",  -- Sets almost full threshold
-        ALMOST_EMPTY_OFFSET     => X"0080",  -- Sets the almost empty threshold
-        DATA_WIDTH              => 16,  -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
-        FIFO_SIZE               => "18Kb",   -- Target BRAM, "18Kb" or "36Kb" 
-        FIRST_WORD_FALL_THROUGH => false)  -- Sets the FIFO FWFT to TRUE or FALSE
-
-      port map (
-        ALMOSTEMPTY => dcfeb_fifo_aempty(I),  -- Output almost empty 
-        ALMOSTFULL  => dcfeb_fifo_afull(I),   -- Output almost full
-        DO          => dcfeb_fifo_out(I),     -- Output data
-        EMPTY       => dcfeb_fifo_empty(I),   -- Output empty
-        FULL        => dcfeb_fifo_full(I),    -- Output full
-        RDCOUNT     => dcfeb_fifo_rd_cnt(I),  -- Output read count
-        RDERR       => open,                  -- Output read error
-        WRCOUNT     => dcfeb_fifo_wr_cnt(I),  -- Output write count
-        WRERR       => open,                  -- Output write error
-        DI          => dcfeb_fifo_in(I),      -- Input data
-        RDCLK       => clk40,                 -- Input read clock
-        RDEN        => data_fifo_re(I),       -- Input read enable
-        RST         => reset,                 -- Input reset
-        WRCLK       => clk80,                 -- Input write clock
-        WREN        => dcfeb_data_valid(I)    -- Input write enable
---        WREN        => dcfeb_fifo_wr_en(I)    -- Input write enable
-        );
-
-  end generate GEN_DCFEB;
 
 end bdf_type;
