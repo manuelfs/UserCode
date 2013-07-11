@@ -1,4 +1,3 @@
-`timescale 1ns / 1ps
 module pon_reg(pon_en, pon_load, pon_in, pon_out);
   
   input pon_en;        

@@ -89,24 +89,23 @@ architecture CONTROL_arch of CONTROL is
   signal BUSY : std_logic;
   signal GEMPTY_D : std_logic_vector(3 downto 1);
   
-  signal STARTREAD_RST, STARTREAD : std_logic := '0';
-  signal OEHDR : std_logic_vector(8 downto 1) := (others => '0');
-  signal OEHDRA, OEHDRB : std_logic := '0';
-  signal DOHDR : std_logic := '0';
-  signal TAIL_RST, DDCNT_EN_RST, DDCNT_CEO, DDCNT_TC, OKDATA, DODAT : std_logic := '0';
+  signal STARTREAD_RST, STARTREAD : std_logic;
+  signal OEHDR : std_logic_vector(8 downto 1);
+  signal OEHDRA, OEHDRB : std_logic;
+  signal DOHDR : std_logic;
+  signal TAIL_RST, DDCNT_EN_RST, DDCNT_CEO, DDCNT_TC, OKDATA, DODAT : std_logic;
   signal DDCNT_EN : std_logic_vector(1 downto 0);
   signal DDCNT : std_logic_vector(15 downto 0);
 
-  signal STARTTAIL_CE, STARTTAIL : std_logic := '0';
+  signal STARTTAIL_CE, STARTTAIL : std_logic;
   signal TAIL : std_logic_vector(8 downto 1);
-  signal TAILA, TAILB : std_logic := '0';
-  signal DOTAIL : std_logic := '0';
+  signal TAILA, TAILB : std_logic;
+  signal DOTAIL : std_logic;
 
-  signal DAV_D : std_logic := '0';
-  signal DAV_D1,DAV_D2,DAV_D3 : std_logic := '0';
+  signal DAV_D : std_logic;
 
   signal POP_D : std_logic_vector(4 downto 1);
-  signal TAILDONE, STPOP, L1ONLY, POP: std_logic := '0';
+  signal TAILDONE, STPOP, L1ONLY, POP: std_logic;
 
   signal FIFO_POP_RST, FIFO_POP_INNER, FIFO_POP_D : std_logic;
   
@@ -138,7 +137,6 @@ architecture CONTROL_arch of CONTROL is
   signal P : std_logic_vector(NFEB+2 downto 1);
   signal OE : std_logic_vector(NFEB+2 downto 1);
   signal DOEALL, OEALL, OEALL_D, OEDATA, OEDATA_D, OEDATA_DD, POPLAST : std_logic;
-  signal OEDATA_DAV : std_logic_vector(2 downto 0);
   signal JRDFF, JRDFF_D : std_logic;
   signal EODATA, DATAON : std_logic;
     
@@ -149,7 +147,7 @@ architecture CONTROL_arch of CONTROL is
   signal OEFIFO_B_D_D, OEFIFO_B_D_D_D : std_logic_vector(NFEB+2 downto 1);
 
 -- PAGE 6
-  signal DATA_A, DATA_B, DATA_C, DATA_D : std_logic_vector(15 downto 0):=(others=>'0');
+  signal DATA_A, DATA_B, DATA_C, DATA_D : std_logic_vector(15 downto 0);
   signal DONE, LAST_RST : std_logic;
   signal LAST : std_logic := '0';
 
@@ -157,7 +155,7 @@ architecture CONTROL_arch of CONTROL is
   signal DATANOEND, DAVNODATA, DAVNODATA_D, ERRORD : std_logic_vector(NFEB+2 downto 1);
   signal NOEND_RST, NOEND_CEO, NOEND_TC, RSTCNT : std_logic;
   signal NOEND : std_logic_vector(15 downto 0);
-  signal CRC, REG_CRC : std_logic_vector(23 downto 0) := (others => '0');
+  signal CRC, REG_CRC : std_logic_vector(23 downto 0);
   signal CRCEN, CRCEN_D, CRCEN_Q : std_logic;
   signal DATA_CRC : std_logic_vector(15 downto 0);
   signal TAIL78, DTAIL78, DTAIL7, DTAIL8 : std_logic;
@@ -188,15 +186,9 @@ architecture CONTROL_arch of CONTROL is
 
 begin
   
---  DAV <= 'L';
-
+  DAV <= 'L';
   
-  GEMPTY_TMP <= and_reduce(cafifo_l1a_dav(9 downto 8)) when (cafifo_l1a_match(9) = '1' and cafifo_l1a_match(8) = '1') else
-                cafifo_l1a_dav(9) when (cafifo_l1a_match(9) = '1' and cafifo_l1a_match(8) = '0') else
-                cafifo_l1a_dav(8) when (cafifo_l1a_match(9) = '0' and cafifo_l1a_match(8) = '1') else
-                or_reduce(cafifo_l1a_dav(NFEB downto 1));
---  GEMPTY_TMP <= or_reduce(cafifo_l1a_dav);
-  --GEMPTY_TMP <= cafifo_l1a_dav)(8) or cafifo_l1a_dav(9);
+  GEMPTY_TMP <= cafifo_l1a_dav(8) or cafifo_l1a_dav(9);
   
   DATAIN_LAST_TMP <= '1' when (DATAIN(11 downto 0) = "000000001000") else '0';
   
@@ -260,11 +252,9 @@ begin
   DOTAIL <= TAILA or TAILB;
   
 -- Generate DAV (page 1)
-  DAV_D <= (OEDATA_DAV(2) or OEHDTL) and not DISDAV;
+  DAV_D <= (OEDATA or OEHDTL) and not DISDAV;
   FDC(DAV_D, CLK, POP, DAV);
---  FDC(DAV_D2, CLK, POP, DAV_D3);
---  DAV <= DAV_D1 and DAV_D2 and DAV_D3;
-    
+  
 -- Generate POP (page 1)
   FDC(TAIL(8), CLK, POP, TAILDONE);
   L1ONLY <= '1' when (OEHDR(4)='1' and cafifo_l1a_match = ZERO9) else '0';
@@ -429,12 +419,6 @@ begin
   FDC(OEDATA_D, CLK, POP, OEDATA_DD); 
   FDC(OEDATA_DD, CLK, POP, OEDATA);
   
-  -- Generate OEDATA_DAV (removes two clock cycles and shifts another)
-   FDC(OEDATA, CLK, POP, OEDATA_DAV(0));
-   FDC(OEDATA_DAV(0), CLK, POP, OEDATA_DAV(1));
-   OEDATA_DAV(2) <= OEDATA_DAV(1) and OEDATA_DAV(0) and OEDATA and OEDATA_DD;
- 
-  
 -- Generate JRDFF (page 4)
   FDC(LOGICH, RDFFNXT, JRDFF, JRDFF_D);
   FDC(JRDFF_D, CLK, RST, JRDFF);
@@ -480,17 +464,16 @@ begin
   begin
     IFD_1(DATAIN(K), CLK, DATA_A(K));
     FD(DATA_B(K), CLK, DATA_C(K));    
-    FDC(DATA_D(K), CLK, RST, DOUT(K));
+    FD(DATA_D(K), CLK, DOUT(K));
   end generate GEN_DOUT;
   DATA_B <= DATA_A    when (DODAT='1') else 
             DATA_HDR  when (DOHDR='1') else
             DATA_TAIL when (DOTAIL='1');
   DATA_D <= DATA_CRC when (DTAIL78='1') else DATA_C;
 
-
 -- Generate DONE / Generate LAST (new, page 6)
-  FDCE_1(DATAIN_LAST, CLK, DOEALL, LAST_RST, LAST);
---  FDCE_1(DATAIN_LAST_TMP, CLK, DOEALL, LAST_RST, LAST);
+--  FDCE_1(DATAIN_LAST, CLK, DOEALL, LAST_RST, LAST);
+  FDCE_1(DATAIN_LAST_TMP, CLK, DOEALL, LAST_RST, LAST);
   FD(LAST, CLK, DONE);
   FD_1(LAST, CLK, LAST_RST);
 
@@ -542,14 +525,14 @@ begin
   FD(DTAIL7, CLK, DTAIL8);
   CRCEN_D <= OEHDRA or OEHDRB or TAILA;
   FDC(CRCEN_D, CLK, RST, CRCEN_Q);
-  CRCEN <= '1' when (((CRCEN_Q or OEDATA_DD) = '1') and DISDAV_DD='0') else '0';
+  CRCEN <= '1' when (((CRCEN_Q or OEDATA) = '1') and DISDAV='0') else '0';
   DATA_CRC(10 downto 0) <= REG_CRC(10 downto 0) when (DTAIL7='1') else 
                            REG_CRC(21 downto 11) when (DTAIL8='1') else
                            (others => '0');
   DATA_CRC(11) <= REG_CRC(22) when (DTAIL7='1') else 
                   REG_CRC(23) when (DTAIL8='1') else
                   '0';
-  DATA_CRC(15 downto 12) <= "1110";
+  DATA_CRC(15 downto 12) <= (others => '0');
 
 -- End Of Frame to DDUFIFO
   FD(DTAIL8, CLK, EOF);
